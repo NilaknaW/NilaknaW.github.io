@@ -21,7 +21,7 @@ repository               : "nilaknaw/nilaknaw.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "nilakna_profile.png"
+  avatar           : "nilakna_profile.jpeg"
   name             : "Nilakna Warushavithana"
   pronouns         : # example: "she/her"  
   bio              : "An electronics and telecommunication engineering student"
