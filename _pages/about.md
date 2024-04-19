@@ -22,6 +22,6 @@ redirect_from:
 
 <b>Experience 👩‍💼</b>
 * Intern, Environmental and Disaster Management, World Wildlife Fund: Mar 2024 - present, part-time, remote.
-* Intern, Network Planning and Optimization Division, SLT Mobitel (Pvt) Ltd: Oct - Jan 2023 (3 mo.), full-time, on-site. 
+* Intern, Network Planning and Optimization Division, SLT Mobitel (Pvt) Ltd: Oct 2023 - Jan 2024 (3 mo.), full-time, on-site. 
 
 For further details refer to my [CV](https://github.com/NilaknaW/resume-cv/blob/main/cv.pdf).
