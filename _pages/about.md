@@ -7,11 +7,9 @@ redirect_from:
   - /about.html
 ---
 
-🎓 Undergraduate in Electronics and Telecommunication Engineering at the [University of Moratuwa](https://uom.lk/), Sri Lanka.
+🎓 Undergraduate in [Electronics and Telecommunication Engineering](https://ent.uom.lk/) at the [University of Moratuwa, Sri Lanka](https://uom.lk/).
 
-🖥️ Currently interning at the Environmental and Disaster Management Team of the World Wildlife Fund (Part-time).
-
-💡 Interested in broad subjects of electronics, robotics, and machine learning, which I am exploring more.
+💡 Interested in electronics, robotics, and machine learning.
 
 🏑 A varsity field hockey player and 🎹 an orchestral clarinetist, enjoy playing piano and composing for pleasure.
 
@@ -21,7 +19,7 @@ redirect_from:
 * MECHA medical technology competition
 
 <b>Experience 👩‍💼</b>
-* Intern, Environmental and Disaster Management, World Wildlife Fund: Mar 2024 - present, part-time, remote.
-* Intern, Network Planning and Optimization Division, SLT Mobitel (Pvt) Ltd: Oct 2023 - Jan 2024 (3 mo.), full-time, on-site. 
+* Intern, Environmental and Disaster Management, World Wildlife Fund: Mar 2024 - Present, part-time, remote.
+* Intern, Network Planning and Operations Division, SLT Mobitel (Pvt) Ltd: Oct 2023 - Jan 2024 (3 mo.), full-time, on-site. 
 
 For further details refer to my [CV](https://github.com/NilaknaW/resume-cv/blob/main/cv.pdf).
