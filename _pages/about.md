@@ -22,4 +22,4 @@ redirect_from:
 * Intern, Environmental and Disaster Management, World Wildlife Fund: Mar 2024 - Present, part-time, remote.
 * Intern, Network Planning and Operations Division, SLT Mobitel (Pvt) Ltd: Oct 2023 - Jan 2024 (3 mo.), full-time, on-site. 
 
-For further details refer to my [CV](https://github.com/NilaknaW/resume-cv/blob/main/cv.pdf).
+For further details refer to my [CV](https://drive.google.com/viewerng/viewer?url=https://raw.githubusercontent.com/NilaknaW/resume-cv/main/cv.pdf).
