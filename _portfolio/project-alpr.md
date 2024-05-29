@@ -1,6 +1,6 @@
 ---
 title: "Automatic License Plate Recognition"
-excerpt: "A programme to recognize and read vehicle license plates in Sri Lanka<br/><img src='/images/alpr-img.png'>"
+excerpt: "A programme to recognize and read vehicle license plates in Sri Lanka<br/><img src='/images/alpr-img.png' width='500' height='300'>"
 collection: portfolio
 ---
 
