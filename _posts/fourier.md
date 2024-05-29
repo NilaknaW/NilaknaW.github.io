@@ -1,7 +1,7 @@
 ---
 title: 'Intuition on Fourier and Laplace Transforms'
 date: 2024-05-29
-permalink: /posts/2024/05/blog-post-2/
+permalink: /posts/2024/05/fourier/
 tags:
   - signal
 ---
