@@ -1,6 +1,6 @@
 ---
 title: "'GreetFlood' mobile AR app"
-excerpt: "An app for demonstrating nature-based solutions of flood management<br/><img src='/images/flood-img.png' height='100'>"
+excerpt: "App to demonstrate nature-based solutions for flood management<br/><img src='/images/flood-img.png' height='100'>"
 collection: portfolio
 ---
 
