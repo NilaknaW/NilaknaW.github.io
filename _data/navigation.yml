@@ -8,12 +8,18 @@ main:
 
   # - title: "Teaching"
   #   url: /teaching/    
+
+  - title: "About"
+    url: /
     
   - title: "Projects"
     url: /portfolio/
         
   - title: "Blog"
     url: /year-archive/
+
+  - title: "Music"
+    url: /music/
     
   # - title: "CV"
   #   url: /cv/
