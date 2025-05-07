@@ -1,0 +1,37 @@
+name: nilaknaw
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.1
+  google_fonts: ^6.2.1
+  simple_icons: ^14.6.1
+  flutter_markdown: ^0.7.7+1
+  animated_text_kit: ^4.2.3
+  flutter_svg: ^2.1.0
+  gpt_markdown: ^1.0.9
+  webview_flutter: ^4.11.0
+  markdown: ^7.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/markdown/
+    - assets/projects/
+    - assets/markdown/npu/
+    - assets/markdown/ctsignal/
+    - assets/markdown/ctsignal/res/
+    - assets/markdown/lti/
+    - assets/markdown/siliconedge/
