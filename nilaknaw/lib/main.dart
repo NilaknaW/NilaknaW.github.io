@@ -77,11 +77,11 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
-        leading: TextButton(
+        leading: IconButton(
+          icon: Image.asset('assets/images/favicon.png', height: 40),
           onPressed: () {
-            _tabController.animateTo(0); // Go to Home tab
+            // Handle menu button press
           },
-          child: const Text('Nilakna'),
         ),
         actions: [
           IconButton(

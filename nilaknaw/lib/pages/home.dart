@@ -129,7 +129,7 @@ class HomeTab extends StatelessWidget {
           const Divider(),
           // === Featured Section ===
           Container(
-            height: height,
+            // height: height,
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
             width: double.infinity,
             color: Colors.white,
