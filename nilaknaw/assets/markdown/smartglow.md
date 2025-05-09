@@ -1,6 +1,6 @@
 💡 SmartGlow is a smart light bulb adapter, a novel electronic product by Spark07.
 
-![500 smart glow](assets/markdown/smartglow.jpeg)
+![500 smart glow](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/smartglow.jpeg)
 
 Our objective was to develop an affordable, power-saving, and easily installable smart light solution to seamlessly integrate with the existing light bulb circuits. This project is initiated for the electronic design project module EN1190 in Semester 2.
 

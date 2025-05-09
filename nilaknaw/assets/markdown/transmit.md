@@ -12,6 +12,6 @@ Key Features of Transmittix App:
 * crafting the GUI frontend using Python-Tkinter, and 
 * developing the live chat feature. 
 
-![500 alt text](assets/markdown/transmit.jpeg)
+![500 alt text](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/transmit.jpeg)
 
 This experience was an exciting journey in building robust and user-friendly communication systems.

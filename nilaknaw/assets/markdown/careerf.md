@@ -15,4 +15,4 @@ As one of the web designers of the Electronic Club, this was one of the major pr
 
 👉 Career Fair 2025 Web App: [https://entc-career-fair-2025.web.app/](https://entc-career-fair-2025.web.app/)
 
-![alt text](assets/markdown/careerf.png)
+![alt text](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/careerf.png)

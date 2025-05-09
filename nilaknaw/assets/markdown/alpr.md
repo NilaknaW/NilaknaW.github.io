@@ -22,7 +22,7 @@ utilizes Python and various computer vision libraries to implement a robust ALPR
 * Flask web framework.
 * HTML and CSS scripting languages.
 
-![500 alpr](assets/markdown/alpr.jpeg)
+![500 alpr](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/alpr.jpeg)
 
 Work related to internship at SLT Mobitel, a leading telecommunication service provider in Sri Lanka.
 

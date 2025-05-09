@@ -10,7 +10,7 @@
  * Designed and prototyped the smart meal box and companion scale.
  * Developing the UI/UX designs and front-end with Flutter.
 
- ![500 box](assets/markdown/nutri1.jpeg)
+ ![500 box](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/nutri1.jpeg)
  
  Collaborative work of engineering students at University of Moratuwa and students and faculty members of medical faculty of University of Colombo
  Software tools: Flutter, Figma, Solidworks, Altium, ESP32
