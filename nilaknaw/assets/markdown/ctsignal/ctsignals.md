@@ -53,8 +53,8 @@ View PDF: [Link](https://github.com/NilaknaW/signals/blob/main/Documents/2_CT.pd
 | Transformation nature \cite{kareem} |  | Does a complex transformation on real data. | Does a real transformation on complex data. |
 
 
-![600 Time domain signal](assets/markdown/ctsignal/res/xt-2.png)  
-![600 Laplace transform](assets/markdown/ctsignal/res/lt-2.png)  
+![600 Time domain signal](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/xt-2.png)  
+![600 Laplace transform](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/lt-2.png)  
 **Figure**: Laplace transform on a signal $x(t)=e^{-3t}\cos(5t)$
 
 ## Connection: Thoughts on *All these methods are different ways to scan x(t), and decompose it into frequencies.*
@@ -65,15 +65,15 @@ Laplace Transform is the most general case of all three methods. LT can analyse 
 
 Consider a continous time periodic signal $x(t)=\cos(5t)+2\sin(3t)$ [fig. \ref{fig:xt1}] and its laplace transform $X(s) = \frac{s}{s^2 + 25} + \frac{6}{s^2 + 9}$ [fig. \ref{fig:lt1}]. Note the poles at $i\omega= 3 \ and\  i\omega= 5$. Since the poles lie on $\sigma=0$ we can say that the signal is composed of purely sinuosoidal components, as in $x(t)$.
 
-![600 Time domain signal $x(t)$](assets/markdown/ctsignal/res/xt-1.png)  
+![600 Time domain signal $x(t)$](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/xt-1.png)  
 **Figure**: Time domain signal $x(t)$
 
-![600 Laplace Transform of $x(t)$](assets/markdown/ctsignal/res/lt-1.png)  
+![600 Laplace Transform of $x(t)$](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/lt-1.png)  
 **Figure**: Laplace Transform of $x(t)$
 
 Continous Time Fourier Transform is when $\sigma=0$ in Laplace Transform, in other terms, when s of LT is purely imaginary, which is equal to having only sinusoidal components as discussed in FT itself. So FT is a slice from the LT along the imaginary axis $j\omega$. In our example the FT is $X(i\omega)= \pi(\delta(w - 5) + \delta(w + 5)) - i2\pi(\delta(w - 3) - \delta(w + 3))$ LT sliced at $\sigma=0$ [fig. \ref{fig:ft1}]
 
-![600 Fourier Transform of x(t) by slicing the Laplace Transform at $\sigma = 0$](assets/markdown/ctsignal/res/ft-1.png)  
+![600 Fourier Transform of x(t) by slicing the Laplace Transform at $\sigma = 0$](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/ft-1.png)  
 **Figure**: Fourier Transform of x(t) by slicing the Laplace Transform at $\sigma = 0$
 
 However, any slice of fixed $\sigma$ in LT gives a corresponding fourier transform, if it is defined on the domain. In other terms, LT of a signal can be obtained from the FT of the signal multiplied by the real exponential function; $x(t)e^{-\sigma t}$.
@@ -106,10 +106,10 @@ Consider a signal $x(t)$ with frequency f and period T. Then we take a sample of
 
 Then we find the center of mass of the resulting graph and plot its x-coodinate varying k and the widing frequency as $k\omega _0$ [fig. 2]. When $T=t_0/k$ the COM is the furthest from the center and results in a peak in the new graph. The COM can be showed as $\frac{1}{T} \int_{T}g(t) dt$ which we denote as $a_k = \frac{1}{T} \int_{T}x(t)e^{-jk\omega _0t} dt$. This is the FS coefficient we found earlier.
 
-![600 Wrapping up a signal by a rotating vector](assets/markdown/ctsignal/res/winding-1.jpeg)  
+![600 Wrapping up a signal by a rotating vector](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/winding-1.jpeg)  
 *Figure 1: Wrapping up a signal by a rotating vector*
 
-![600 Plotting the Center of Mass of the wrapped up signals](assets/markdown/ctsignal/res/winding-samples.jpeg)  
+![600 Plotting the Center of Mass of the wrapped up signals](https://raw.githubusercontent.com/NilaknaW/NilaknaW.github.io/main/assets/assets/markdown/ctsignal/res/winding-samples.jpeg)  
 *Figure 2: Plotting the Center of Mass of the wrapped up signals*
 
 *Figure: Visualizing winding frequency ideas \cite{3b1b-ft}.*
