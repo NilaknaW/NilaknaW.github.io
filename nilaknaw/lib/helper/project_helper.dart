@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:gpt_markdown/gpt_markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'dart:convert';
 // import 'package:markdown/markdown.dart' as md;
@@ -101,7 +102,18 @@ class ProjectDetailPage extends StatelessWidget {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: GptMarkdown(snapshot.data!),
+                child: GptMarkdown(
+                  snapshot.data!,
+                  onLinkTab: (url, title) async {
+                    final uri = Uri.parse(url);
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri,
+                          mode: LaunchMode.externalApplication);
+                    } else {
+                      debugPrint('Could not launch $url');
+                    }
+                  },
+                ),
               ),
             );
           }

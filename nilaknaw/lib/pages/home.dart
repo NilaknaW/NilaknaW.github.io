@@ -9,7 +9,7 @@ import '../helper/project_helper.dart';
 
 class HomeTab extends StatelessWidget {
   final String resumeUrl =
-      'https://drive.google.com/file/d/1ncLUYBaA9WRPT8yc5u5QJ1aY-ficg3SB/view?usp=sharing'; // Replace this
+      'https://drive.google.com/drive/folders/1oGzpCXVH44Q9vQw64gb3kvY6HqsIWYXG?usp=drive_link'; // Replace this
   final GlobalKey _contactKey = GlobalKey();
 
   HomeTab({super.key});
@@ -72,7 +72,7 @@ class HomeTab extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'An Engineering Student passionate about Digital & Embedded Design.',
+                            'An Engineering Student passionate about Digital Design, Analog Electronics, Hardware Acceleration, and Embedded Systems.',
                             style: const TextStyle(fontSize: 18),
                             textAlign:
                                 isWide ? TextAlign.left : TextAlign.center,
@@ -218,6 +218,144 @@ class HomeTab extends StatelessWidget {
             ),
           ),
           const Divider(),
+
+          // === Current Projects Section ===
+
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+            width: double.infinity,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Current Projects',
+                    style: Theme.of(context).textTheme.headlineMedium),
+                SizedBox(height: 30),
+                Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'Reflective Intelligent Surface',
+                      subtitle: 'Research | FPGA | Wireless',
+                      description:
+                          'Developing a controller for RIS antenna systems. Currently working on the literature review and algorithm design for FPGA-based implementation.',
+                    ),
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'FPGA Accelerator for Edge AI',
+                      subtitle: 'Research | Hardware Acceleration | LLMs',
+                      description:
+                          'Designing a hardware-accelerated solution for fine-tuning LLMs on edge devices using an FPGA. Focused on low-power inference.',
+                    ),
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'Nutrimithu',
+                      subtitle: 'Mobile App | Health | IoT',
+                      description:
+                          'Smart meal box and mobile app to assist users in portion control and healthy eating. Focuses on real-time feedback and logging.',
+                    ),
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'Blindle',
+                      subtitle: 'Assistive Tech | Accessibility | IoT',
+                      description:
+                          'Developing a tactile e-reader for the visually impaired. Focus on user-friendly, affordable Braille display integration.',
+                    ),
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'Greet Flood',
+                      subtitle: 'Augmented Reality | Environment | WWF',
+                      description:
+                          'Mobile AR app to educate users on flood management techniques. Designed for public engagement through interactive 3D visuals.',
+                    ),
+                    _buildCurrentProjectCard(
+                      context,
+                      title: 'Phoenix – CubeSat Team',
+                      subtitle: 'Space Systems | ADCS | High-Altitude',
+                      description:
+                          'Part of the university CubeSat team. Currently working on ADCS for a high-altitude balloon test platform as a precursor to satellite deployment.',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          const Divider(),
+          // === Competitions & Awards Section ===
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+            width: double.infinity,
+            // color: Colors.grey.shade100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Competitions & Awards',
+                    style: Theme.of(context).textTheme.headlineMedium),
+                SizedBox(height: 30),
+                Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/dvcon.png',
+                      title: 'DVCon India Design Contest',
+                      placement: 'Semi Finalist',
+                      field: 'FPGA / Digital Design',
+                      year: '2025 - Ongoing',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/makeathon2.jpeg',
+                      title: 'Inter University Make-a-thon',
+                      placement: 'Winner',
+                      field: 'Medical Devices / 3D Design',
+                      year: '2025',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/slrc3.jpeg',
+                      title: 'Sri Lanka Robotics Challenge (SLRC)',
+                      placement: 'Finalist',
+                      field: 'Robotics',
+                      year: '2025',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/sliot1.jpeg',
+                      title: 'Sri Lanka IoT Challenge (SLIoT)',
+                      placement: 'Finalist',
+                      field: 'IoT / Embedded Systems',
+                      year: '2025',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/markdown/nutri.png',
+                      title: 'IEEE EMBS Brainstorm Healthcare Challenge',
+                      placement: 'Semi Finalist',
+                      field: 'NutriMithu / Healthcare / Embedded Systems',
+                      year: '2025 - Ongoing',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/AIchallenge.jpeg',
+                      title: 'IEEE Sri Lanka AI Challenge',
+                      placement: 'Finalist',
+                      field: 'AI / Web Development',
+                      year: '2024',
+                    ),
+                    _buildAwardCard(
+                      imagePath: 'assets/markdown/siliconedge/sp5.jpeg',
+                      title: 'Silicon Pulse Analog Design Competition',
+                      placement: 'Finalist',
+                      field: 'Analog Design',
+                      year: '2024',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          const Divider(),
+
           // === Quick Contact Section ===
           Container(
             key: _contactKey,
@@ -277,6 +415,98 @@ class HomeTab extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCurrentProjectCard(BuildContext context,
+      {required String title,
+      required String subtitle,
+      required String description}) {
+    return SizedBox(
+      width: 300,
+      child: Card.outlined(
+        // elevation: 3,color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: Colors.teal.shade50, width: 2),
+        ),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.bold)),
+              SizedBox(height: 4),
+              Text(subtitle,
+                  style: TextStyle(color: Colors.teal, fontSize: 13)),
+              SizedBox(height: 12),
+              Text(description,
+                  style: TextStyle(fontSize: 14, color: Colors.grey.shade800)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAwardCard({
+    required String imagePath,
+    required String title,
+    required String placement,
+    required String field,
+    required String year,
+  }) {
+    return SizedBox(
+      width: 280,
+      child: Card.outlined(
+        // elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: Colors.white, width: 2),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.asset(
+                imagePath,
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Container(
+                  height: 150,
+                  color: Colors.grey.shade300,
+                  child: Center(child: Icon(Icons.image_not_supported)),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  SizedBox(height: 4),
+                  Text(field,
+                      style: TextStyle(color: Colors.teal, fontSize: 13)),
+                  SizedBox(height: 12),
+                  Text('$placement • $year',
+                      style:
+                          TextStyle(fontSize: 14, color: Colors.grey.shade800)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

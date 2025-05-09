@@ -12,7 +12,7 @@ class ProjectsTab extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount = constraints.maxWidth > 900
-              ? 3
+              ? 4
               : constraints.maxWidth > 600
                   ? 2
                   : 1;
@@ -20,8 +20,8 @@ class ProjectsTab extends StatelessWidget {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
+              crossAxisSpacing: 24,
+              mainAxisSpacing: 24,
               childAspectRatio: 1.2,
             ),
             itemCount: projects.length,

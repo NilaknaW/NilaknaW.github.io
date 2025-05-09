@@ -14,7 +14,7 @@ class BlogTab extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount = constraints.maxWidth > 900
-              ? 3
+              ? 4
               : constraints.maxWidth > 600
                   ? 2
                   : 1;
