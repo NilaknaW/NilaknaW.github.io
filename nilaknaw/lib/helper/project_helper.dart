@@ -54,20 +54,29 @@ class _ProjectTileState extends State<ProjectTile> {
             AnimatedContainer(
               duration: Duration(milliseconds: 200),
               decoration: BoxDecoration(
-                color: _hovering ? Colors.black45 : Colors.transparent,
+                color: _hovering ? Colors.black45 : Colors.black26,
                 borderRadius: BorderRadius.circular(12),
               ),
-              alignment: Alignment.center,
-              child: _hovering
-                  ? Text(
-                      widget.project.title,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    )
-                  : const SizedBox.shrink(),
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                widget.project.title,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              //  _hovering
+              //   ? Text(
+              //       widget.project.title,
+              //       style: const TextStyle(
+              //           color: Colors.white,
+              //           fontSize: 20,
+              //           fontWeight: FontWeight.bold),
+              //       textAlign: TextAlign.center,
+              //     )
+              //   : const SizedBox.shrink(),
             ),
           ],
         ),
