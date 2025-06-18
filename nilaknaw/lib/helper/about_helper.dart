@@ -5,6 +5,7 @@ class AboutSectionCard extends StatelessWidget {
   final String imagePath;
   final String description;
   final bool reverse;
+  final Color borderColor;
 
   const AboutSectionCard({
     super.key,
@@ -12,6 +13,7 @@ class AboutSectionCard extends StatelessWidget {
     required this.imagePath,
     required this.description,
     this.reverse = false,
+    this.borderColor = Colors.white,
   });
 
   @override
@@ -23,7 +25,7 @@ class AboutSectionCard extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.white, width: 2),
+            border: Border.all(color: borderColor, width: 2),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Flex(

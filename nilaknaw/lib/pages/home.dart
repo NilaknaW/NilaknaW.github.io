@@ -6,6 +6,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import '../helper/project_list.dart';
 import '../helper/project_helper.dart';
 // import '../helper/project_detail.dart';
+import '../helper/about_helper.dart';
 
 class HomeTab extends StatelessWidget {
   final String resumeUrl =
@@ -127,7 +128,26 @@ class HomeTab extends StatelessWidget {
             ),
           ),
           const Divider(),
-          // === Featured Section ===
+
+          // // === Featured Section ===
+          // Container(
+          //   // height: height,
+          //   padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+          //   width: double.infinity,
+          //   color: Colors.white,
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Text('Project Highlights',
+          //           style: Theme.of(context).textTheme.headlineMedium),
+          //       const SizedBox(height: 20),
+          //       _highlights(context),
+          //     ],
+          //   ),
+          // ),
+          // const Divider(),
+
+          // === Experience Section ===
           Container(
             // height: height,
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
@@ -136,10 +156,24 @@ class HomeTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Project Highlights',
+                Text('Experience',
                     style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 20),
-                _highlights(context),
+                // const SizedBox(height: 20),
+                AboutSectionCard(
+                  title: "Intern - SLT Mobitel",
+                  imagePath: "assets/images/sltm1.jpeg",
+                  borderColor: Colors.teal.shade50,
+                  description:
+                      "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
+                ),
+                // const SizedBox(height: 20),
+                AboutSectionCard(
+                  title: "Intern - World Wildlife Fund (WWF)",
+                  imagePath: "assets/images/wwf1.jpeg",
+                  borderColor: Colors.teal.shade50,
+                  description:
+                      "Part time. Mar 2023 - Present\nIntern at SLT Mobitel, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+                ),
               ],
             ),
           ),
@@ -256,13 +290,13 @@ class HomeTab extends StatelessWidget {
                       description:
                           'Smart meal box and mobile app to assist users in portion control and healthy eating. Focuses on real-time feedback and logging.',
                     ),
-                    _buildCurrentProjectCard(
-                      context,
-                      title: 'Blindle',
-                      subtitle: 'Assistive Tech | Accessibility | IoT',
-                      description:
-                          'Developing a tactile e-reader for the visually impaired. Focus on user-friendly, affordable Braille display integration.',
-                    ),
+                    // _buildCurrentProjectCard(
+                    //   context,
+                    //   title: 'Blindle',
+                    //   subtitle: 'Assistive Tech | Accessibility | IoT',
+                    //   description:
+                    //       'Developing a tactile e-reader for the visually impaired. Focus on user-friendly, affordable Braille display integration.',
+                    // ),
                     _buildCurrentProjectCard(
                       context,
                       title: 'Greet Flood',
@@ -270,13 +304,13 @@ class HomeTab extends StatelessWidget {
                       description:
                           'Mobile AR app to educate users on flood management techniques. Designed for public engagement through interactive 3D visuals.',
                     ),
-                    _buildCurrentProjectCard(
-                      context,
-                      title: 'Phoenix – CubeSat Team',
-                      subtitle: 'Space Systems | ADCS | High-Altitude',
-                      description:
-                          'Part of the university CubeSat team. Currently working on ADCS for a high-altitude balloon test platform as a precursor to satellite deployment.',
-                    ),
+                    // _buildCurrentProjectCard(
+                    //   context,
+                    //   title: 'Phoenix – CubeSat Team',
+                    //   subtitle: 'Space Systems | ADCS | High-Altitude',
+                    //   description:
+                    //       'Part of the university CubeSat team. Currently working on ADCS for a high-altitude balloon test platform as a precursor to satellite deployment.',
+                    // ),
                   ],
                 ),
               ],
@@ -302,7 +336,7 @@ class HomeTab extends StatelessWidget {
                     _buildAwardCard(
                       imagePath: 'assets/images/achievements/dvcon.png',
                       title: 'DVCon India Design Contest',
-                      placement: 'Semi Finalist',
+                      placement: 'Finalist',
                       field: 'FPGA / Digital Design',
                       year: '2025 - Ongoing',
                     ),
@@ -602,6 +636,7 @@ class HomeTab extends StatelessWidget {
         Chip(label: Text('Hardware Acceleration')),
         Chip(label: Text('Edge AI')),
         Chip(label: Text('Analog Circuits')),
+        Chip(label: Text('Sensor Development')),
       ],
     );
   }
