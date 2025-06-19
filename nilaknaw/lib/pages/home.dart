@@ -172,7 +172,7 @@ class HomeTab extends StatelessWidget {
                   imagePath: "assets/images/wwf1.jpeg",
                   borderColor: Colors.teal.shade50,
                   description:
-                      "Part time. Mar 2023 - Present\nIntern at SLT Mobitel, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+                      "Part time. Mar 2023 - Present\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
                 ),
               ],
             ),
@@ -364,7 +364,7 @@ class HomeTab extends StatelessWidget {
                     _buildAwardCard(
                       imagePath: 'assets/markdown/nutri.png',
                       title: 'IEEE EMBS Brainstorm Healthcare Challenge',
-                      placement: 'Semi Finalist',
+                      placement: 'Finalist',
                       field: 'NutriMithu / Healthcare / Embedded Systems',
                       year: '2025 - Ongoing',
                     ),
@@ -634,7 +634,7 @@ class HomeTab extends StatelessWidget {
         Chip(label: Text('FPGA & Digital Design')),
         Chip(label: Text('Embedded Systems')),
         Chip(label: Text('Hardware Acceleration')),
-        Chip(label: Text('Edge AI')),
+        Chip(label: Text('Edge AI and Machine Learning')),
         Chip(label: Text('Analog Circuits')),
         Chip(label: Text('Sensor Development')),
       ],
