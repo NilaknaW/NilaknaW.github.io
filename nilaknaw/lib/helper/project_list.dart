@@ -36,6 +36,11 @@ const projects = [
     imagePath: 'assets/markdown/transmit.jpeg',
     markdownAssetPath: 'assets/markdown/transmit.md',
   ),
+  Project(
+    title: 'Robotics at SLRC 2025',
+    imagePath: 'assets/markdown/slrc/slrc3.jpeg',
+    markdownAssetPath: 'assets/markdown/slrc/slrc.md',
+  ),
   // Add more projects as needed
 ];
 
