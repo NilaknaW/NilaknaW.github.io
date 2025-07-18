@@ -11,6 +11,11 @@ const blogs = [
     imagePath: 'assets/markdown/bodacious/makeathon2.jpeg',
     markdownAssetPath: 'assets/markdown/bodacious/bodacious.md',
   ),
+  Project(
+    title: 'Robotics at SLRC 2025',
+    imagePath: 'assets/markdown/slrc/slrc3.jpeg',
+    markdownAssetPath: 'assets/markdown/slrc/slrc.md',
+  ),
 ];
 
 const articles = [
