@@ -109,21 +109,27 @@ class ProjectDetailPage extends StatelessWidget {
             return Center(child: Text('Error loading content'));
           } else {
             return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: GptMarkdown(
-                  snapshot.data!,
-                  onLinkTab: (url, title) async {
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri,
-                          mode: LaunchMode.externalApplication);
-                    } else {
-                      debugPrint('Could not launch $url');
-                    }
-                  },
-                ),
-              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: constraints.maxWidth > 900
+                        ? const EdgeInsets.all(122.0)
+                        : const EdgeInsets.all(24.0),
+                    child: GptMarkdown(
+                      snapshot.data!,
+                      onLinkTab: (url, title) async {
+                        final uri = Uri.parse(url);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          debugPrint('Could not launch $url');
+                        }
+                      },
+                    ),
+                  ),
+                );
+              }),
             );
           }
         },

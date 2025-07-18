@@ -6,6 +6,11 @@ const blogs = [
     imagePath: 'assets/markdown/siliconedge/sp1.jpeg',
     markdownAssetPath: 'assets/markdown/siliconedge/siliconedge.md',
   ), // Add more projects as needed
+  Project(
+    title: 'First ever Make-a-thon',
+    imagePath: 'assets/markdown/bodacious/makeathon2.jpeg',
+    markdownAssetPath: 'assets/markdown/bodacious/bodacious.md',
+  ),
 ];
 
 const articles = [
