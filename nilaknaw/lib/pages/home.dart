@@ -269,13 +269,13 @@ class HomeTab extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 20,
                   children: [
-                    _buildCurrentProjectCard(
-                      context,
-                      title: 'Reflective Intelligent Surface',
-                      subtitle: 'Research | FPGA | Wireless',
-                      description:
-                          'Developing a controller for RIS antenna systems. Currently working on the literature review and algorithm design for FPGA-based implementation.',
-                    ),
+                    // _buildCurrentProjectCard(
+                    //   context,
+                    //   title: 'Reflective Intelligent Surface',
+                    //   subtitle: 'Research | FPGA | Wireless',
+                    //   description:
+                    //       'Developing a controller for RIS antenna systems. Currently working on the literature review and algorithm design for FPGA-based implementation.',
+                    // ),
                     _buildCurrentProjectCard(
                       context,
                       title: 'FPGA Accelerator for Edge AI',
@@ -288,7 +288,7 @@ class HomeTab extends StatelessWidget {
                       title: 'Nutrimithu',
                       subtitle: 'Mobile App | Health | IoT',
                       description:
-                          'Smart meal box and mobile app to assist users in portion control and healthy eating. Focuses on real-time feedback and logging.',
+                          'Meal box and mobile app to assist users in portion control and healthy eating. Focuses on real-time feedback and logging.',
                     ),
                     // _buildCurrentProjectCard(
                     //   context,
@@ -334,11 +334,18 @@ class HomeTab extends StatelessWidget {
                   runSpacing: 20,
                   children: [
                     _buildAwardCard(
+                      imagePath: 'assets/images/achievements/opampwin.jpg',
+                      title: 'Analog IC Student Design Contest',
+                      placement: 'Second Place',
+                      field: 'Analog IC Design',
+                      year: '2025',
+                    ),
+                    _buildAwardCard(
                       imagePath: 'assets/images/achievements/dvcon.png',
                       title: 'DVCon India Design Contest',
                       placement: 'Finalist',
                       field: 'FPGA / Digital Design',
-                      year: '2025 - Ongoing',
+                      year: '2025',
                     ),
                     _buildAwardCard(
                       imagePath: 'assets/images/achievements/makeathon2.jpeg',
@@ -366,7 +373,7 @@ class HomeTab extends StatelessWidget {
                       title: 'IEEE EMBS Brainstorm Healthcare Challenge',
                       placement: 'Finalist',
                       field: 'NutriMithu / Healthcare / Embedded Systems',
-                      year: '2025 - Ongoing',
+                      year: '2025',
                     ),
                     _buildAwardCard(
                       imagePath: 'assets/images/achievements/AIchallenge.jpeg',
