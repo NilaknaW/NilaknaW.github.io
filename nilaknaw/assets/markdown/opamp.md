@@ -52,14 +52,14 @@ We are now looking ahead to June 2026, when we will receive the fabricated chip,
 
 You can explore the complete project here:
 
-Github repository: https://github.com/NilaknaW/sky130_op_amp
+Github repository: [https://github.com/NilaknaW/sky130_op_amp](https://github.com/NilaknaW/sky130_op_amp)
 
-Tapeout submission: https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps
+Tapeout submission: [https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps](https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps)
 
 ## For those interested in Analog IC Design
 
 I’ll add a few important links for anyone who would like to explore this domain of analog IC design. Open-source tools offer an accessible and cost-effective pathway into IC design and even fabrication. Tiny Tapeout is an amazing initiative where the open-source community comes together to fabricate each other’s silicon chips at a reasonable expense, which helps the academic community grow and explore this domain.
 
-IIC osic tools: https://github.com/iic-jku/IIC-OSIC-TOOLS
+IIC osic tools: [https://github.com/iic-jku/IIC-OSIC-TOOLS](https://github.com/iic-jku/IIC-OSIC-TOOLS)
 
-TinyTapeout: https://tinytapeout.com/ 
+TinyTapeout: [https://tinytapeout.com/](https://tinytapeout.com/) 
