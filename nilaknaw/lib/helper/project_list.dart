@@ -3,7 +3,7 @@ import 'project_helper.dart';
 const projects = [
   Project(
     title: 'Op-amp analog IC design',
-    imagePath: 'assets/markdown/opamp/gds.png',
+    imagePath: 'assets/markdown/opamp.png',
     markdownAssetPath: 'assets/markdown/opamp.md',
   ),
   Project(
