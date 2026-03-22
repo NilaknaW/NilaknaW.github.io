@@ -1,0 +1,38 @@
+import 'project_helper.dart';
+
+const blogs = [
+  Project(
+    title: '24 Hours. No Internet. Just Pure Electronics.',
+    imagePath: 'assets/markdown/siliconedge/sp1.jpeg',
+    markdownAssetPath: 'assets/markdown/siliconedge/siliconedge.md',
+  ), // Add more projects as needed
+  Project(
+    title: 'First ever Make-a-thon',
+    imagePath: 'assets/markdown/bodacious/makeathon2.jpeg',
+    markdownAssetPath: 'assets/markdown/bodacious/bodacious.md',
+  ),
+  Project(
+    title: 'Robotics at SLRC 2025',
+    imagePath: 'assets/markdown/slrc/slrc3.jpeg',
+    markdownAssetPath: 'assets/markdown/slrc/slrc.md',
+  ),
+];
+
+const articles = [
+  Project(
+    title: 'Single flux quantum for neural processing units (NPU)',
+    imagePath: 'assets/markdown/npu/5583.jpg',
+    markdownAssetPath: 'assets/markdown/npu/npu.md',
+  ),
+  Project(
+    title: 'Analysing LTI: A Study on Linear Time Invarient Systems',
+    imagePath: 'assets/markdown/ctsignal/res/ft-1.png',
+    markdownAssetPath: 'assets/markdown/lti/lti.md',
+  ),
+  Project(
+    title: 'A deep dive into Continous Time Signals',
+    imagePath: 'assets/markdown/ctsignal/res/lt-1.png',
+    markdownAssetPath: 'assets/markdown/ctsignal/ctsignals.md',
+  ),
+  // Add more projects as needed
+];
