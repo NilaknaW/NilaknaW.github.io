@@ -14,8 +14,8 @@ class AboutTab extends StatelessWidget {
         children: const [
           Text(
               """Electronics and Telecommunication Engineering undergraduate at the University of Moratuwa 
-with a strong academic record (GPA 3.95/4.0) and a passion for problem-solving through innovative hardware and software solutions. 
-Interested in digital design, analog electronics, hardware acceleratio, and embedded systems. 
+with a strong academic record (CGPA 3.94/4.0) and a passion for problem-solving through innovative hardware and software solutions. 
+Interested in analog and digital design, hardware acceleratio, embedded systems, and human-computer interaction. 
 Also an accomplished hockey player and an orchestral musician.""",
               textAlign: TextAlign.center,
               style: TextStyle(

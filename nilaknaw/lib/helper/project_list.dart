@@ -2,6 +2,11 @@ import 'project_helper.dart';
 
 const projects = [
   Project(
+    title: 'Op-amp analog IC design',
+    imagePath: 'assets/markdown/assistant.jpeg',
+    markdownAssetPath: 'assets/markdown/assistant.md',
+  ),
+  Project(
     title: 'Realtime license plate recognition system',
     imagePath: 'assets/markdown/alpr.jpeg',
     markdownAssetPath: 'assets/markdown/alpr.md',

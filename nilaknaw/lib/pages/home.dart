@@ -160,6 +160,14 @@ class HomeTab extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium),
                 // const SizedBox(height: 20),
                 AboutSectionCard(
+                  title: "Research Assistant - Monash University",
+                  imagePath: "assets/images/monash.jpg",
+                  borderColor: Colors.teal.shade50,
+                  description:
+                      "Full time. Dec 2025 - Present\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored accepted paper at CHI 2026 interactivity ACM.",
+                ),
+                // const SizedBox(height: 20),
+                AboutSectionCard(
                   title: "Intern - SLT Mobitel",
                   imagePath: "assets/images/sltm1.jpeg",
                   borderColor: Colors.teal.shade50,
@@ -613,10 +621,10 @@ class HomeTab extends StatelessWidget {
           avatar: Icon(SimpleIcons.flutter, size: 16),
           label: Text('Flutter'),
         ),
-        // Chip(
-        //   avatar: Icon(SimpleIcons.android, size: 16),
-        //   label: Text('Android'),
-        // ),
+        Chip(
+          avatar: Icon(SimpleIcons.android, size: 16),
+          label: Text('Android'),
+        ),
         Chip(
           avatar: Icon(SimpleIcons.firebase, size: 16),
           label: Text('Firebase'),
@@ -639,11 +647,13 @@ class HomeTab extends StatelessWidget {
       runSpacing: 8,
       children: [
         Chip(label: Text('FPGA & Digital Design')),
+        Chip(label: Text('IC Design')),
         Chip(label: Text('Embedded Systems')),
         Chip(label: Text('Hardware Acceleration')),
         Chip(label: Text('Edge AI and Machine Learning')),
         Chip(label: Text('Analog Circuits')),
         Chip(label: Text('Sensor Development')),
+        Chip(label: Text('Human-Computer Interaction')),
       ],
     );
   }
@@ -682,6 +692,16 @@ class HomeTab extends StatelessWidget {
           ),
           onTap: () => launchUrl(
               Uri.parse('https://linkedin.com/in/nilakna-warushavithana')),
+        ),
+        ListTile(
+          leading: const Icon(Icons.assignment_ind_sharp),
+          title: const Text('ORCID id'),
+          subtitle: Text(
+            'orcid.org/0009-0009-7133-2022',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          onTap: () =>
+              launchUrl(Uri.parse('https://orcid.org/0009-0009-7133-2022')),
         ),
       ],
     );
