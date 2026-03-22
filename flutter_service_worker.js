@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "2ba4ed73d76b51aba69b20eb17d6d19d",
-"assets/AssetManifest.bin.json": "06ec740f6063c86d8e53440c6c64109d",
-"assets/AssetManifest.json": "eff95e01876308fc7943459a053aa5a0",
+const RESOURCES = {"assets/AssetManifest.bin": "0317a2a07e31daa1df180b41128d228f",
+"assets/AssetManifest.bin.json": "fa88026b055c5bb3bb275f4d757403c4",
+"assets/AssetManifest.json": "68f3cb8e6d7c19e2a2f1dc5bba6b1e83",
 "assets/assets/images/achievements/AIchallenge.jpeg": "d339ff7c0e0606ccb8c420740635b131",
 "assets/assets/images/achievements/dvcon.png": "cd84952458aedec9bf576349344bccfc",
 "assets/assets/images/achievements/makeathon2.jpeg": "db89f03f66e32bb161978f7647b227f3",
@@ -58,6 +58,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "2ba4ed73d76b51aba69b20eb17d6d19d
 "assets/assets/markdown/nutri.md": "d24e2f3f2621b900110f27593f42c754",
 "assets/assets/markdown/nutri.png": "670e47ece40c75edc0e6dc86360bdeea",
 "assets/assets/markdown/nutri1.jpeg": "e1dd24a38079417fee86d0cd4bd2733b",
+"assets/assets/markdown/opamp/gds.png": "f0ed771b57bb6a3125a1564100e068b2",
+"assets/assets/markdown/opamp/layout.png": "e8228626187fc4f61fcfbc018807e076",
+"assets/assets/markdown/opamp/schematic.png": "8592a3bebc5ddbbd28ddb34ddc790554",
 "assets/assets/markdown/opamp.md": "9477b7bd11ea3a243ad7c700ea65fc76",
 "assets/assets/markdown/siliconedge/siliconedge.md": "879cf6eb233725d3d8084367a643929e",
 "assets/assets/markdown/siliconedge/sp1.jpeg": "9d31c9a1c1b7853772ed72621ef4a131",
@@ -115,7 +118,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "2ba4ed73d76b51aba69b20eb17d6d19d
 "canvaskit/skwasm_st.wasm": "56c3973560dfcbf28ce47cebe40f3206",
 "favicon.png": "f41a7b4ee2999c0ccdcaf0aeb0fc00bc",
 "flutter.js": "76f08d47ff9f5715220992f993002504",
-"flutter_bootstrap.js": "638b7e59f31ca0a8413b1f70766b922a",
+"flutter_bootstrap.js": "8df4f77023d8b2e8a483fdc68e61ef43",
 "icons/Icon-192.png": "070b5ed3f42faef4ddaded59b50c2dce",
 "icons/Icon-512.png": "d4740324c7b27640542fdfe0814efaf3",
 "icons/Icon-maskable-192.png": "070b5ed3f42faef4ddaded59b50c2dce",
