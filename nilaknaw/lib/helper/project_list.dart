@@ -12,6 +12,11 @@ const projects = [
     markdownAssetPath: 'assets/markdown/fpu.md',
   ),
   Project(
+    title: 'Robotic End-Effector',
+    imagePath: 'assets/markdown/endeff2.jpeg',
+    markdownAssetPath: 'assets/markdown/endeffector.md',
+  ),
+  Project(
     title: 'Realtime license plate recognition system',
     imagePath: 'assets/markdown/alpr.jpeg',
     markdownAssetPath: 'assets/markdown/alpr.md',
