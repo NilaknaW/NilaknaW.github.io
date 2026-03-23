@@ -7,6 +7,11 @@ const projects = [
     markdownAssetPath: 'assets/markdown/opamp.md',
   ),
   Project(
+    title: 'Single Precision Floating Point Unit',
+    imagePath: 'assets/markdown/fpu.png',
+    markdownAssetPath: 'assets/markdown/fpu.md',
+  ),
+  Project(
     title: 'Realtime license plate recognition system',
     imagePath: 'assets/markdown/alpr.jpeg',
     markdownAssetPath: 'assets/markdown/alpr.md',
