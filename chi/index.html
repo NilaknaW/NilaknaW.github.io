@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nilakna Warushavithana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #080d1a;
+    --navy-2:  #0e1628;
+    --navy-3:  #131e35;
+    --blue:    #2563eb;
+    --blue-2:  #3b82f6;
+    --teal:    #06b6d4;
+    --cream:   #f0ebe2;
+    --white:   #ffffff;
+    --muted:   rgba(240,235,226,0.55);
+    --border:  rgba(59,130,246,0.18);
+    --glow:    rgba(37,99,235,0.22);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5%;
+    backdrop-filter: blur(20px);
+    background: rgba(8,13,26,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* background gradient blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 600px; height: 600px; background: rgba(37,99,235,0.14); top: -10%; right: -5%; }
+  .blob-2 { width: 400px; height: 400px; background: rgba(6,182,212,0.08); bottom: 5%; left: 10%; }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1000px;
+  }
+
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--teal);
+    font-weight: 300;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.9rem);
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s forwards;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .arrow-path {
+    display: inline-block;
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    position: relative;
+    vertical-align: middle;
+  }
+  .arrow-path::after {
+    content: ''; position: absolute; right: -1px; top: -4px;
+    border-left: 8px solid var(--teal);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s forwards;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.85s forwards;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .btn-primary:hover {
+    background: var(--blue-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37,99,235,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: rgba(59,130,246,0.5);
+    background: rgba(59,130,246,0.07);
+    transform: translateY(-2px);
+  }
+
+  /* ── CIRCUIT SVG ── */
+  .circuit-bg {
+    position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    width: min(50vw, 560px);
+    opacity: 0.045;
+    pointer-events: none;
+    z-index: 0;
+    animation: fadeIn 2s 1.2s forwards;
+    opacity: 0;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 7rem 5%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blue-2);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy-2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    font-weight: 400;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-text strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .stat-item {
+    padding: 1.4rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(37,99,235,0.04);
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .stat-item:hover {
+    border-color: rgba(59,130,246,0.4);
+    background: rgba(37,99,235,0.08);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--blue-2);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--navy); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+  }
+
+  .project-card {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.8rem;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(59,130,246,0.45);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4), 0 0 40px var(--glow);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .project-problem {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .project-bullets {
+    list-style: none;
+    margin-bottom: 1.4rem;
+  }
+
+  .project-bullets li {
+    font-size: 0.82rem;
+    color: rgba(240,235,226,0.7);
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .project-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--blue-2);
+    font-size: 0.72rem;
+  }
+
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    background: rgba(37,99,235,0.12);
+    color: var(--blue-2);
+    border: 1px solid rgba(59,130,246,0.2);
+    white-space: nowrap;
+  }
+
+  .tag.teal {
+    background: rgba(6,182,212,0.1);
+    color: var(--teal);
+    border-color: rgba(6,182,212,0.2);
+  }
+
+  /* featured card spans 2 cols on desktop */
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .project-card.featured .project-title {
+    font-size: 2rem;
+  }
+
+  .project-card.featured .featured-right {
+    padding-top: 0.3rem;
+  }
+
+  /* ── RESEARCH / CHI ── */
+  #research { background: var(--navy-3); }
+
+  .research-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    max-width: 1100px;
+    align-items: start;
+  }
+
+  .pub-card {
+    background: rgba(37,99,235,0.07);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .pub-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    padding: 0.2rem 0.6rem;
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .pub-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .pub-authors {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .pub-venue {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.06em;
+  }
+
+  .interests-list {
+    list-style: none;
+    margin-top: 1.2rem;
+  }
+
+  .interests-list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(59,130,246,0.1);
+    font-size: 0.88rem;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .interests-list li:last-child { border-bottom: none; }
+
+  .interest-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    flex-shrink: 0;
+  }
+
+  .collab-box {
+    margin-top: 2rem;
+    padding: 1.4rem;
+    border: 1px dashed rgba(6,182,212,0.3);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .collab-box span {
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy-2);
+    text-align: center;
+  }
+
+  #contact .section-title {
+    margin-bottom: 1rem;
+  }
+
+  .contact-sub {
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .contact-link svg {
+    width: 14px; height: 14px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .contact-link:hover {
+    border-color: var(--blue-2);
+    color: var(--blue-2);
+    background: rgba(37,99,235,0.07);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 5%;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-left {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(240,235,226,0.28);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-right {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(240,235,226,0.22);
+  }
+
+  /* ── DIVIDER LINE ── */
+  .hr-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, var(--blue), transparent);
+    margin-bottom: 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 0.045; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.4rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.8s forwards;
+    z-index: 1;
+  }
+
+  .scroll-hint span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 32px;
+    background: linear-gradient(to bottom, var(--blue-2), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .research-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .project-card.featured {
+      grid-column: span 1;
+      grid-template-columns: 1fr;
+    }
+    .nav-links { display: none; }
+    .hero-name { font-size: clamp(2.6rem, 11vw, 4rem); }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 560px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">NW // ETE '27</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- circuit board SVG pattern -->
+  <svg class="circuit-bg" viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#3b82f6" stroke-width="1" fill="none">
+      <!-- traces -->
+      <path d="M80 80 H200 V160 H320 V80 H440"/>
+      <path d="M80 160 H160 V240"/>
+      <path d="M320 240 H440 V320 H560"/>
+      <path d="M160 320 H280 V400 H400"/>
+      <path d="M80 400 H160"/>
+      <path d="M440 160 V320"/>
+      <path d="M200 240 H320"/>
+      <path d="M80 240 H120 V320 H160"/>
+      <!-- pads -->
+      <circle cx="80" cy="80" r="5" fill="#3b82f6"/>
+      <circle cx="440" cy="80" r="5" fill="#3b82f6"/>
+      <circle cx="160" cy="240" r="5" fill="#06b6d4"/>
+      <circle cx="320" cy="240" r="5" fill="#06b6d4"/>
+      <circle cx="440" cy="320" r="5" fill="#3b82f6"/>
+      <circle cx="400" cy="400" r="5" fill="#06b6d4"/>
+      <circle cx="160" cy="320" r="5" fill="#3b82f6"/>
+      <!-- IC component -->
+      <rect x="200" y="290" width="120" height="60" rx="2" stroke="#3b82f6" stroke-width="1.5"/>
+      <line x1="210" y1="290" x2="210" y2="280"/><line x1="230" y1="290" x2="230" y2="280"/>
+      <line x1="250" y1="290" x2="250" y2="280"/><line x1="270" y1="290" x2="270" y2="280"/>
+      <line x1="290" y1="290" x2="290" y2="280"/><line x1="310" y1="290" x2="310" y2="280"/>
+      <line x1="210" y1="350" x2="210" y2="360"/><line x1="230" y1="350" x2="230" y2="360"/>
+      <line x1="270" y1="350" x2="270" y2="360"/><line x1="300" y1="350" x2="300" y2="360"/>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-label">Electronic &amp; Telecommunication Engineering · Monash / UoM</div>
+    <h1 class="hero-name">Nilakna<br><em>Warushavithana</em></h1>
+    <p class="hero-tagline">
+      Circuits
+      <span class="arrow-path"></span>
+      Experiences
+    </p>
+    <p class="hero-desc">
+      I design interactive systems by combining embedded electronics with human-centered design — building things you can feel, taste, and move through.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://drive.google.com/drive/folders/110lhFnMrdCwv9uCz9fxqpJwxz52RSUdp?usp=drive_link" target="_blank" class="btn btn-secondary">Download CV</a>
+      <a href="#contact" class="btn btn-secondary">Connect</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">01 // About</div>
+    <h2 class="section-title">Where hardware meets interaction</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm an undergraduate in Electronic &amp; Telecommunication Engineering at the University of Moratuwa (GPA 3.94), currently a full-time research intern at the <strong>Exertion Games Lab, Monash University</strong> in Melbourne — a lab at the forefront of body-based and multisensory interaction.
+      </p>
+      <p>
+        My work sits at the <strong>intersection of circuits and experience</strong>. I design and build physical prototypes — PCBs, FPGAs, analog circuits — but always with a user on the other end. I care deeply about how signals translate into sensation, and how interaction can extend what the body perceives.
+      </p>
+      <p>
+        I'm drawn to CHI and UIST-style research because it asks the most interesting question in engineering: <strong>not just "does it work?" but "how does it feel?"</strong>
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-item">
+        <div class="stat-num">3.94</div>
+        <div class="stat-label">GPA / 4.0 · Dean's List Sem 1–5</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">CHI 2026 paper · Interactivity track</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Competition finals · IC, FPGA, Robotics, IoT</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Active HCI prototypes in the lab</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">02 // Projects</div>
+    <h2 class="section-title">Things I have built</h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Featured: Wizard of Taste -->
+    <div class="project-card featured reveal">
+      <div>
+        <div class="project-category">HCI · Multisensory</div>
+        <h3 class="project-title">The Wizard of Taste</h3>
+        <p class="project-problem">How can technology augment the act of eating through electricity and sound?</p>
+        <ul class="project-bullets">
+          <li>Designed and built a prototype delivering electrical taste stimulation and bone-conduction auditory seasoning to create novel eating experiences.</li>
+          <li>Contributed to PCB design in Altium and real-time C++ control software for synchronized multisensory delivery.</li>
+          <li>Published at <strong>CHI 2026 Interactivity</strong> — demonstrated live to hundreds of attendees.</li>
+        </ul>
+      </div>
+      <div class="featured-right">
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag">C++</span>
+          <span class="tag">Altium PCB</span>
+          <span class="tag teal">CHI 2026</span>
+          <span class="tag">Electrical Stimulation</span>
+          <span class="tag teal">Published</span>
+        </div>
+        <div class="pub-badge">ACM CHI 2026</div>
+        <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin-top: 0.4rem;">
+          Fang, Z., Wang, H., <strong style="color:var(--cream)">Warushavithana, N.</strong>, et al. "The Wizard of Taste: Demonstrating Multisensory Eating with Electrical Taste and Bone-conduction Auditory Seasoning." CHI 2026 Interactivity. ACM.
+        </p>
+      </div>
+    </div>
+
+    <!-- EatDisco -->
+    <div class="project-card reveal">
+      <div class="project-category">HCI · Sensing</div>
+      <h3 class="project-title">EatDisco</h3>
+      <p class="project-problem">Can gesture-based interaction augment the taste of food?</p>
+      <ul class="project-bullets">
+        <li>Designed the PCB and flexible electrode-FPC assembly in Altium for gesture-driven taste augmentation.</li>
+        <li>Developed real-time C++ software for gesture recognition and electrical stimulation control.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">C++</span>
+        <span class="tag">PCB Design</span>
+        <span class="tag teal">Gesture Interaction</span>
+        <span class="tag">FPC</span>
+      </div>
+    </div>
+
+    <!-- Radarfoot -->
+    <div class="project-card reveal">
+      <div class="project-category">HCI · Radar · ML</div>
+      <h3 class="project-title">Radarfoot</h3>
+      <p class="project-problem">Enabling foot-based interaction sensing for on-body user studies.</p>
+      <ul class="project-bullets">
+        <li>Improved existing prototypes for real user deployments, integrating a radar sensor module.</li>
+        <li>Developed a machine learning model to classify foot movement and pressure patterns from radar signals.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Radar Sensing</span>
+        <span class="tag">ML</span>
+        <span class="tag teal">Body Interaction</span>
+        <span class="tag">Signal Processing</span>
+      </div>
+    </div>
+
+    <!-- OpAmp -->
+    <div class="project-card reveal">
+      <div class="project-category">Analog IC · CMOS</div>
+      <h3 class="project-title">Low-Power Opamp in 130nm</h3>
+      <p class="project-problem">Designing a real silicon chip from scratch as an undergraduate.</p>
+      <ul class="project-bullets">
+        <li>Designed and laid out a two-stage low-power single-ended opamp in 130nm CMOS.</li>
+        <li>Full DRC/LVS verification. Scheduled for tape-out via TinyTapeout, June 2026.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Sky130 PDK</span>
+        <span class="tag">Xschem</span>
+        <span class="tag teal">Tape-out 2026</span>
+        <span class="tag">KLayout</span>
+      </div>
+    </div>
+
+    <!-- FP ALU -->
+    <div class="project-card reveal">
+      <div class="project-category">Digital Design · FPGA</div>
+      <h3 class="project-title">Floating Point ALU</h3>
+      <p class="project-problem">Full IEEE 754 single-precision arithmetic pipeline on FPGA.</p>
+      <ul class="project-bullets">
+        <li>End-to-end 32-bit floating point add, sub, multiply, divide in SystemVerilog.</li>
+        <li>Implemented and verified on Xilinx FPGA using Vivado toolchain.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">SystemVerilog</span>
+        <span class="tag">FPGA</span>
+        <span class="tag">Vivado</span>
+        <span class="tag teal">IEEE 754</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── RESEARCH ── -->
+<section id="research">
+  <div class="reveal">
+    <div class="section-label">03 // Research</div>
+    <h2 class="section-title">At CHI 2026 &amp; beyond</h2>
+  </div>
+  <div class="research-inner">
+    <div class="reveal">
+      <p style="font-size:0.9rem; color:var(--muted); margin-bottom:2rem; line-height:1.75;">
+        I am attending <strong style="color:var(--cream)">CHI 2026</strong> as a co-author and research intern with the Exertion Games Lab. My work focuses on building real, deployable interactive systems — not just prototypes — that push the boundaries of what human-computer interaction can be when the hardware is designed from the ground up for the experience.
+      </p>
+      <div class="pub-card">
+        <div class="pub-badge">CHI 2026 · Interactivity</div>
+        <div class="pub-title">The Wizard of Taste: Demonstrating Multisensory Eating with Electrical Taste and Bone-conduction Auditory Seasoning</div>
+        <div class="pub-authors">Fang, Z., Wang, H., <strong>Warushavithana, N.</strong>, Madusanka, S., Deng, J., Chen, W., Elvitigala, D., Mueller, F.</div>
+        <div class="pub-venue">ACM · doi.org/10.1145/3772363.3799379</div>
+      </div>
+      <div class="pub-card" style="border-style: dashed; opacity: 0.75;">
+        <div class="pub-badge" style="background: rgba(6,182,212,0.2); color: var(--teal);">Under Review · UIST 2026</div>
+        <div class="pub-title">VibeCoP — A Toolkit for Body Center-of-Pressure Interaction</div>
+        <div class="pub-authors">Contributed to concept development and user studies.</div>
+        <div class="pub-venue">In submission</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-label" style="margin-bottom:1rem;">Research Interests</div>
+      <ul class="interests-list">
+        <li><span class="interest-dot"></span>Multisensory &amp; embodied interaction</li>
+        <li><span class="interest-dot"></span>Electrical stimulation for haptics &amp; taste</li>
+        <li><span class="interest-dot"></span>Radar &amp; IMU-based body sensing</li>
+        <li><span class="interest-dot"></span>Embedded intelligence at the edge</li>
+        <li><span class="interest-dot"></span>Analog IC design for wearable systems</li>
+        <li><span class="interest-dot"></span>Hardware-software co-design for HCI</li>
+      </ul>
+      <div class="collab-box">
+        <span>Open to collaborating</span> on research projects that sit at the intersection of physical computing and human experience — especially where the hardware is the research. If you're working on sensing, actuation, or novel interaction modalities, I'd love to talk.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label" style="display:inline-block; margin: 0 auto 0.8rem;">04 // Connect</div>
+    <h2 class="section-title">Let's build something</h2>
+  </div>
+  <p class="contact-sub reveal">
+    Happy to connect about HCI, embedded systems, or research collaborations. I'm based in Melbourne for now and always up for a conversation over coffee or code.
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:nilaknawarushavithana@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+    <a href="https://linkedin.com/in/nilakna-warushavithana" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/NilaknaW" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+    <a href="https://nilaknaw.github.io/" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Website
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-left">Nilakna Warushavithana · ETE '27 · Monash / UoM</span>
+  <span class="footer-right">Built with curiosity at the intersection of circuits and experience.</span>
+</footer>
+
+<script>
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
