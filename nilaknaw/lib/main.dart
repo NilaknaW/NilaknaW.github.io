@@ -8,6 +8,8 @@ import 'pages/home.dart';
 import 'pages/about.dart';
 import 'pages/projects.dart';
 import 'pages/blog.dart';
+import 'pages/publications.dart';
+import 'pages/resources.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -50,14 +52,18 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
     const Tab(text: 'Home'),
     const Tab(text: 'About'),
     const Tab(text: 'Projects'),
+    const Tab(text: 'Publications'),
     const Tab(text: 'Blog'),
+    const Tab(text: 'Resources'),
   ];
 
   final List<Widget> tabViews = [
     HomeTab(),
     AboutTab(),
     ProjectsTab(),
+    PublicationsTab(),
     BlogTab(),
+    ResourcesTab(),
   ];
 
   @override

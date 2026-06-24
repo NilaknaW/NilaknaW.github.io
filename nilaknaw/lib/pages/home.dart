@@ -164,7 +164,7 @@ class HomeTab extends StatelessWidget {
                   imagePath: "assets/images/monash.jpg",
                   borderColor: Colors.teal.shade50,
                   description:
-                      "Full time. Dec 2025 - Present\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored accepted paper at CHI 2026 interactivity ACM.",
+                      "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at CHI 2026 interactivity ACM.",
                 ),
                 // const SizedBox(height: 20),
                 AboutSectionCard(
