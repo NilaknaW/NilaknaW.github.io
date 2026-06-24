@@ -1,11 +1,15 @@
-# nilaknaw
+# NilaknaW.github.io
 
-A new Flutter project.
+Personal portfolio site built with Flutter Web and deployed with GitHub Pages.
 
-build the project with
+- Main site source: `nilaknaw/`
+- Published site files: repo root
 
-```flutter build web```
+Build and deploy:
 
-copy the content in build/web to the root.
+```bash
+cd nilaknaw
+flutter build web
+```
 
-commit to the repo.
+Then copy `build/web` into the repo root and commit the updated files.
