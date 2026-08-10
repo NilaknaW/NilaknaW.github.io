@@ -32,20 +32,20 @@ class PublicationsTab extends StatelessWidget {
             link: 'https://dl.acm.org/doi/10.1145/3772363.3799379',
             conferenceLink: 'https://nilaknaw.github.io/chi/',
           ),
-          const _PublicationListItem(
-            label: 'MERCon',
-            title:
-                '1-Bit Reconfigurable Intelligent Surface Design and Indoor Beam-Steering Validation at 2.4 GHz',
-            authors:
-                "Nilakna Disiwari Warushavithana, Sampath Edirisinghege, Dulika Rukshan Nayanasiri, and Samiru Gayan",
-            venue: 'MERCon 2026 (Accepted). Colombo, Sri Lanka',
-            details: '',
-            keywords: [
-              'Communication',
-              'Wireless Systems',
-              'Beam Steering',
-            ],
-          ),
+          // const _PublicationListItem(
+          //   label: 'MERCon',
+          //   title:
+          //       '1-Bit Reconfigurable Intelligent Surface Design and Indoor Beam-Steering Validation at 2.4 GHz',
+          //   authors:
+          //       "Nilakna Disiwari Warushavithana, Sampath Edirisinghege, Dulika Rukshan Nayanasiri, and Samiru Gayan",
+          //   venue: 'MERCon 2026 (Accepted). Colombo, Sri Lanka',
+          //   details: '',
+          //   keywords: [
+          //     'Communication',
+          //     'Wireless Systems',
+          //     'Beam Steering',
+          //   ],
+          // ),
         ],
       ),
     );
