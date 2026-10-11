@@ -23,7 +23,6 @@ class HomeTab extends StatelessWidget {
         children: [
           // === Hero Section ===
           Container(
-            height: height * 0.8,
             padding: const EdgeInsets.symmetric(horizontal: 60),
             margin: const EdgeInsets.all(24),
             decoration: BoxDecoration(
@@ -34,88 +33,90 @@ class HomeTab extends StatelessWidget {
             child: LayoutBuilder(
               builder: (context, constraints) {
                 bool isWide = constraints.maxWidth > 700;
-                return Flex(
-                  direction: isWide ? Axis.horizontal : Axis.vertical,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                final leftContent = Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: isWide
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.center,
                   children: [
-                    // Left: Text
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: isWide
-                            ? CrossAxisAlignment.start
-                            : CrossAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: isWide
-                                ? Alignment.centerLeft
-                                : Alignment.center,
-                            child: AnimatedTextKit(
-                              repeatForever: true,
-                              pause: const Duration(milliseconds: 2000),
-                              animatedTexts: [
-                                TypewriterAnimatedText(
-                                  'Hello, I am Nilakna.',
-                                  textStyle: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                  speed: const Duration(milliseconds: 100),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            'I am an Electronic and Telecommunication Engineering undergraduate interested in optoelectronics, analog and mixed-signal circuits, IC design, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
-                            style: const TextStyle(fontSize: 18),
-                            textAlign:
-                                isWide ? TextAlign.left : TextAlign.center,
-                          ),
-                          const SizedBox(height: 24),
-                          Wrap(
-                            spacing: 12,
-                            runSpacing: 8,
-                            alignment: isWide
-                                ? WrapAlignment.start
-                                : WrapAlignment.center,
-                            children: [
-                              ElevatedButton.icon(
-                                onPressed: () async {
-                                  if (await canLaunch(resumeUrl)) {
-                                    await launch(resumeUrl);
-                                  }
-                                },
-                                icon: const Icon(Icons.download),
-                                label: const Text('View Resume'),
-                              ),
-                              OutlinedButton.icon(
-                                onPressed: () {
-                                  Scrollable.ensureVisible(
-                                    _contactKey.currentContext!,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                  );
-                                },
-                                icon: const Icon(Icons.mail),
-                                label: const Text('Contact Me'),
-                              ),
-                            ],
+                    Align(
+                      alignment:
+                          isWide ? Alignment.centerLeft : Alignment.center,
+                      child: AnimatedTextKit(
+                        repeatForever: true,
+                        pause: const Duration(milliseconds: 2000),
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            'Hello, I am Nilakna.',
+                            textStyle:
+                                Theme.of(context).textTheme.headlineMedium,
+                            speed: const Duration(milliseconds: 100),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(width: isWide ? 40 : 0, height: isWide ? 0 : 40),
-                    // Right: Image
-                    const Expanded(
-                      child: Center(
-                        child: CircleAvatar(
-                          radius: 220,
-                          backgroundImage: AssetImage('assets/images/chi1.png'),
+                    const SizedBox(height: 16),
+                    Text(
+                      'I am an Electronic and Telecommunication Engineering undergraduate interested in optoelectronics, analog and mixed-signal circuits, IC design, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
+                      style: const TextStyle(fontSize: 18),
+                      textAlign: isWide ? TextAlign.left : TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 8,
+                      alignment:
+                          isWide ? WrapAlignment.start : WrapAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () async {
+                            if (await canLaunch(resumeUrl)) {
+                              await launch(resumeUrl);
+                            }
+                          },
+                          icon: const Icon(Icons.download),
+                          label: const Text('View Resume'),
                         ),
-                      ),
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            Scrollable.ensureVisible(
+                              _contactKey.currentContext!,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                          icon: const Icon(Icons.mail),
+                          label: const Text('Contact Me'),
+                        ),
+                      ],
                     ),
                   ],
+                );
+                const rightContent = Center(
+                  child: CircleAvatar(
+                    radius: 220,
+                    backgroundImage: AssetImage('assets/images/chi1.png'),
+                  ),
+                );
+                return ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: isWide ? height * 0.8 : 0,
+                  ),
+                  child: Flex(
+                    direction: isWide ? Axis.horizontal : Axis.vertical,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Left: Text
+                      if (isWide) Expanded(child: leftContent) else leftContent,
+                      SizedBox(width: isWide ? 40 : 0, height: isWide ? 0 : 40),
+                      // Right: Image
+                      if (isWide)
+                        const Expanded(child: rightContent)
+                      else
+                        rightContent,
+                    ],
+                  ),
                 );
               },
             ),
