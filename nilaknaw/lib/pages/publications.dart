@@ -23,7 +23,7 @@ class PublicationsTab extends StatelessWidget {
             authors:
                 "Ziqi Fang, Hongyue Wang, Nilakna Disiwari Warushavithana, Subasinghe Piyarathnage Sahan Madusanka, Jialin Deng, Weijen Chen, Don Samitha Elvitigala, and Florian 'Floyd' Mueller",
             venue:
-                '2026 CHI Conference on Human Factors in Computing Systems. Barcelona, Spain. \nHonorouble Mention for Interactivity Paper.',
+                'Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (CHI EA \'26), April 13-17, 2026, Barcelona, Spain. Honorouble Mention in Interactivity Demonstration Track.',
             details: 'ACM, pp. 1-5. DOI: 10.1145/3772363.3799379',
             keywords: [
               'Human-Computer Interaction',
@@ -32,20 +32,21 @@ class PublicationsTab extends StatelessWidget {
             link: 'https://dl.acm.org/doi/10.1145/3772363.3799379',
             conferenceLink: 'https://nilaknaw.github.io/chi/',
           ),
-          // const _PublicationListItem(
-          //   label: 'MERCon',
-          //   title:
-          //       '1-Bit Reconfigurable Intelligent Surface Design and Indoor Beam-Steering Validation at 2.4 GHz',
-          //   authors:
-          //       "Nilakna Disiwari Warushavithana, Sampath Edirisinghege, Dulika Rukshan Nayanasiri, and Samiru Gayan",
-          //   venue: 'MERCon 2026 (Accepted). Colombo, Sri Lanka',
-          //   details: '',
-          //   keywords: [
-          //     'Communication',
-          //     'Wireless Systems',
-          //     'Beam Steering',
-          //   ],
-          // ),
+          const _PublicationListItem(
+            label: 'SportsHCI 2026',
+            title:
+                'Demonstrating VibeCoP: Guiding Balance Exercises through a Center of Pressure encoded Vibrotactile Waistband',
+            authors:
+                "Rusula Oshadha Pathirana, Pankaja Balasooriya, Nilakna Disiwari Warushavithana, Nilesh Ravishan, Nihar Sabnis, Florian 'Floyd' Mueller, and Don Samitha Elvitigala.",
+            venue:
+                'International Conference for Human-Computer Interaction and Sports Companion (SportsHCI Companion 2026), November 16-18, 2026, Saarbrücken, Germany.',
+            details: 'ACM. DOI: 10.1145/3801727.3844936. Accepted.',
+            keywords: [
+              'Human-Computer Interaction',
+              'Vibrotactile Feedback',
+            ],
+            link: 'https://doi.org/10.1145/3801727.3844936',
+          ),
         ],
       ),
     );

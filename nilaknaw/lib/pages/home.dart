@@ -23,7 +23,7 @@ class HomeTab extends StatelessWidget {
         children: [
           // === Hero Section ===
           Container(
-            height: height,
+            height: height * 0.8,
             padding: const EdgeInsets.symmetric(horizontal: 60),
             margin: const EdgeInsets.all(24),
             decoration: BoxDecoration(
@@ -47,12 +47,6 @@ class HomeTab extends StatelessWidget {
                             ? CrossAxisAlignment.start
                             : CrossAxisAlignment.center,
                         children: [
-                          // Text(
-                          //   'Hello, I am Nilakna.',
-                          //   style: Theme.of(context).textTheme.headlineMedium,
-                          //   textAlign:
-                          //       isWide ? TextAlign.left : TextAlign.center,
-                          // ),
                           Align(
                             alignment: isWide
                                 ? Alignment.centerLeft
@@ -73,7 +67,7 @@ class HomeTab extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'An Engineering Student passionate about Digital Design, Analog Electronics, Hardware Acceleration, and Embedded Systems.',
+                            'I am an Electronic and Telecommunication Engineering undergraduate interested in optoelectronics, analog and mixed-signal circuits, IC design, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
                             style: const TextStyle(fontSize: 18),
                             textAlign:
                                 isWide ? TextAlign.left : TextAlign.center,
@@ -116,9 +110,8 @@ class HomeTab extends StatelessWidget {
                     const Expanded(
                       child: Center(
                         child: CircleAvatar(
-                          radius: 200,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpeg'),
+                          radius: 220,
+                          backgroundImage: AssetImage('assets/images/chi1.png'),
                         ),
                       ),
                     ),
@@ -166,7 +159,6 @@ class HomeTab extends StatelessWidget {
                   description:
                       "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at CHI 2026 interactivity ACM.",
                 ),
-                // const SizedBox(height: 20),
                 AboutSectionCard(
                   title: "Intern - SLT Mobitel",
                   imagePath: "assets/images/sltm1.jpeg",
@@ -174,13 +166,12 @@ class HomeTab extends StatelessWidget {
                   description:
                       "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
                 ),
-                // const SizedBox(height: 20),
                 AboutSectionCard(
                   title: "Intern - World Wildlife Fund (WWF)",
                   imagePath: "assets/images/wwf1.jpeg",
                   borderColor: Colors.teal.shade50,
                   description:
-                      "Part time. Mar 2023 - Present\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+                      "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
                 ),
               ],
             ),
@@ -191,7 +182,6 @@ class HomeTab extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
             width: double.infinity,
-            // color: Colors.indigo.shade50,
             child: LayoutBuilder(
               builder: (context, constraints) {
                 bool isWide = constraints.maxWidth > 700;
@@ -200,18 +190,19 @@ class HomeTab extends StatelessWidget {
                   children: [
                     Text('Interests & Skills',
                         style: Theme.of(context).textTheme.headlineMedium),
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 30),
 
                     // 🔬 Research Interests — Topic left, chips right
                     isWide
                         ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               // Left: Contact Info
                               Expanded(
                                 child: Text(
                                   '🔬 Research & Technical Interests',
                                   style: Theme.of(context).textTheme.titleLarge,
+                                  textAlign: TextAlign.right,
                                 ),
                               ),
                               const SizedBox(width: 40),
@@ -230,10 +221,10 @@ class HomeTab extends StatelessWidget {
                               _buildInterestCard(),
                             ],
                           ),
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 24),
                     isWide
                         ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(child: _buildSkillCard()),
                               const SizedBox(width: 40),
@@ -277,48 +268,23 @@ class HomeTab extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 20,
                   children: [
-                    // _buildCurrentProjectCard(
-                    //   context,
-                    //   title: 'Reflective Intelligent Surface',
-                    //   subtitle: 'Research | FPGA | Wireless',
-                    //   description:
-                    //       'Developing a controller for RIS antenna systems. Currently working on the literature review and algorithm design for FPGA-based implementation.',
-                    // ),
                     _buildCurrentProjectCard(
                       context,
-                      title: 'FPGA Accelerator for Edge AI',
-                      subtitle: 'Research | Hardware Acceleration | LLMs',
+                      title:
+                          'Quantum-based ELF Magnetometer for Drone Detection and Classification',
+                      subtitle: 'Project | Electronics | Quantum Physics',
                       description:
-                          'Designing a hardware-accelerated solution for fine-tuning LLMs on edge devices using an FPGA. Focused on low-power inference.',
+                          'Developing a quantum magnetometer. Focusing on designing low-noise, high-sensitivity optical frontend electronics and quantum sensing techniques.',
                     ),
                     _buildCurrentProjectCard(
                       context,
-                      title: 'Nutrimithu',
-                      subtitle: 'Mobile App | Health | IoT',
+                      title:
+                          'TasteLoop: Exploring Closed-Loop Digital Taste for Affective Modulation',
+                      subtitle:
+                          'Research | System Design | Human-Computer Interaction',
                       description:
-                          'Meal box and mobile app to assist users in portion control and healthy eating. Focuses on real-time feedback and logging.',
+                          'Developing a closed-loop system that adapts electrical tongue stimulation to short-term affective changes by physiological sensing.',
                     ),
-                    // _buildCurrentProjectCard(
-                    //   context,
-                    //   title: 'Blindle',
-                    //   subtitle: 'Assistive Tech | Accessibility | IoT',
-                    //   description:
-                    //       'Developing a tactile e-reader for the visually impaired. Focus on user-friendly, affordable Braille display integration.',
-                    // ),
-                    _buildCurrentProjectCard(
-                      context,
-                      title: 'Greet Flood',
-                      subtitle: 'Augmented Reality | Environment | WWF',
-                      description:
-                          'Mobile AR app to educate users on flood management techniques. Designed for public engagement through interactive 3D visuals.',
-                    ),
-                    // _buildCurrentProjectCard(
-                    //   context,
-                    //   title: 'Phoenix – CubeSat Team',
-                    //   subtitle: 'Space Systems | ADCS | High-Altitude',
-                    //   description:
-                    //       'Part of the university CubeSat team. Currently working on ADCS for a high-altitude balloon test platform as a precursor to satellite deployment.',
-                    // ),
                   ],
                 ),
               ],
@@ -326,6 +292,7 @@ class HomeTab extends StatelessWidget {
           ),
 
           const Divider(),
+
           // === Competitions & Awards Section ===
           Container(
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
@@ -341,6 +308,13 @@ class HomeTab extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 20,
                   children: [
+                    _buildAwardCard(
+                      imagePath: 'assets/images/achievements/chi2.jpeg',
+                      title: 'CHI 2026 Interactivity Demonstration Paper',
+                      placement: 'Honorable Mention',
+                      field: 'Human-Computer Interaction',
+                      year: '2026',
+                    ),
                     _buildAwardCard(
                       imagePath: 'assets/images/achievements/opampwin.jpg',
                       title: 'Analog IC Student Design Contest',
@@ -380,7 +354,7 @@ class HomeTab extends StatelessWidget {
                       imagePath: 'assets/markdown/nutri.png',
                       title: 'IEEE EMBS Brainstorm Healthcare Challenge',
                       placement: 'Finalist',
-                      field: 'NutriMithu / Healthcare / Embedded Systems',
+                      field: 'Healthcare / Embedded Systems',
                       year: '2025',
                     ),
                     _buildAwardCard(
@@ -562,20 +536,21 @@ class HomeTab extends StatelessWidget {
 
   Widget _buildSkillCard() {
     return const Wrap(
+      alignment: WrapAlignment.end,
       spacing: 12,
       runSpacing: 8,
       children: [
         Chip(
+          avatar: Icon(Icons.memory, size: 16),
+          label: Text('KLayout/Magic'),
+        ),
+        Chip(
+          avatar: Icon(Icons.memory, size: 16),
+          label: Text('SKY130 PDK'),
+        ),
+        Chip(
           avatar: Icon(Icons.code, size: 16),
           label: Text('SystemVerilog'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.cplusplus),
-          label: Text('C++'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.python),
-          label: Text('Python'),
         ),
         Chip(
           avatar: Icon(SimpleIcons.amd),
@@ -586,6 +561,18 @@ class HomeTab extends StatelessWidget {
           label: Text('Quartus'),
         ),
         Chip(
+          avatar: Icon(SimpleIcons.cplusplus),
+          label: Text('C++'),
+        ),
+        Chip(
+          avatar: Icon(SimpleIcons.python),
+          label: Text('Python'),
+        ),
+        Chip(
+          avatar: Icon(SimpleIcons.ltspice, size: 16),
+          label: Text('LTSpice'),
+        ),
+        Chip(
           avatar: Icon(SimpleIcons.altiumdesigner, size: 16),
           label: Text('Altium'),
         ),
@@ -594,21 +581,17 @@ class HomeTab extends StatelessWidget {
           label: Text('SolidWorks'),
         ),
         Chip(
-          avatar: Icon(SimpleIcons.ltspice, size: 16),
-          label: Text('LTSpice'),
-        ),
-        Chip(
           avatar: Icon(SimpleIcons.unity, size: 16),
           label: Text('Unity'),
         ),
-        Chip(
-          avatar: Icon(SimpleIcons.espressif),
-          label: Text('ESP32'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.raspberrypi),
-          label: Text('Raspberry Pi'),
-        ),
+        // Chip(
+        //   avatar: Icon(SimpleIcons.espressif),
+        //   label: Text('ESP32'),
+        // ),
+        // Chip(
+        //   avatar: Icon(SimpleIcons.raspberrypi),
+        //   label: Text('Raspberry Pi'),
+        // ),
         Chip(
           avatar: Icon(SimpleIcons.ubuntu, size: 16),
           label: Text('Ubuntu'),
@@ -629,14 +612,6 @@ class HomeTab extends StatelessWidget {
           avatar: Icon(SimpleIcons.firebase, size: 16),
           label: Text('Firebase'),
         ),
-        // Chip(
-        //   avatar: Icon(SimpleIcons.html5, size: 16),
-        //   label: Text('HTML5'),
-        // ),
-        // Chip(
-        //   avatar: Icon(SimpleIcons.css3, size: 16),
-        //   label: Text('CSS3'),
-        // ),
       ],
     );
   }
@@ -646,14 +621,14 @@ class HomeTab extends StatelessWidget {
       spacing: 12,
       runSpacing: 8,
       children: [
-        Chip(label: Text('FPGA & Digital Design')),
-        Chip(label: Text('IC Design')),
+        Chip(label: Text('Analog Circuit Design')),
+        Chip(label: Text('Optoelectronics')),
+        Chip(label: Text('Analog IC Design')),
+        Chip(label: Text('FPGA')),
         Chip(label: Text('Embedded Systems')),
-        Chip(label: Text('Hardware Acceleration')),
-        Chip(label: Text('Edge AI and Machine Learning')),
-        Chip(label: Text('Analog Circuits')),
         Chip(label: Text('Sensor Development')),
         Chip(label: Text('Human-Computer Interaction')),
+        Chip(label: Text('Quantum Sensing')),
       ],
     );
   }

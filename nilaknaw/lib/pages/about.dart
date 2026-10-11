@@ -13,13 +13,19 @@ class AboutTab extends StatelessWidget {
       child: Column(
         children: const [
           Text(
-              """Electronics and Telecommunication Engineering undergraduate at the University of Moratuwa 
-with a strong academic record (CGPA 3.94/4.0) and a passion for problem-solving through innovative hardware and software solutions. 
-Interested in analog and digital design, hardware acceleratio, embedded systems, and human-computer interaction. 
-Also an accomplished hockey player and an orchestral musician.""",
+//               """Electronics and Telecommunication Engineering undergraduate at the University of Moratuwa
+// with a strong academic record (CGPA 3.94/4.0) and a passion for problem-solving through innovative hardware and software solutions.
+// Interested in analog and digital design, hardware acceleratio, embedded systems, and human-computer interaction.
+// Also an accomplished hockey player and an orchestral musician.""",
+              """Hello, I am Nilakna. I love electronics, physics, and simply, creating things.
+              This is why I like doing engineering research, as it brings two of my favorite things together: electronics and creativity.
+              I like working in collaborative research teams, and I've been fortunate to work with some amazing researchers.
+              I also love music and sports. I play the clarinet in local orchestras and played for my university hockey team.
+              I believe this diverse set of interests has helped me develop a unique thinking pattern.
+              What I want to do is to be a researcher to help advance human knowledge through cutting-edge technologies.""",
               textAlign: TextAlign.center,
               style: TextStyle(
-                // fontSize: 18,
+                fontSize: 18,
                 fontStyle: FontStyle.italic,
                 color: Colors.black54,
               )),
@@ -27,7 +33,7 @@ Also an accomplished hockey player and an orchestral musician.""",
               title: "👨‍🎓 Education",
               imagePath: "assets/images/uom.jpeg",
               description:
-                  """I'm currently an undergraduate student in Electronic and Telecommunication Engineering at the University of Moratuwa. I actively contribute to both academic and extracurricular spheres—from hands-on electronics, robotics, and AI projects to leadership roles in clubs and societies. I’ve led and participated in national-level competitions, collaborative tech innovations, and organizational committees that bring students together around shared passions."""),
+                  """I'm currently an undergraduate student in Electronic and Telecommunication Engineering at the University of Moratuwa, with a strong academic record (CGPA: 3.94/4.00) and a passion for engineering research. I actively contribute to both academic and extracurricular work from hands-on electronics projects to leadership roles in clubs and societies. I serve as the head of web in Electronics Club and was the president of the Mathematics Society."""),
           AboutSectionCard(
             title: "🏫 School Journey",
             imagePath: "assets/images/school.JPG",
@@ -45,7 +51,7 @@ Also an accomplished hockey player and an orchestral musician.""",
             title: "🏑 Hockey",
             imagePath: "assets/images/hockey.jpeg",
             description:
-                "Playing as an attacker in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games (2023) and Inter-University Games (2024), earning University Colors in 2023 and 2024 for my outstanding performance and commitment to the sport.",
+                "Playing as an attacker in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games and Inter-University Games, earning University Colors in 2023, 2024, and 2025, for my performance and commitment to the sport.",
             reverse: true,
           ),
 

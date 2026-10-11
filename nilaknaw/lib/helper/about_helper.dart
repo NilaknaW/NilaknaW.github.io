@@ -22,7 +22,7 @@ class AboutSectionCard extends StatelessWidget {
       builder: (context, constraints) {
         bool isWide = constraints.maxWidth > 700;
         return Container(
-          margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             border: Border.all(color: borderColor, width: 2),
