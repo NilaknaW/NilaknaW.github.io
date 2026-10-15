@@ -1,6 +1,7 @@
 // === Home Tab ===
 import 'package:flutter/material.dart';
 import '../helper/content_width.dart';
+import '../helper/contact_form.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -83,7 +84,7 @@ class HomeTab extends StatelessWidget {
                               }
                             },
                             icon: const Icon(Icons.download),
-                            label: const Text('View Resume'),
+                            label: const Text('Resume'),
                           ),
                           ElevatedButton.icon(
                             onPressed: () {
@@ -94,7 +95,7 @@ class HomeTab extends StatelessWidget {
                               );
                             },
                             icon: const Icon(Icons.mail),
-                            label: const Text('Contact Me'),
+                            label: const Text('Contact'),
                           ),
                         ],
                       ),
@@ -434,7 +435,7 @@ I also love music and sports. I play the clarinet in local orchestras and played
                                 Expanded(child: _buildContactInfo(context)),
                                 const SizedBox(width: 40),
                                 // Right: Contact Form
-                                Expanded(child: _buildContactForm(context)),
+                                Expanded(child: const ContactForm()),
                               ],
                             )
                           : Column(
@@ -442,7 +443,7 @@ I also love music and sports. I play the clarinet in local orchestras and played
                               children: [
                                 _buildContactInfo(context),
                                 const SizedBox(height: 30),
-                                _buildContactForm(context),
+                                const ContactForm(),
                               ],
                             ),
                       const SizedBox(height: 40),
@@ -641,59 +642,6 @@ I also love music and sports. I play the clarinet in local orchestras and played
               launchUrl(Uri.parse('https://orcid.org/0009-0009-7133-2022')),
         ),
       ],
-    );
-  }
-
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _messageController = TextEditingController();
-
-  Widget _buildContactForm(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 500),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Quick Contact',
-              style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 20),
-          TextField(
-            controller: _nameController,
-            decoration: InputDecoration(
-                labelText: 'Your Name',
-                labelStyle: TextStyle(color: Colors.grey)),
-          ),
-          TextField(
-            controller: _emailController,
-            decoration: InputDecoration(
-                labelText: 'Your Email',
-                labelStyle: TextStyle(color: Colors.grey)),
-          ),
-          TextField(
-            controller: _messageController,
-            maxLines: 4,
-            decoration: InputDecoration(
-                labelText: 'Message',
-                labelStyle: TextStyle(color: Colors.grey)),
-          ),
-          const SizedBox(height: 20),
-          OutlinedButton.icon(
-            onPressed: () {
-              final name = _nameController.text;
-              final email = _emailController.text;
-              final message = _messageController.text;
-
-              final uri = Uri.parse(
-                'https://formsubmit.io/send/nilawarush@gmail.com?name=$name&email=$email&message=$message',
-              );
-
-              launchUrl(uri);
-            },
-            icon: const Icon(Icons.send),
-            label: const Text('Send'),
-          ),
-        ],
-      ),
     );
   }
 
