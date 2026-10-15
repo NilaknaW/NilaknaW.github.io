@@ -108,28 +108,26 @@ class ProjectDetailPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error loading content'));
           } else {
-            return SingleChildScrollView(
-              child: LayoutBuilder(builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: constraints.maxWidth > 900
-                        ? const EdgeInsets.all(122.0)
-                        : const EdgeInsets.all(24.0),
-                    child: GptMarkdown(
-                      snapshot.data!,
-                      onLinkTab: (url, title) async {
-                        final uri = Uri.parse(url);
-                        if (await canLaunchUrl(uri)) {
-                          await launchUrl(uri,
-                              mode: LaunchMode.externalApplication);
-                        } else {
-                          debugPrint('Could not launch $url');
-                        }
-                      },
-                    ),
-                  ),
-                );
-              }),
+            return SizedBox.expand(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.sizeOf(context).height * 0.05,
+                  horizontal: MediaQuery.sizeOf(context).width *
+                      (MediaQuery.sizeOf(context).width >= 1200 ? 0.2 : 0.05),
+                ),
+                child: GptMarkdown(
+                  snapshot.data!,
+                  onLinkTab: (url, title) async {
+                    final uri = Uri.parse(url);
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri,
+                          mode: LaunchMode.externalApplication);
+                    } else {
+                      debugPrint('Could not launch $url');
+                    }
+                  },
+                ),
+              ),
             );
           }
         },

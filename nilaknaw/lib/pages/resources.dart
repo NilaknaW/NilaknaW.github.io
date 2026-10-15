@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../helper/content_width.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesTab extends StatefulWidget {
@@ -19,7 +20,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
       type: 'Notes',
       link:
           'https://drive.google.com/file/d/1AYD-uVkJWMignc06MQgOX1hwwi8MLayf/view?usp=drive_link',
-      tags: ['practicals', 'experiments', 'observations'],
     ),
     _ResourceDocument(
       level: 'A-Level',
@@ -28,7 +28,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
       type: 'Short Notes',
       link:
           'https://drive.google.com/file/d/14UrO5AhcgztQELq6-UTqYAONv8O7qEMJ/view?usp=drive_link',
-      tags: ['inorganic', 'reactions'],
     ),
     _ResourceDocument(
       level: 'A-Level',
@@ -37,7 +36,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
       type: 'Short Notes',
       link:
           'https://drive.google.com/file/d/16YElJOZ74eci4Lpmjfxtec7yctFw_-RK/view?usp=drive_link',
-      tags: ['organic', 'reactions'],
     ),
     _ResourceDocument(
       level: 'Graded Exams',
@@ -46,7 +44,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
       type: 'Short Notes',
       link:
           'https://drive.google.com/file/d/10tFd39qZcu8lqKcxD9IXlWt-8nktIK8u/view?usp=drive_link',
-      tags: ['music', 'theory'],
     ),
   ];
 
@@ -56,7 +53,8 @@ class _ResourcesTabState extends State<ResourcesTab> {
     final groupedDocuments = _groupDocuments(filteredDocuments);
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+          vertical: 40, horizontal: contentInset(context) + 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -90,7 +88,7 @@ class _ResourcesTabState extends State<ResourcesTab> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                // fillColor: Colors.teal.shade50,
               ),
             ),
           ),
@@ -138,7 +136,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
       document.subject,
       document.title,
       document.type,
-      ...document.tags,
     ].join(' ').toLowerCase();
 
     return searchableText.contains(normalizedQuery);
@@ -161,7 +158,6 @@ class _ResourceDocument {
   final String title;
   final String type;
   final String link;
-  final List<String> tags;
 
   const _ResourceDocument({
     required this.level,
@@ -169,7 +165,6 @@ class _ResourceDocument {
     required this.title,
     required this.type,
     required this.link,
-    required this.tags,
   });
 }
 
@@ -210,7 +205,7 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey.shade100,
         border: Border.all(color: Colors.grey.shade300),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -283,7 +278,7 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.teal.shade50,
+                    color: Colors.white,
                     border: Border.all(color: Colors.teal.shade100),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -308,7 +303,7 @@ class _ResourceRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Colors.grey.shade100,
       child: InkWell(
         onTap: () => launchUrl(
           Uri.parse(document.link),
@@ -323,37 +318,16 @@ class _ResourceRow extends StatelessWidget {
           ),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final isWide = constraints.maxWidth > 640;
               final title = Text(
                 document.title,
-                style: const TextStyle(fontWeight: FontWeight.w600),
+                // style: const TextStyle(fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.titleSmall,
                 overflow: TextOverflow.ellipsis,
               );
-              final metadata = Wrap(
-                spacing: 8,
-                runSpacing: 6,
-                children: [
-                  _MiniChip(document.type),
-                  for (final tag in document.tags.take(2)) _MiniChip(tag),
-                ],
-              );
-
-              if (!isWide) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    title,
-                    const SizedBox(height: 8),
-                    metadata,
-                  ],
-                );
-              }
 
               return Row(
                 children: [
                   Expanded(flex: 3, child: title),
-                  const SizedBox(width: 16),
-                  Expanded(flex: 2, child: metadata),
                   const SizedBox(width: 8),
                   Icon(Icons.open_in_new,
                       size: 16, color: Colors.grey.shade600),

@@ -1,5 +1,6 @@
 // === About Tab ===
 import 'package:flutter/material.dart';
+import '../helper/content_width.dart';
 // import '../helper/responsive.dart';
 import '../helper/about_helper.dart';
 
@@ -9,7 +10,8 @@ class AboutTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+      padding: EdgeInsets.symmetric(
+          vertical: 40, horizontal: contentInset(context) + 16),
       child: Column(
         children: const [
           Text(

@@ -13,7 +13,7 @@ class AboutSectionCard extends StatelessWidget {
     required this.imagePath,
     required this.description,
     this.reverse = false,
-    this.borderColor = Colors.white,
+    this.borderColor = const Color(0xFFE0F2F1), // Colors.teal[50]
   });
 
   @override

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,41 +14,58 @@ import 'pages/publications.dart';
 import 'pages/resources.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyPortfolioApp());
 }
+
+const pagePaths = [
+  '/',
+  '/about',
+  '/projects',
+  '/publications',
+  '/blog',
+  '/resources'
+];
 
 class MyPortfolioApp extends StatelessWidget {
   const MyPortfolioApp({super.key});
 
+  static final router = GoRouter(
+    routes: [
+      for (var index = 0; index < pagePaths.length; index++)
+        GoRoute(
+          path: pagePaths[index],
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: PortfolioHomePage(pageIndex: index),
+          ),
+        ),
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Nilakna',
       theme: ThemeData(
           primarySwatch: Colors.teal,
           primaryColor: Colors.teal,
-          scaffoldBackgroundColor: Colors.teal[50],
+          scaffoldBackgroundColor: Colors.white,
           colorScheme:
               ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(
             secondary: Colors.teal,
           ),
           textTheme: GoogleFonts.robotoSlabTextTheme()),
-      home: const PortfolioHomePage(),
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class PortfolioHomePage extends StatefulWidget {
-  const PortfolioHomePage({super.key});
+class PortfolioHomePage extends StatelessWidget {
+  PortfolioHomePage({super.key, this.pageIndex = 0});
 
-  @override
-  _PortfolioHomePageState createState() => _PortfolioHomePageState();
-}
-
-class _PortfolioHomePageState extends State<PortfolioHomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  final int pageIndex;
 
   final List<Tab> myTabs = [
     const Tab(text: 'Home'),
@@ -65,18 +84,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
     BlogTab(),
     ResourcesTab(),
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: myTabs.length, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,19 +118,21 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
           ),
           const SizedBox(width: 16),
         ],
-        title: TabBar(
-          controller: _tabController,
-          isScrollable: true, // Responsive tabs
-          tabs: myTabs,
-          indicatorColor: Colors.grey,
-          tabAlignment: TabAlignment.center,
-          dividerColor: Colors.transparent,
+        title: DefaultTabController(
+          key: ValueKey(pageIndex),
+          length: myTabs.length,
+          initialIndex: pageIndex,
+          child: TabBar(
+            onTap: (index) => context.go(pagePaths[index]),
+            isScrollable: true, // Responsive tabs
+            tabs: myTabs,
+            indicatorColor: Colors.grey,
+            tabAlignment: TabAlignment.center,
+            dividerColor: Colors.transparent,
+          ),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: tabViews,
-      ),
+      body: SizedBox.expand(child: tabViews[pageIndex]),
     );
   }
 }

@@ -33,6 +33,13 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script>
+    // Restore the original GitHub Pages URL before Flutter reads its route.
+    const route = new URLSearchParams(location.search).get('route');
+    if (route && route.startsWith('/') && !route.startsWith('//')) {
+      history.replaceState(null, '', route);
+    }
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../helper/content_width.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PublicationsTab extends StatelessWidget {
@@ -7,7 +8,8 @@ class PublicationsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+          vertical: 40, horizontal: contentInset(context) + 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

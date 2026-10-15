@@ -1,5 +1,6 @@
 // === Home Tab ===
 import 'package:flutter/material.dart';
+import '../helper/content_width.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -24,12 +25,13 @@ class HomeTab extends StatelessWidget {
           // === Hero Section ===
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 60),
-            margin: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              // color: Colors.white.withOpacity(0.95),
-              border: Border.all(color: Colors.white, width: 2),
-              borderRadius: BorderRadius.circular(8),
-            ),
+            margin: EdgeInsets.symmetric(
+                vertical: 24, horizontal: contentInset(context) + 24),
+            // decoration: BoxDecoration(
+            //   // color: Colors.white.withOpacity(0.95),
+            //   border: Border.all(color: Colors.teal.shade50, width: 2),
+            //   borderRadius: BorderRadius.circular(8),
+            // ),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 bool isWide = constraints.maxWidth > 700;
@@ -77,7 +79,7 @@ class HomeTab extends StatelessWidget {
                           icon: const Icon(Icons.download),
                           label: const Text('View Resume'),
                         ),
-                        OutlinedButton.icon(
+                        ElevatedButton.icon(
                           onPressed: () {
                             Scrollable.ensureVisible(
                               _contactKey.currentContext!,
@@ -141,10 +143,79 @@ class HomeTab extends StatelessWidget {
           // ),
           // const Divider(),
 
+          // === Current Projects Section ===
+
+          Container(
+            padding: EdgeInsets.symmetric(
+                vertical: 60, horizontal: contentInset(context) + 24),
+            width: double.infinity,
+            color: Colors.teal.shade50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Current Research Projects',
+                    style: Theme.of(context).textTheme.headlineMedium),
+                const SizedBox(height: 30),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 640),
+                  child: Column(
+                    children: [
+                      for (final title in [
+                        'Quantum Sensing & Instrumentation (Electronics)',
+                        'Digital Taste Interfaces (Human-Computer Interaction)',
+                      ])
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: ListTile(
+                            leading: const Icon(Icons.science_outlined),
+                            title: Text(title,
+                                style: Theme.of(context).textTheme.titleMedium),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 8),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+
+                // Wrap(
+                //   spacing: 20,
+                //   runSpacing: 20,
+                //   children: [
+                //     _buildCurrentProjectCard(
+                //       context,
+                //       title:
+                //           'Quantum-based ELF Magnetometer for Drone Detection and Classification',
+                //       subtitle: 'Project | Electronics | Quantum Physics',
+                //       description:
+                //           'Developing a quantum magnetometer. Focusing on designing low-noise, high-sensitivity optical frontend electronics and quantum sensing techniques.',
+                //     ),
+                //     _buildCurrentProjectCard(
+                //       context,
+                //       title:
+                //           'TasteLoop: Exploring Closed-Loop Digital Taste for Affective Modulation',
+                //       subtitle:
+                //           'Research | System Design | Human-Computer Interaction',
+                //       description:
+                //           'Developing a closed-loop system that adapts electrical tongue stimulation to short-term affective changes by physiological sensing.',
+                //     ),
+                //   ],
+                // ),
+              ],
+            ),
+          ),
+
+          const Divider(),
+
           // === Experience Section ===
           Container(
             // height: height,
-            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+            padding: EdgeInsets.symmetric(
+                vertical: 60, horizontal: contentInset(context) + 24),
             width: double.infinity,
             color: Colors.white,
             child: Column(
@@ -181,8 +252,10 @@ class HomeTab extends StatelessWidget {
 
           // === Interests & Skills Section ===
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+            padding: EdgeInsets.symmetric(
+                vertical: 60, horizontal: contentInset(context) + 24),
             width: double.infinity,
+            color: Colors.teal.shade50,
             child: LayoutBuilder(
               builder: (context, constraints) {
                 bool isWide = constraints.maxWidth > 700;
@@ -253,50 +326,10 @@ class HomeTab extends StatelessWidget {
           ),
           const Divider(),
 
-          // === Current Projects Section ===
-
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
-            width: double.infinity,
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Current Projects',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(height: 30),
-                Wrap(
-                  spacing: 20,
-                  runSpacing: 20,
-                  children: [
-                    _buildCurrentProjectCard(
-                      context,
-                      title:
-                          'Quantum-based ELF Magnetometer for Drone Detection and Classification',
-                      subtitle: 'Project | Electronics | Quantum Physics',
-                      description:
-                          'Developing a quantum magnetometer. Focusing on designing low-noise, high-sensitivity optical frontend electronics and quantum sensing techniques.',
-                    ),
-                    _buildCurrentProjectCard(
-                      context,
-                      title:
-                          'TasteLoop: Exploring Closed-Loop Digital Taste for Affective Modulation',
-                      subtitle:
-                          'Research | System Design | Human-Computer Interaction',
-                      description:
-                          'Developing a closed-loop system that adapts electrical tongue stimulation to short-term affective changes by physiological sensing.',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          const Divider(),
-
           // === Competitions & Awards Section ===
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+            padding: EdgeInsets.symmetric(
+                vertical: 60, horizontal: contentInset(context) + 24),
             width: double.infinity,
             // color: Colors.grey.shade100,
             child: Column(
@@ -383,7 +416,8 @@ class HomeTab extends StatelessWidget {
           // === Quick Contact Section ===
           Container(
             key: _contactKey,
-            padding: const EdgeInsets.all(32),
+            padding: EdgeInsets.symmetric(
+                vertical: 32, horizontal: contentInset(context) + 32),
             color: Colors.grey.shade100,
             width: double.infinity,
             child: LayoutBuilder(
@@ -453,7 +487,7 @@ class HomeTab extends StatelessWidget {
         // elevation: 3,color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: Colors.teal.shade50, width: 2),
+          side: BorderSide(color: Colors.white, width: 2),
         ),
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
@@ -492,7 +526,7 @@ class HomeTab extends StatelessWidget {
         // elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: Colors.white, width: 2),
+          side: BorderSide(color: Colors.teal.shade50, width: 2),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -751,10 +785,10 @@ class HomeTab extends StatelessWidget {
 
   Widget _highlightCard(BuildContext context, Project project) {
     return Card(
-      color: Colors.white,
+      color: Colors.teal.shade50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.teal.shade50, width: 2),
+        side: BorderSide(color: Colors.white, width: 2),
       ),
       child: InkWell(
         onTap: () {
