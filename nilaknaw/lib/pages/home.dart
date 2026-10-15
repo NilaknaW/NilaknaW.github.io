@@ -125,24 +125,6 @@ class HomeTab extends StatelessWidget {
           ),
           const Divider(),
 
-          // // === Featured Section ===
-          // Container(
-          //   // height: height,
-          //   padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
-          //   width: double.infinity,
-          //   color: Colors.white,
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Text('Project Highlights',
-          //           style: Theme.of(context).textTheme.headlineMedium),
-          //       const SizedBox(height: 20),
-          //       _highlights(context),
-          //     ],
-          //   ),
-          // ),
-          // const Divider(),
-
           // === Current Projects Section ===
 
           Container(
@@ -224,21 +206,21 @@ class HomeTab extends StatelessWidget {
                 Text('Experience',
                     style: Theme.of(context).textTheme.headlineMedium),
                 // const SizedBox(height: 20),
-                AboutSectionCard(
+                AboutProfileCard(
                   title: "Research Assistant - Monash University",
                   imagePath: "assets/images/monash.jpg",
                   borderColor: Colors.teal.shade50,
                   description:
                       "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at CHI 2026 interactivity ACM.",
                 ),
-                AboutSectionCard(
+                AboutProfileCard(
                   title: "Intern - SLT Mobitel",
                   imagePath: "assets/images/sltm1.jpeg",
                   borderColor: Colors.teal.shade50,
                   description:
                       "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
                 ),
-                AboutSectionCard(
+                AboutProfileCard(
                   title: "Intern - World Wildlife Fund (WWF)",
                   imagePath: "assets/images/wwf1.jpeg",
                   borderColor: Colors.teal.shade50,

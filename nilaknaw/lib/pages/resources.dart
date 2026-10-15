@@ -88,7 +88,6 @@ class _ResourcesTabState extends State<ResourcesTab> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 filled: true,
-                // fillColor: Colors.teal.shade50,
               ),
             ),
           ),
@@ -213,18 +212,6 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Get Password',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Some documents may be password protected. Contact me to request access if you need them for personal studying or academic revision.',
-            style: TextStyle(color: Colors.grey.shade700),
-          ),
-          const SizedBox(height: 12),
-          Text(
             'Terms and disclaimer',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w600,
@@ -234,16 +221,6 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
           Text(
             'These resources are shared only for educational use. They must not be sold, repackaged, redistributed for profit, or used for any commercial purpose. By requesting the password, you agree to use them responsibly and give proper respect to the original material and sources.',
             style: TextStyle(color: Colors.grey.shade700),
-          ),
-          const SizedBox(height: 14),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              const _MiniChip('Personal Study Only'),
-              const _MiniChip('No Commercial Use'),
-              const _MiniChip('Responsible Sharing'),
-            ],
           ),
           const SizedBox(height: 10),
           CheckboxListTile(
@@ -256,8 +233,9 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
                 if (!_hasAgreed) _showPassword = false;
               });
             },
-            title: const Text(
+            title: Text(
               'I agree to use these documents only for personal study and not for commercial purposes.',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
           const SizedBox(height: 8),
@@ -279,7 +257,7 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(color: Colors.teal.shade100),
+                    border: Border.all(color: Colors.teal.shade50),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const SelectableText(
