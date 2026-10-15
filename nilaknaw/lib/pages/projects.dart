@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helper/content_width.dart';
+import '../helper/awards_section.dart';
 import '../helper/project_helper.dart';
 import '../helper/project_list.dart';
 import '../helper/blog_list.dart';
@@ -60,6 +61,7 @@ class ProjectsTab extends StatelessWidget {
                 ),
               ),
             ],
+            const SliverToBoxAdapter(child: AwardsSection()),
           ],
         );
       },

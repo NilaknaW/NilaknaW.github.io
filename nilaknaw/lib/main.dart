@@ -7,9 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'pages/home.dart';
-import 'pages/about.dart';
 import 'pages/projects.dart';
-import 'pages/publications.dart';
 import 'pages/resources.dart';
 
 void main() {
@@ -17,7 +15,7 @@ void main() {
   runApp(const MyPortfolioApp());
 }
 
-const pagePaths = ['/', '/about', '/projects', '/publications', '/resources'];
+const pagePaths = ['/', '/projects', '/resources'];
 
 class MyPortfolioApp extends StatelessWidget {
   const MyPortfolioApp({super.key});
@@ -25,6 +23,8 @@ class MyPortfolioApp extends StatelessWidget {
   static final router = GoRouter(
     routes: [
       GoRoute(path: '/blog', redirect: (context, state) => '/projects'),
+      GoRoute(path: '/publications', redirect: (context, state) => '/'),
+      GoRoute(path: '/about', redirect: (context, state) => '/'),
       for (var index = 0; index < pagePaths.length; index++)
         GoRoute(
           path: pagePaths[index],
@@ -62,17 +62,13 @@ class PortfolioHomePage extends StatelessWidget {
 
   final List<Tab> myTabs = [
     const Tab(text: 'Home'),
-    const Tab(text: 'About'),
     const Tab(text: 'Projects'),
-    const Tab(text: 'Publications'),
     const Tab(text: 'Resources'),
   ];
 
   final List<Widget> tabViews = [
     HomeTab(),
-    AboutTab(),
     ProjectsTab(),
-    PublicationsTab(),
     ResourcesTab(),
   ];
 

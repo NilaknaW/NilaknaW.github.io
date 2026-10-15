@@ -1,6 +1,7 @@
 // === Home Tab ===
 import 'package:flutter/material.dart';
 import '../helper/content_width.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -18,99 +19,112 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          // === Hero Section ===
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            margin: EdgeInsets.symmetric(
-                vertical: 24, horizontal: contentInset(context) + 24),
-            // decoration: BoxDecoration(
-            //   // color: Colors.white.withOpacity(0.95),
-            //   border: Border.all(color: Colors.teal.shade50, width: 2),
-            //   borderRadius: BorderRadius.circular(8),
-            // ),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                bool isWide = constraints.maxWidth > 700;
-                final leftContent = Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: isWide
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment:
-                          isWide ? Alignment.centerLeft : Alignment.center,
-                      child: AnimatedTextKit(
-                        repeatForever: true,
-                        pause: const Duration(milliseconds: 2000),
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            'Hello, I am Nilakna.',
-                            textStyle:
-                                Theme.of(context).textTheme.headlineMedium,
-                            speed: const Duration(milliseconds: 100),
+    return LayoutBuilder(builder: (context, viewport) {
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            // === Hero Section ===
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              margin: EdgeInsets.symmetric(
+                  vertical: 24, horizontal: contentInset(context) + 24),
+              // decoration: BoxDecoration(
+              //   // color: Colors.white.withOpacity(0.95),
+              //   border: Border.all(color: Colors.teal.shade50, width: 2),
+              //   borderRadius: BorderRadius.circular(8),
+              // ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  bool isWide = constraints.maxWidth > 700;
+                  final leftContent = Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: isWide
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
+                    children: [
+                      // Align(
+                      //   alignment:
+                      //       isWide ? Alignment.centerLeft : Alignment.center,
+                      //   child: AnimatedTextKit(
+                      //     repeatForever: true,
+                      //     pause: const Duration(milliseconds: 2000),
+                      //     animatedTexts: [
+                      //       TypewriterAnimatedText(
+                      //         'Hello, I am Nilakna.',
+                      //         textStyle:
+                      //             Theme.of(context).textTheme.headlineMedium,
+                      //         speed: const Duration(milliseconds: 100),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 16),
+                      Text(
+                        'I am Nilakna,',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      Text(
+                        'an Electronic and Telecommunication Engineering undergraduate interested in analog and mixed-signal circuits, IC design, optoelectronics, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
+                        style: const TextStyle(fontSize: 18),
+                        textAlign: isWide ? TextAlign.left : TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 8,
+                        alignment:
+                            isWide ? WrapAlignment.start : WrapAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () async {
+                              if (await canLaunch(resumeUrl)) {
+                                await launch(resumeUrl);
+                              }
+                            },
+                            icon: const Icon(Icons.download),
+                            label: const Text('View Resume'),
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Scrollable.ensureVisible(
+                                _contactKey.currentContext!,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            icon: const Icon(Icons.mail),
+                            label: const Text('Contact Me'),
                           ),
                         ],
                       ),
+                    ],
+                  );
+                  const rightContent = Center(
+                    child: CircleAvatar(
+                      radius: 220,
+                      backgroundImage: AssetImage('assets/images/chi1.png'),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'I am an Electronic and Telecommunication Engineering undergraduate interested in optoelectronics, analog and mixed-signal circuits, IC design, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
-                      style: const TextStyle(fontSize: 18),
-                      textAlign: isWide ? TextAlign.left : TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    Wrap(
-                      spacing: 12,
-                      runSpacing: 8,
-                      alignment:
-                          isWide ? WrapAlignment.start : WrapAlignment.center,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: () async {
-                            if (await canLaunch(resumeUrl)) {
-                              await launch(resumeUrl);
-                            }
-                          },
-                          icon: const Icon(Icons.download),
-                          label: const Text('View Resume'),
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            Scrollable.ensureVisible(
-                              _contactKey.currentContext!,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          icon: const Icon(Icons.mail),
-                          label: const Text('Contact Me'),
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-                const rightContent = Center(
-                  child: CircleAvatar(
-                    radius: 220,
-                    backgroundImage: AssetImage('assets/images/chi1.png'),
-                  ),
-                );
-                return ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: isWide ? height * 0.8 : 0,
-                  ),
-                  child: Flex(
+                  );
+                  final introduction = Flex(
                     direction: isWide ? Axis.horizontal : Axis.vertical,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Left: Text
-                      if (isWide) Expanded(child: leftContent) else leftContent,
+                      if (isWide)
+                        Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: SizedBox(
+                              width: (constraints.maxWidth - 40) / 2,
+                              child: leftContent,
+                            ),
+                          ),
+                        )
+                      else
+                        leftContent,
                       SizedBox(width: isWide ? 40 : 0, height: isWide ? 0 : 40),
                       // Right: Image
                       if (isWide)
@@ -118,346 +132,366 @@ class HomeTab extends StatelessWidget {
                       else
                         rightContent,
                     ],
-                  ),
-                );
-              },
-            ),
-          ),
-          const Divider(),
-
-          // === Current Projects Section ===
-
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: 60, horizontal: contentInset(context) + 24),
-            width: double.infinity,
-            color: Colors.teal.shade50,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Current Research Projects',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 30),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 640),
-                  child: Column(
+                  );
+                  final hero = Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      for (final title in [
-                        'Quantum Sensing & Instrumentation (Electronics)',
-                        'Digital Taste Interfaces (Human-Computer Interaction)',
-                      ])
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: ListTile(
-                            leading: const Icon(Icons.science_outlined),
-                            title: Text(title,
-                                style: Theme.of(context).textTheme.titleMedium),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                          ),
-                        ),
+                      if (isWide)
+                        Expanded(child: introduction)
+                      else
+                        introduction,
+                      const SizedBox(height: 24),
+                      _buildHeroSkills(),
+                      const SizedBox(height: 8),
                     ],
+                  );
+                  return isWide
+                      ? SizedBox(
+                          height: (viewport.maxHeight - 48)
+                              .clamp(0.0, double.infinity),
+                          child: hero,
+                        )
+                      : hero;
+                },
+              ),
+            ),
+            Divider(color: Colors.teal[50], thickness: 2.0),
+
+            Container(
+              padding: EdgeInsets.symmetric(
+                  vertical: 60, horizontal: contentInset(context) + 24),
+              width: double.infinity,
+              // color: Colors.teal.shade50,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Research',
+                      style: Theme.of(context).textTheme.headlineLarge),
+                  // const SizedBox(height: 28),
+                  // Text('Research Interests',
+                  //     style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 28),
+                  _citation(
+                    context,
+                    'Analog/mixed-signal circuits, IC design, optoelectronics, and quantum-sensing.',
                   ),
-                ),
-
-                // Wrap(
-                //   spacing: 20,
-                //   runSpacing: 20,
-                //   children: [
-                //     _buildCurrentProjectCard(
-                //       context,
-                //       title:
-                //           'Quantum-based ELF Magnetometer for Drone Detection and Classification',
-                //       subtitle: 'Project | Electronics | Quantum Physics',
-                //       description:
-                //           'Developing a quantum magnetometer. Focusing on designing low-noise, high-sensitivity optical frontend electronics and quantum sensing techniques.',
-                //     ),
-                //     _buildCurrentProjectCard(
-                //       context,
-                //       title:
-                //           'TasteLoop: Exploring Closed-Loop Digital Taste for Affective Modulation',
-                //       subtitle:
-                //           'Research | System Design | Human-Computer Interaction',
-                //       description:
-                //           'Developing a closed-loop system that adapts electrical tongue stimulation to short-term affective changes by physiological sensing.',
-                //     ),
-                //   ],
-                // ),
-              ],
+                  // Text(
+                  //     'Analog circuit/IC design, optoelectronics, embedded systems, FPGA, quantum sensing.',
+                  //     style: Theme.of(context).textTheme.bodyLarge),
+                  const SizedBox(height: 28),
+                  Text('Current Projects',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 12),
+                  _citation(
+                    context,
+                    '1. Quantum ELF Magnetometer for Drone Detection and Classification',
+                  ),
+                  _citation(
+                    context,
+                    '2. Closed-loop Affective Modulation (Human-Computer Interaction)',
+                  ),
+                  const SizedBox(height: 28),
+                  Text('Publications',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 12),
+                  _citation(
+                    context,
+                    '1. Fang, Z., Wang, H., Warushavithana, N., Madusanka, S., Deng, J., Chen, W., Elvitigala, D., Mueller, F. 2026. [The Wizard of Taste: Demonstrating Multisensory Eating with Electrical Taste and Bone-conduction Auditory Seasoning](https://doi.org/10.1145/3772363.3799379). CHI 2026. Interactivity. ACM. [Video](https://youtu.be/S8Q2H2pGOHM).',
+                  ),
+                  const SizedBox(height: 12),
+                  _citation(
+                    context,
+                    '2. Pathirana R., Balasooriya P., Warushavithana, N., Ravishan N., Sabnis N., Mueller F., and Elvitigala D. 2026. [Demonstrating VibeCoP: Guiding Balance Exercises through a Center of Pressure encoded Vibrotactile Waistband](https://doi.org/10.1145/3801727.3844936). SportsHCI Companion 2026. ACM. (Accepted)',
+                  ),
+                ],
+              ),
             ),
-          ),
+            Divider(color: Colors.teal[50], thickness: 2.0),
 
-          const Divider(),
+            // // === Experience Section ===
+            // Container(
+            //   // height: height,
+            //   padding: EdgeInsets.symmetric(
+            //       vertical: 60, horizontal: contentInset(context) + 24),
+            //   width: double.infinity,
+            //   color: Colors.white,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text('Experience',
+            //           style: Theme.of(context).textTheme.headlineLarge),
+            //       // const SizedBox(height: 20),
+            //       AboutProfileCard(
+            //         title: "Research Assistant - Monash University",
+            //         imagePath: "assets/images/monash.jpg",
+            //         borderColor: Colors.teal.shade50,
+            //         description:
+            //             "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab, Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at ACM CHI 2026.",
+            //       ),
+            //       AboutProfileCard(
+            //         title: "Intern - SLT Mobitel",
+            //         imagePath: "assets/images/sltm1.jpeg",
+            //         borderColor: Colors.teal.shade50,
+            //         description:
+            //             "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
+            //       ),
+            //       AboutProfileCard(
+            //         title: "Intern - World Wildlife Fund (WWF)",
+            //         imagePath: "assets/images/wwf1.jpeg",
+            //         borderColor: Colors.teal.shade50,
+            //         description:
+            //             "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const Divider(),
 
-          // === Experience Section ===
-          Container(
-            // height: height,
-            padding: EdgeInsets.symmetric(
-                vertical: 60, horizontal: contentInset(context) + 24),
-            width: double.infinity,
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Experience',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                // const SizedBox(height: 20),
-                AboutProfileCard(
-                  title: "Research Assistant - Monash University",
-                  imagePath: "assets/images/monash.jpg",
-                  borderColor: Colors.teal.shade50,
-                  description:
-                      "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab,Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at CHI 2026 interactivity ACM.",
-                ),
-                AboutProfileCard(
-                  title: "Intern - SLT Mobitel",
-                  imagePath: "assets/images/sltm1.jpeg",
-                  borderColor: Colors.teal.shade50,
-                  description:
-                      "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
-                ),
-                AboutProfileCard(
-                  title: "Intern - World Wildlife Fund (WWF)",
-                  imagePath: "assets/images/wwf1.jpeg",
-                  borderColor: Colors.teal.shade50,
-                  description:
-                      "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
-                ),
-              ],
-            ),
-          ),
-          const Divider(),
+            // === Interests & Skills Section ===
+            // Container(
+            //   padding: EdgeInsets.symmetric(
+            //       vertical: 60, horizontal: contentInset(context) + 24),
+            //   width: double.infinity,
+            //   color: Colors.teal.shade50,
+            //   child: LayoutBuilder(
+            //     builder: (context, constraints) {
+            //       bool isWide = constraints.maxWidth > 700;
+            //       return Column(
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           Text('Interests & Skills',
+            //               style: Theme.of(context).textTheme.headlineMedium),
+            //           const SizedBox(height: 30),
 
-          // === Interests & Skills Section ===
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: 60, horizontal: contentInset(context) + 24),
-            width: double.infinity,
-            color: Colors.teal.shade50,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                bool isWide = constraints.maxWidth > 700;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('Interests & Skills',
-                        style: Theme.of(context).textTheme.headlineMedium),
-                    const SizedBox(height: 30),
+            //           // 🔬 Research Interests — Topic left, chips right
+            //           isWide
+            //               ? Row(
+            //                   crossAxisAlignment: CrossAxisAlignment.center,
+            //                   children: [
+            //                     // Left: Contact Info
+            //                     Expanded(
+            //                       child: Text(
+            //                         '🔬 Research & Technical Interests',
+            //                         style:
+            //                             Theme.of(context).textTheme.titleLarge,
+            //                         textAlign: TextAlign.right,
+            //                       ),
+            //                     ),
+            //                     const SizedBox(width: 40),
+            //                     // Right: Contact Form
+            //                     Expanded(child: _buildInterestCard()),
+            //                   ],
+            //                 )
+            //               : Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text(
+            //                       '🔬 Research & Technical Interests',
+            //                       style: Theme.of(context).textTheme.titleLarge,
+            //                     ),
+            //                     const SizedBox(height: 30),
+            //                     _buildInterestCard(),
+            //                   ],
+            //                 ),
+            //           const SizedBox(height: 24),
+            //           isWide
+            //               ? Row(
+            //                   crossAxisAlignment: CrossAxisAlignment.center,
+            //                   children: [
+            //                     Expanded(child: _buildSkillCard()),
+            //                     const SizedBox(width: 40),
+            //                     Expanded(
+            //                       child: Text('🛠️ Tools & Skills',
+            //                           style: Theme.of(context)
+            //                               .textTheme
+            //                               .titleLarge),
+            //                     ),
+            //                   ],
+            //                 )
+            //               : Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text('🛠️ Tools & Skills',
+            //                         style:
+            //                             Theme.of(context).textTheme.titleLarge),
+            //                     const SizedBox(height: 30),
+            //                     _buildSkillCard(),
+            //                   ],
+            //                 ),
+            //         ],
+            //       );
+            //     },
+            //   ),
+            // ),
+            // const Divider(),
 
-                    // 🔬 Research Interests — Topic left, chips right
-                    isWide
-                        ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Left: Contact Info
-                              Expanded(
-                                child: Text(
-                                  '🔬 Research & Technical Interests',
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                              const SizedBox(width: 40),
-                              // Right: Contact Form
-                              Expanded(child: _buildInterestCard()),
-                            ],
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '🔬 Research & Technical Interests',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(height: 30),
-                              _buildInterestCard(),
-                            ],
-                          ),
-                    const SizedBox(height: 24),
-                    isWide
-                        ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(child: _buildSkillCard()),
-                              const SizedBox(width: 40),
-                              Expanded(
-                                child: Text('🛠️ Tools & Skills',
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('🛠️ Tools & Skills',
-                                  style:
-                                      Theme.of(context).textTheme.titleLarge),
-                              const SizedBox(height: 30),
-                              _buildSkillCard(),
-                            ],
-                          ),
-                  ],
-                );
-              },
-            ),
-          ),
-          const Divider(),
+            // === Bio Section ===
 
-          // === Competitions & Awards Section ===
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: 60, horizontal: contentInset(context) + 24),
-            width: double.infinity,
-            // color: Colors.grey.shade100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Competitions & Awards',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(height: 30),
-                Wrap(
-                  spacing: 20,
-                  runSpacing: 20,
-                  children: [
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/chi2.jpeg',
-                      title: 'CHI 2026 Interactivity Demonstration Paper',
-                      placement: 'Honorable Mention',
-                      field: 'Human-Computer Interaction',
-                      year: '2026',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/opampwin.jpg',
-                      title: 'Analog IC Student Design Contest',
-                      placement: 'Second Place',
-                      field: 'Analog IC Design',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/dvcon.png',
-                      title: 'DVCon India Design Contest',
-                      placement: 'Finalist',
-                      field: 'FPGA / Digital Design',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/makeathon2.jpeg',
-                      title: 'Inter University Make-a-thon',
-                      placement: 'Winner',
-                      field: 'Medical Devices / 3D Design',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/slrc3.jpeg',
-                      title: 'Sri Lanka Robotics Challenge (SLRC)',
-                      placement: 'Finalist',
-                      field: 'Robotics',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/sliot1.jpeg',
-                      title: 'Sri Lanka IoT Challenge (SLIoT)',
-                      placement: 'Finalist',
-                      field: 'IoT / Embedded Systems',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/markdown/nutri.png',
-                      title: 'IEEE EMBS Brainstorm Healthcare Challenge',
-                      placement: 'Finalist',
-                      field: 'Healthcare / Embedded Systems',
-                      year: '2025',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/images/achievements/AIchallenge.jpeg',
-                      title: 'IEEE Sri Lanka AI Challenge',
-                      placement: 'Finalist',
-                      field: 'AI / Web Development',
-                      year: '2024',
-                    ),
-                    _buildAwardCard(
-                      imagePath: 'assets/markdown/siliconedge/sp5.jpeg',
-                      title: 'Silicon Pulse Analog Design Competition',
-                      placement: 'Finalist',
-                      field: 'Analog Design',
-                      year: '2024',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                  vertical: 60, horizontal: contentInset(context) + 24),
+              width: double.infinity,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('About Me',
+                      style: Theme.of(context).textTheme.headlineLarge),
+                  const SizedBox(height: 24),
+                  Text(
+                    """Hello, I am Nilakna. I love electronics, physics, and simply, creating things. This is why I like doing engineering research, as it brings two of my favorite things together: electronics and creativity. I like working in collaborative research teams, and I've been fortunate to work with some amazing researchers.
 
-          const Divider(),
-
-          // === Quick Contact Section ===
-          Container(
-            key: _contactKey,
-            padding: EdgeInsets.symmetric(
-                vertical: 32, horizontal: contentInset(context) + 32),
-            color: Colors.grey.shade100,
-            width: double.infinity,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                bool isWide = constraints.maxWidth > 700;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    isWide
-                        ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Left: Contact Info
-                              Expanded(child: _buildContactInfo(context)),
-                              const SizedBox(width: 40),
-                              // Right: Contact Form
-                              Expanded(child: _buildContactForm(context)),
-                            ],
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildContactInfo(context),
-                              const SizedBox(height: 30),
-                              _buildContactForm(context),
-                            ],
-                          ),
-                    const SizedBox(height: 40),
-                    const Divider(thickness: 1.0),
-                    const SizedBox(height: 10),
-                    // Text(
-                    //   'Nilakna Warushavithana 2025',
-                    //   style: TextStyle(fontSize: 14, color: Colors.grey),
-                    //   textAlign: TextAlign.center,
+I also love music and sports. I play the clarinet in local orchestras and played for my university hockey team. I believe this diverse set of interests has helped me develop a unique thinking pattern. What I want to do is to be a researcher to help advance human knowledge through cutting-edge technologies.""",
+                    textAlign: TextAlign.start,
+                    // style: TextStyle(
+                    //   fontSize: 18,
+                    //   height: 1.7,
+                    //   color: Colors.black54,
                     // ),
-                    const Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: 'Made with '),
-                          WidgetSpan(
-                            child: Icon(Icons.favorite,
-                                color: Colors.red, size: 16),
-                          ),
-                          TextSpan(text: ' by Nilakna Warushavithana. 2025.'),
-                        ],
-                      ),
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                );
-              },
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 32),
+                  Text('Experience',
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  AboutProfileCard(
+                    title: "Research Assistant - Monash University",
+                    imagePath: "assets/images/monash.jpg",
+                    borderColor: Colors.teal.shade50,
+                    description:
+                        "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab, Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at ACM CHI 2026.",
+                  ),
+                  AboutProfileCard(
+                    title: "Intern - SLT Mobitel",
+                    imagePath: "assets/images/sltm1.jpeg",
+                    borderColor: Colors.teal.shade50,
+                    description:
+                        "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
+                    reverse: true,
+                  ),
+                  AboutProfileCard(
+                    title: "Intern - World Wildlife Fund (WWF)",
+                    imagePath: "assets/images/wwf1.jpeg",
+                    borderColor: Colors.teal.shade50,
+                    description:
+                        "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+                  ),
+
+                  const SizedBox(height: 32),
+                  Text('Education & Leadership',
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  const AboutProfileCard(
+                      title: "👨‍🎓 Undergraduate",
+                      imagePath: "assets/images/uom.jpeg",
+                      description:
+                          """I'm currently an undergraduate student in Electronic and Telecommunication Engineering at the University of Moratuwa, with a strong academic record (CGPA: 3.94/4.00) and a passion for engineering research. I actively contribute to both academic and extracurricular work from hands-on electronics projects to leadership roles in clubs and societies. I serve as the head of web in Electronics Club and was the president of the Mathematics Society."""),
+                  const AboutProfileCard(
+                    title: "🏫 School Journey",
+                    imagePath: "assets/images/school.JPG",
+                    description:
+                        """My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and the arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the School Head Prefect and graduated with a strong academic and leadership record.""",
+                    reverse: true,
+                  ),
+                  const SizedBox(height: 32),
+                  Text('Beyond Research',
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  const AboutProfileCard(
+                    title: "🎵 Music",
+                    imagePath: "assets/images/music4.jpeg",
+                    description:
+                        "Music has always been a big part of my life. As an instrumentalist, I've found a second voice through music. I play the clarinet in the Colombo Wind Orchestra and the Junior Symphony Orchestra, and I regularly perform for university events. My musical talents extend to the piano, drums, and violin, and I've also composed a few original pieces as I explore music. Music has been not just a passion but a way to express creativity and build community through performance.",
+                  ),
+                  const AboutProfileCard(
+                    title: "🏑 Hockey",
+                    imagePath: "assets/images/hockey.jpeg",
+                    description:
+                        "Playing as an attacker in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games and Inter-University Games, earning University Colors in 2023, 2024, and 2025, for my performance and commitment to the sport.",
+                    reverse: true,
+                  ),
+
+                  // Add more sections similarly
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+
+            // === Quick Contact Section ===
+            Container(
+              key: _contactKey,
+              padding: EdgeInsets.symmetric(
+                  vertical: 32, horizontal: contentInset(context) + 32),
+              color: Colors.teal[50],
+              width: double.infinity,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  bool isWide = constraints.maxWidth > 700;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      isWide
+                          ? Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Left: Contact Info
+                                Expanded(child: _buildContactInfo(context)),
+                                const SizedBox(width: 40),
+                                // Right: Contact Form
+                                Expanded(child: _buildContactForm(context)),
+                              ],
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildContactInfo(context),
+                                const SizedBox(height: 30),
+                                _buildContactForm(context),
+                              ],
+                            ),
+                      const SizedBox(height: 40),
+                      const Divider(thickness: 1.0),
+                      const SizedBox(height: 10),
+                      // Text(
+                      //   'Nilakna Warushavithana 2025',
+                      //   style: TextStyle(fontSize: 14, color: Colors.grey),
+                      //   textAlign: TextAlign.center,
+                      // ),
+                      const Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(text: 'Made with '),
+                            WidgetSpan(
+                              child: Icon(Icons.favorite,
+                                  color: Colors.red, size: 16),
+                            ),
+                            TextSpan(text: ' by Nilakna Warushavithana. 2025.'),
+                          ],
+                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
+
+  Widget _citation(BuildContext context, String text) => MarkdownBody(
+        data: text,
+        styleSheet: MarkdownStyleSheet(
+          p: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
+          a: TextStyle(
+              color: Colors.teal.shade900,
+              decoration: TextDecoration.underline),
+        ),
+        onTapLink: (text, href, title) {
+          if (href != null) {
+            launchUrl(Uri.parse(href), webOnlyWindowName: '_blank');
+          }
+        },
+      );
 
   Widget _buildCurrentProjectCard(BuildContext context,
       {required String title,
@@ -495,143 +529,54 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  Widget _buildAwardCard({
-    required String imagePath,
-    required String title,
-    required String placement,
-    required String field,
-    required String year,
-  }) {
-    return SizedBox(
-      width: 280,
-      child: Card.outlined(
-        // elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: Colors.teal.shade50, width: 2),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  static const _tools = [
+    (icon: Icons.memory, label: 'KLayout/Magic'),
+    (icon: Icons.memory, label: 'SKY130 PDK'),
+    (icon: Icons.code, label: 'SystemVerilog'),
+    (icon: SimpleIcons.amd, label: 'Vivado'),
+    (icon: SimpleIcons.intel, label: 'Quartus'),
+    (icon: SimpleIcons.cplusplus, label: 'C++'),
+    (icon: SimpleIcons.python, label: 'Python'),
+    (icon: SimpleIcons.ltspice, label: 'LTSpice'),
+    (icon: SimpleIcons.altiumdesigner, label: 'Altium'),
+    (icon: SimpleIcons.dassaultsystemes, label: 'SolidWorks'),
+    (icon: SimpleIcons.unity, label: 'Unity'),
+    (icon: SimpleIcons.ubuntu, label: 'Ubuntu'),
+    (icon: SimpleIcons.git, label: 'Git'),
+    (icon: SimpleIcons.flutter, label: 'Flutter'),
+    (icon: SimpleIcons.android, label: 'Android'),
+    (icon: SimpleIcons.firebase, label: 'Firebase'),
+  ];
+
+  Widget _buildHeroSkills() => Center(
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8,
+          runSpacing: 8,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              child: Image.asset(
-                imagePath,
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
-                  height: 150,
-                  color: Colors.grey.shade300,
-                  child: Center(child: Icon(Icons.image_not_supported)),
+            for (final tool in _tools)
+              Tooltip(
+                message: tool.label,
+                waitDuration: const Duration(milliseconds: 150),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Icon(tool.icon, size: 24, color: Colors.teal.shade800),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                  SizedBox(height: 4),
-                  Text(field,
-                      style: TextStyle(color: Colors.teal, fontSize: 13)),
-                  SizedBox(height: 12),
-                  Text('$placement • $year',
-                      style:
-                          TextStyle(fontSize: 14, color: Colors.grey.shade800)),
-                ],
-              ),
-            ),
           ],
         ),
-      ),
-    );
-  }
+      );
 
-  Widget _buildSkillCard() {
-    return const Wrap(
-      alignment: WrapAlignment.end,
-      spacing: 12,
-      runSpacing: 8,
-      children: [
-        Chip(
-          avatar: Icon(Icons.memory, size: 16),
-          label: Text('KLayout/Magic'),
-        ),
-        Chip(
-          avatar: Icon(Icons.memory, size: 16),
-          label: Text('SKY130 PDK'),
-        ),
-        Chip(
-          avatar: Icon(Icons.code, size: 16),
-          label: Text('SystemVerilog'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.amd),
-          label: Text('Vivado'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.intel),
-          label: Text('Quartus'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.cplusplus),
-          label: Text('C++'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.python),
-          label: Text('Python'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.ltspice, size: 16),
-          label: Text('LTSpice'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.altiumdesigner, size: 16),
-          label: Text('Altium'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.dassaultsystemes, size: 16),
-          label: Text('SolidWorks'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.unity, size: 16),
-          label: Text('Unity'),
-        ),
-        // Chip(
-        //   avatar: Icon(SimpleIcons.espressif),
-        //   label: Text('ESP32'),
-        // ),
-        // Chip(
-        //   avatar: Icon(SimpleIcons.raspberrypi),
-        //   label: Text('Raspberry Pi'),
-        // ),
-        Chip(
-          avatar: Icon(SimpleIcons.ubuntu, size: 16),
-          label: Text('Ubuntu'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.git, size: 16),
-          label: Text('Git'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.flutter, size: 16),
-          label: Text('Flutter'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.android, size: 16),
-          label: Text('Android'),
-        ),
-        Chip(
-          avatar: Icon(SimpleIcons.firebase, size: 16),
-          label: Text('Firebase'),
-        ),
-      ],
-    );
-  }
+  Widget _buildSkillCard() => Wrap(
+        alignment: WrapAlignment.end,
+        spacing: 12,
+        runSpacing: 8,
+        children: [
+          for (final tool in _tools)
+            Chip(avatar: Icon(tool.icon, size: 16), label: Text(tool.label)),
+        ],
+      );
 
   Widget _buildInterestCard() {
     return const Wrap(

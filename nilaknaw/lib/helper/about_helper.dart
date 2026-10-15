@@ -100,7 +100,7 @@ class AboutProfileCard extends StatelessWidget {
       final image = ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.asset(imagePath,
-            width: double.infinity, height: 200, fit: BoxFit.cover),
+            width: double.infinity, height: 180, fit: BoxFit.cover),
       );
       final text = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +128,7 @@ class AboutProfileCard extends StatelessWidget {
                 children: [
                   Expanded(child: image),
                   const SizedBox(width: 28),
-                  Expanded(flex: 2, child: text),
+                  Expanded(flex: 3, child: text),
                 ],
               )
             : Column(

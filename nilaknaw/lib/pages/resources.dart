@@ -63,15 +63,15 @@ class _ResourcesTabState extends State<ResourcesTab> {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 12),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900),
-            child: Text(
-              'These are scanned notes I used to study for different exams. The notes are based on school, tuition, books, and lots of self-learning. These are strictly not intended for commercial use but merely for any student that needs them. Ensure you use them responsibly!',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey.shade700),
-            ),
-          ),
-          const SizedBox(height: 24),
+          // ConstrainedBox(
+          //   constraints: const BoxConstraints(maxWidth: 900),
+          //   child: Text(
+          //     'These are scanned documents of study notes from different exams. The notes are based on school, tuition, books, and lots of self-learning. Use them responsibly!',
+          //     textAlign: TextAlign.start,
+          //     style: TextStyle(color: Colors.grey.shade700),
+          //   ),
+          // ),
+          // const SizedBox(height: 24),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
             child: _PasswordAccessCard(),
@@ -202,27 +202,32 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      padding: const EdgeInsets.all(8),
+      // decoration: BoxDecoration(
+      //   // color: Colors.grey.shade100,
+      //   border: Border.all(color: Colors.grey.shade300),
+      //   borderRadius: BorderRadius.circular(8),
+      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Terms and disclaimer',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'These resources are shared only for educational use. They must not be sold, repackaged, redistributed for profit, or used for any commercial purpose. By requesting the password, you agree to use them responsibly and give proper respect to the original material and sources.',
+            'These are my study notes from different exams. Notes are based on school, tuition, books, and lots of self-learning :)',
+            textAlign: TextAlign.start,
             style: TextStyle(color: Colors.grey.shade700),
           ),
-          const SizedBox(height: 10),
+          // Text(
+          //   'Terms and disclaimer',
+          //   style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          // ),
+          // const SizedBox(height: 8),
+          // Text(
+          //   'These resources are shared only for educational use. They must not be sold, repackaged, redistributed for profit, or used for any commercial purpose. By requesting the password, you agree to use them responsibly and give proper respect to the original material and sources.',
+          //   style: TextStyle(color: Colors.grey.shade700),
+          // ),
+          // const SizedBox(height: 10),
           CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             controlAffinity: ListTileControlAffinity.leading,
@@ -238,7 +243,7 @@ class _PasswordAccessCardState extends State<_PasswordAccessCard> {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
-          const SizedBox(height: 8),
+          // const SizedBox(height: 8),
           Wrap(
             spacing: 10,
             runSpacing: 10,
