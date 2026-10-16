@@ -21,6 +21,7 @@ class ProjectsTab extends StatelessWidget {
                 : 1;
 
         return CustomScrollView(
+          primary: true,
           slivers: [
             for (final section in [
               (title: 'Projects', items: projects, spacing: 24.0),

@@ -1,6 +1,7 @@
 // === Home Tab ===
 import 'package:flutter/material.dart';
 import '../helper/content_width.dart';
+import '../helper/scroll_motion.dart';
 import '../helper/contact_form.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,10 +23,12 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, viewport) {
       return SingleChildScrollView(
+        primary: true,
         child: Column(
           children: [
             // === Hero Section ===
-            Container(
+            ScrollFade(
+                child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 60),
               margin: EdgeInsets.symmetric(
                   vertical: 24, horizontal: contentInset(context) + 24),
@@ -155,10 +158,11 @@ class HomeTab extends StatelessWidget {
                       : hero;
                 },
               ),
-            ),
+            )),
             Divider(color: Colors.teal[50], thickness: 2.0),
 
-            Container(
+            ScrollFade(
+                child: Container(
               padding: EdgeInsets.symmetric(
                   vertical: 60, horizontal: contentInset(context) + 24),
               width: double.infinity,
@@ -206,7 +210,7 @@ class HomeTab extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            )),
             Divider(color: Colors.teal[50], thickness: 2.0),
 
             // // === Experience Section ===
@@ -328,7 +332,8 @@ class HomeTab extends StatelessWidget {
 
             // === Bio Section ===
 
-            Container(
+            ScrollFade(
+                child: Container(
               padding: EdgeInsets.symmetric(
                   vertical: 60, horizontal: contentInset(context) + 24),
               width: double.infinity,
@@ -412,7 +417,7 @@ I also love music and sports. I play the clarinet in local orchestras and played
                   // Add more sections similarly
                 ],
               ),
-            ),
+            )),
 
             // === Quick Contact Section ===
             Container(

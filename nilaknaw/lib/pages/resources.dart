@@ -53,6 +53,7 @@ class _ResourcesTabState extends State<ResourcesTab> {
     final groupedDocuments = _groupDocuments(filteredDocuments);
 
     return SingleChildScrollView(
+      primary: true,
       padding: EdgeInsets.symmetric(
           vertical: 40, horizontal: contentInset(context) + 24),
       child: Column(

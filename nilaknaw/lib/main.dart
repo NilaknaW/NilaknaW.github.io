@@ -6,6 +6,7 @@ import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'helper/scroll_motion.dart';
 import 'pages/home.dart';
 import 'pages/projects.dart';
 import 'pages/resources.dart';
@@ -28,8 +29,19 @@ class MyPortfolioApp extends StatelessWidget {
       for (var index = 0; index < pagePaths.length; index++)
         GoRoute(
           path: pagePaths[index],
-          pageBuilder: (context, state) => NoTransitionPage(
+          pageBuilder: (context, state) => CustomTransitionPage(
             key: state.pageKey,
+            transitionDuration: const Duration(milliseconds: 450),
+            reverseTransitionDuration: const Duration(milliseconds: 450),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              if (MediaQuery.disableAnimationsOf(context)) return child;
+              return FadeTransition(
+                opacity:
+                    animation.drive(CurveTween(curve: Curves.easeInOutCubic)),
+                child: child,
+              );
+            },
             child: PortfolioHomePage(pageIndex: index),
           ),
         ),
@@ -119,7 +131,7 @@ class PortfolioHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: SizedBox.expand(child: tabViews[pageIndex]),
+      body: SmoothScroll(child: SizedBox.expand(child: tabViews[pageIndex])),
     );
   }
 }
