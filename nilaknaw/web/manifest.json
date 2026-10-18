@@ -1,11 +1,11 @@
 {
-    "name": "nilaknaw",
-    "short_name": "nilaknaw",
+    "name": "Nilakna Warushavithana",
+    "short_name": "Nilakna",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Nilakna Warushavithana's portfolio website",
+    "background_color": "#FFFFFF",
+    "theme_color": "#008577",
+    "description": "Engineering research, projects and study resources by Nilakna Warushavithana.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

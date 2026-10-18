@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'scroll_motion.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
+import 'project_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'dart:convert';
@@ -156,7 +156,6 @@ class _ProjectReaderState extends State<ProjectReader> {
               ],
             ));
           }
-          final theme = Theme.of(context);
           final compact = MediaQuery.sizeOf(context).width < 600;
           return ColoredBox(
             color: const Color(0xFFF7FAF9),
@@ -175,29 +174,16 @@ class _ProjectReaderState extends State<ProjectReader> {
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(compact ? 20 : 48),
-                      child: GptMarkdownTheme(
-                        gptThemeData: GptMarkdownThemeData(
-                          brightness: theme.brightness,
-                          h1: theme.textTheme.headlineMedium
-                              ?.copyWith(height: 1.3),
-                          h2: theme.textTheme.headlineSmall
-                              ?.copyWith(height: 1.4),
-                          h3: theme.textTheme.titleLarge?.copyWith(height: 1.4),
-                          linkColor: Colors.teal.shade800,
-                        ),
-                        child: SelectionArea(
-                          child: GptMarkdown(
-                            snapshot.data!,
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                                fontSize: compact ? 16 : 17, height: 1.75),
-                            onLinkTab: (url, title) async {
-                              final uri = Uri.tryParse(url);
-                              if (uri != null && await canLaunchUrl(uri)) {
-                                await launchUrl(uri,
-                                    mode: LaunchMode.externalApplication);
-                              }
-                            },
-                          ),
+                      child: SelectionArea(
+                        child: ProjectMarkdown(
+                          data: snapshot.data!,
+                          onTapLink: (text, href, title) async {
+                            final uri = Uri.tryParse(href ?? '');
+                            if (uri != null && await canLaunchUrl(uri)) {
+                              await launchUrl(uri,
+                                  mode: LaunchMode.externalApplication);
+                            }
+                          },
                         ),
                       ),
                     ),

@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'helper/scroll_motion.dart';
+import 'helper/seo.dart';
 import 'pages/home.dart';
 import 'pages/projects.dart';
 import 'pages/resources.dart';
@@ -42,9 +43,13 @@ class MyPortfolioApp extends StatelessWidget {
                 child: child,
               );
             },
-            child: PortfolioHomePage(
+            child: PageSeo(
               pageIndex: index,
               projectAsset: state.uri.queryParameters['project'],
+              child: PortfolioHomePage(
+                pageIndex: index,
+                projectAsset: state.uri.queryParameters['project'],
+              ),
             ),
           ),
         ),
@@ -54,7 +59,7 @@ class MyPortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Nilakna',
+      title: siteName,
       theme: ThemeData(
           primarySwatch: Colors.teal,
           primaryColor: Colors.teal,
