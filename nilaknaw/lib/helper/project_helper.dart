@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'scroll_motion.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
@@ -35,6 +35,7 @@ class _ProjectTileState extends State<ProjectTile> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
       child: GestureDetector(
@@ -45,14 +46,15 @@ class _ProjectTileState extends State<ProjectTile> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(widget.project.imagePath),
+                  image: ResizeImage.resizeIfNeeded(
+                      800, null, AssetImage(widget.project.imagePath)),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
             AnimatedContainer(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
                 color: _hovering ? Colors.black45 : Colors.black26,
                 borderRadius: BorderRadius.circular(12),
@@ -85,122 +87,125 @@ class _ProjectTileState extends State<ProjectTile> {
   }
 }
 
+// Compatibility for older entry points; Projects embeds ProjectReader directly.
 class ProjectDetailPage extends StatelessWidget {
+  const ProjectDetailPage({super.key, required this.project});
   final Project project;
 
-  const ProjectDetailPage({super.key, required this.project});
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: Text(project.title)),
+        body: SmoothScroll(child: ProjectReader(project: project)),
+      );
+}
 
-  Future<String> loadMarkdown() async {
-    return await rootBundle.loadString(project.markdownAssetPath);
+class ProjectReader extends StatefulWidget {
+  const ProjectReader({super.key, required this.project});
+  final Project project;
+
+  @override
+  State<ProjectReader> createState() => _ProjectReaderState();
+}
+
+class _ProjectReaderState extends State<ProjectReader> {
+  AssetBundle? _bundle;
+  late Future<String> _markdown;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final bundle = DefaultAssetBundle.of(context);
+    if (_bundle != bundle) {
+      _bundle = bundle;
+      _load();
+    }
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar:
-          AppBar(title: Text(project.title, style: TextStyle(fontSize: 16))),
-      body: FutureBuilder<String>(
-        future: loadMarkdown(),
+  void didUpdateWidget(ProjectReader oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.project.markdownAssetPath !=
+        widget.project.markdownAssetPath) {
+      _load();
+    }
+  }
+
+  void _load() {
+    _markdown = _bundle!.loadString(widget.project.markdownAssetPath);
+  }
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder<String>(
+        future: _markdown,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error loading content'));
-          } else {
-            return SizedBox.expand(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.sizeOf(context).height * 0.05,
-                  horizontal: MediaQuery.sizeOf(context).width *
-                      (MediaQuery.sizeOf(context).width >= 1200 ? 0.2 : 0.05),
+          }
+          if (snapshot.hasError) {
+            return Center(
+                child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Could not load these notes.'),
+                const SizedBox(height: 12),
+                OutlinedButton.icon(
+                  onPressed: () => setState(_load),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Try again'),
                 ),
-                child: GptMarkdown(
-                  snapshot.data!,
-                  onLinkTab: (url, title) async {
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri,
-                          mode: LaunchMode.externalApplication);
-                    } else {
-                      debugPrint('Could not launch $url');
-                    }
-                  },
+              ],
+            ));
+          }
+          final theme = Theme.of(context);
+          final compact = MediaQuery.sizeOf(context).width < 600;
+          return ColoredBox(
+            color: const Color(0xFFF7FAF9),
+            child: SingleChildScrollView(
+              primary: true,
+              padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 12 : 32, vertical: compact ? 16 : 32),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 920),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: const Color(0xFFE0EBE8)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(compact ? 20 : 48),
+                      child: GptMarkdownTheme(
+                        gptThemeData: GptMarkdownThemeData(
+                          brightness: theme.brightness,
+                          h1: theme.textTheme.headlineMedium
+                              ?.copyWith(height: 1.3),
+                          h2: theme.textTheme.headlineSmall
+                              ?.copyWith(height: 1.4),
+                          h3: theme.textTheme.titleLarge?.copyWith(height: 1.4),
+                          linkColor: Colors.teal.shade800,
+                        ),
+                        child: SelectionArea(
+                          child: GptMarkdown(
+                            snapshot.data!,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                                fontSize: compact ? 16 : 17, height: 1.75),
+                            onLinkTab: (url, title) async {
+                              final uri = Uri.tryParse(url);
+                              if (uri != null && await canLaunchUrl(uri)) {
+                                await launchUrl(uri,
+                                    mode: LaunchMode.externalApplication);
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            );
-          }
+            ),
+          );
         },
-      ),
-    );
-  }
+      );
 }
-
-// class ProjectDetailPage extends StatefulWidget {
-//   final Project project;
-
-//   const ProjectDetailPage({super.key, required this.project});
-
-//   @override
-//   State<ProjectDetailPage> createState() => _ProjectDetailPageState();
-// }
-
-// class _ProjectDetailPageState extends State<ProjectDetailPage> {
-//   late final WebViewController _controller;
-//   String? _htmlContent;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadHtmlContent();
-//   }
-
-//   Future<void> _loadHtmlContent() async {
-//     final markdown =
-//         await rootBundle.loadString(widget.project.markdownAssetPath);
-//     final htmlBody = md.markdownToHtml(markdown);
-//     final fullHtml = '''
-//     <!DOCTYPE html>
-//     <html>
-//       <head>
-//         <meta charset="UTF-8">
-//         <style>
-//           body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
-//           h1, h2, h3 { color: #333; }
-//           code { background: #eee; padding: 2px 4px; border-radius: 4px; }
-//           pre { background: #f4f4f4; padding: 12px; overflow-x: auto; border-radius: 4px; }
-//           img { max-width: 100%; height: auto; }
-//           a { color: #007BFF; }
-//         </style>
-//       </head>
-//       <body>
-//         $htmlBody
-//       </body>
-//     </html>
-//     ''';
-
-//     _controller = WebViewController()
-//       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-//       ..loadHtmlString(fullHtml); // Now controller is initialized safely
-
-//     setState(() {
-//       _htmlContent = fullHtml;
-//     });
-
-//     _controller = WebViewController()
-//       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-//       ..loadHtmlString(fullHtml);
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//           title:
-//               Text(widget.project.title, style: const TextStyle(fontSize: 16))),
-//       body: _htmlContent == null
-//           ? const Center(child: CircularProgressIndicator())
-//           : WebViewWidget(controller: _controller),
-//     );
-//   }
-// }

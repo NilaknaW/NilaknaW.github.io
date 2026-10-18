@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 
 class SmoothScroll extends StatefulWidget {
   const SmoothScroll({super.key, required this.child});
@@ -48,33 +49,79 @@ class _WheelPosition extends ScrollPositionWithSingleContext {
       super.oldPosition,
       required this.reduceMotion});
   final bool Function() reduceMotion;
-  double? _target;
-  int _generation = 0;
-
   @override
   void pointerScroll(double delta) {
     if (reduceMotion() || delta == 0) {
-      _target = null;
-      _generation++;
       super.pointerScroll(delta);
       return;
     }
-    final pending = _target;
-    // Reversing the wheel responds immediately instead of completing old travel.
-    final base = pending != null &&
-            isScrollingNotifier.value &&
-            (pending - pixels) * delta > 0
-        ? pending
-        : pixels;
-    final target = (base + delta).clamp(minScrollExtent, maxScrollExtent);
-    _target = target;
-    final generation = ++_generation;
-    animateTo(target,
-            duration: const Duration(milliseconds: 260),
-            curve: Curves.easeOutCubic)
-        .whenComplete(() {
-      if (generation == _generation) _target = null;
-    });
+    updateUserScrollDirection(
+      delta < 0 ? ScrollDirection.forward : ScrollDirection.reverse,
+    );
+    final current = activity;
+    if (current is _WheelActivity) {
+      current.addDelta(delta);
+    } else {
+      final wheel = _WheelActivity(this, context.vsync);
+      beginActivity(wheel);
+      wheel.addDelta(delta);
+    }
+  }
+}
+
+/// One ongoing activity accepts wheel updates without restarting its clock or
+/// disabling hit testing on project cards while the wheel settles.
+class _WheelActivity extends ScrollActivity {
+  _WheelActivity(_WheelPosition position, TickerProvider vsync)
+      : _target = position.pixels,
+        super(position) {
+    _ticker = vsync.createTicker(_tick)..start();
+  }
+
+  late final Ticker _ticker;
+  double _target;
+  Duration _lastTime = Duration.zero;
+  double _velocity = 0;
+  _WheelPosition get position => delegate as _WheelPosition;
+
+  void addDelta(double delta) {
+    final remaining = _target - position.pixels;
+    final base = remaining * delta > 0 ? _target : position.pixels;
+    _target = (base + delta)
+        .clamp(position.minScrollExtent, position.maxScrollExtent);
+  }
+
+  void _tick(Duration elapsed) {
+    final dt = (elapsed - _lastTime).inMicroseconds / 1000000;
+    _lastTime = elapsed;
+    if (dt <= 0) return;
+    _target = _target.clamp(position.minScrollExtent, position.maxScrollExtent);
+    final remaining = _target - position.pixels;
+    final next = remaining.abs() < .2
+        ? _target
+        : position.pixels + remaining * (1 - math.exp(-dt * 18));
+    _velocity = (next - position.pixels) / dt;
+    final overscroll = delegate.setPixels(next);
+    if (overscroll != 0) {
+      delegate.goBallistic(0);
+    } else if ((_target - position.pixels).abs() < .2) {
+      delegate.setPixels(_target);
+      delegate.goBallistic(0);
+    }
+  }
+
+  @override
+  bool get shouldIgnorePointer => false;
+  @override
+  bool get isScrolling => true;
+  @override
+  double get velocity => _velocity;
+  @override
+  void resetActivity() => delegate.goBallistic(0);
+  @override
+  void dispose() {
+    _ticker.dispose();
+    super.dispose();
   }
 }
 

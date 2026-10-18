@@ -113,6 +113,7 @@ class AwardsSection extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.asset(
                 imagePath,
+                cacheWidth: 600,
                 height: 150,
                 width: double.infinity,
                 fit: BoxFit.cover,

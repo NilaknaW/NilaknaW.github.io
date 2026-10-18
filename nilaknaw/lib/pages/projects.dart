@@ -1,15 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../helper/content_width.dart';
 import '../helper/awards_section.dart';
 import '../helper/project_helper.dart';
 import '../helper/project_list.dart';
 import '../helper/blog_list.dart';
+import '../helper/scroll_motion.dart';
 
 class ProjectsTab extends StatelessWidget {
-  const ProjectsTab({super.key});
+  const ProjectsTab({super.key, this.selectedAsset});
+
+  final String? selectedAsset;
 
   @override
   Widget build(BuildContext context) {
+    Project? selected;
+    for (final project in [...projects, ...blogs, ...articles]) {
+      if (project.markdownAssetPath == selectedAsset) selected = project;
+    }
+    final activeProject = selected;
+    return SizedBox.expand(
+        child: Stack(
+      children: [
+        Offstage(
+          offstage: activeProject != null,
+          child: TickerMode(
+            enabled: activeProject == null,
+            child: _buildGrid(context),
+          ),
+        ),
+        if (activeProject != null)
+          Positioned.fill(
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    children: [
+                      TextButton.icon(
+                        onPressed: () => context.go('/projects'),
+                        icon: const Icon(Icons.arrow_back, size: 18),
+                        label: const Text('All projects'),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Text(activeProject.title,
+                            maxLines: 1, overflow: TextOverflow.ellipsis),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(height: 1),
+                Expanded(
+                  child: SmoothScroll(
+                    key: ValueKey(activeProject.markdownAssetPath),
+                    child: ProjectReader(project: activeProject),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    ));
+  }
+
+  Widget _buildGrid(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final inset = contentInset(context) + 24;
@@ -21,6 +77,7 @@ class ProjectsTab extends StatelessWidget {
                 : 1;
 
         return CustomScrollView(
+          key: const PageStorageKey('projects-grid'),
           primary: true,
           slivers: [
             for (final section in [
@@ -49,12 +106,12 @@ class ProjectsTab extends StatelessWidget {
                       final project = section.items[index];
                       return ProjectTile(
                         project: project,
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProjectDetailPage(project: project),
-                          ),
-                        ),
+                        onTap: () => context.go(Uri(
+                          path: '/projects',
+                          queryParameters: {
+                            'project': project.markdownAssetPath
+                          },
+                        ).toString()),
                       );
                     },
                     childCount: section.items.length,

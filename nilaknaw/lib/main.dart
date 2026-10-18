@@ -42,7 +42,10 @@ class MyPortfolioApp extends StatelessWidget {
                 child: child,
               );
             },
-            child: PortfolioHomePage(pageIndex: index),
+            child: PortfolioHomePage(
+              pageIndex: index,
+              projectAsset: state.uri.queryParameters['project'],
+            ),
           ),
         ),
     ],
@@ -68,9 +71,10 @@ class MyPortfolioApp extends StatelessWidget {
 }
 
 class PortfolioHomePage extends StatelessWidget {
-  PortfolioHomePage({super.key, this.pageIndex = 0});
+  PortfolioHomePage({super.key, this.pageIndex = 0, this.projectAsset});
 
   final int pageIndex;
+  final String? projectAsset;
 
   final List<Tab> myTabs = [
     const Tab(text: 'Home'),
@@ -78,11 +82,11 @@ class PortfolioHomePage extends StatelessWidget {
     const Tab(text: 'Resources'),
   ];
 
-  final List<Widget> tabViews = [
-    HomeTab(),
-    ProjectsTab(),
-    ResourcesTab(),
-  ];
+  List<Widget> get tabViews => [
+        HomeTab(),
+        ProjectsTab(selectedAsset: projectAsset),
+        ResourcesTab(),
+      ];
 
   @override
   Widget build(BuildContext context) {

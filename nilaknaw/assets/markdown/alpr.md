@@ -1,8 +1,6 @@
 # Automatic Licence Plate Recognition with YOLOv8 and OpenCV for Sri Lankan License Plate Recognition
 
-The Automatic License Plate Recognition (ALPR) project aims to develop a computer vision-based
-solution for recognizing Sri Lankan license plates in real-time video from an IP camera. This project
-utilizes Python and various computer vision libraries to implement a robust ALPR system.
+The Automatic License Plate Recognition (ALPR) project aims to develop a computer vision-based solution for recognizing Sri Lankan license plates in real-time video from an IP camera. This project utilizes Python and various computer vision libraries to implement a robust ALPR system.
 
 
 ## Project Overview

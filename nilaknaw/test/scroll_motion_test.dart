@@ -62,6 +62,47 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('continuous wheel events keep moving and leave content clickable',
+      (tester) async {
+    var taps = 0;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: SmoothScroll(
+          child: SingleChildScrollView(
+            primary: true,
+            child: Column(children: [
+              SizedBox(
+                height: 500,
+                child: Center(
+                    child: TextButton(
+                        onPressed: () => taps++,
+                        child: const Text('Open project'))),
+              ),
+              const SizedBox(height: 2400),
+            ]),
+          ),
+        ),
+      ),
+    ));
+    final position =
+        tester.state<ScrollableState>(find.byType(Scrollable)).position;
+    position.pointerScroll(12);
+    await tester.pump();
+    final activity = position.activity;
+    for (var i = 0; i < 8; i++) {
+      final before = position.pixels;
+      position.pointerScroll(12);
+      await tester.pump(const Duration(milliseconds: 16));
+      expect(position.pixels, greaterThan(before));
+      expect(position.activity, same(activity));
+      expect(position.activity!.shouldIgnorePointer, isFalse);
+    }
+    await tester.tap(find.text('Open project'));
+    expect(taps, 1);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('reduced motion keeps scrolling immediate and sections opaque',
       (tester) async {
     await tester.pumpWidget(fixture(reduced: true));

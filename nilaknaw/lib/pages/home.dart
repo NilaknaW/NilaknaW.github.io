@@ -68,8 +68,21 @@ class HomeTab extends StatelessWidget {
                         'I am Nilakna,',
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
-                      Text(
-                        'an Electronic and Telecommunication Engineering undergraduate interested in analog and mixed-signal circuits, IC design, optoelectronics, sensing, and experimental instrumentation. I enjoy working at the intersection of physics and electronics.',
+                      Text.rich(
+                        const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'an Electronic and Telecommunication Engineering undergraduate interested in ',
+                            ),
+                            TextSpan(
+                              text: 'analog and mixed-signal circuits, IC design, optoelectronics, sensing, and experimental instrumentation',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '. I enjoy working at the intersection of physics and electronics.',
+                            ),
+                          ],
+                        ),
                         style: const TextStyle(fontSize: 18),
                         textAlign: isWide ? TextAlign.left : TextAlign.center,
                       ),
