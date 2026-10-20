@@ -51,7 +51,9 @@ Later, we submitted our design to the IEEE CASS–CEDA Student Analog Design Con
 We are now looking ahead to June 2026, when we will receive the fabricated chip, the silicon result of months of design, verification, and teamwork. I’ll share updates once we test the silicon and evaluate its real-world performance.
 
 You can explore the complete project at
+
 Github repository: [https://github.com/NilaknaW/sky130_op_amp](https://github.com/NilaknaW/sky130_op_amp)
+
 Tapeout submission: [https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps](https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps)
 
 ## For those interested in Analog IC Design
