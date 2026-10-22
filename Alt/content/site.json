@@ -1,0 +1,415 @@
+{
+  "sections": [
+    {
+      "title": "Projects",
+      "items": [
+        {
+          "title": "Op-amp analog IC design",
+          "imagePath": "assets/markdown/opamp.png",
+          "markdownAssetPath": "assets/markdown/opamp.md"
+        },
+        {
+          "title": "Single Precision Floating Point Unit",
+          "imagePath": "assets/markdown/fpu.png",
+          "markdownAssetPath": "assets/markdown/fpu.md"
+        },
+        {
+          "title": "Robotic End-Effector",
+          "imagePath": "assets/markdown/endeff2.jpeg",
+          "markdownAssetPath": "assets/markdown/endeffector.md"
+        },
+        {
+          "title": "Realtime license plate recognition system",
+          "imagePath": "assets/markdown/alpr.jpeg",
+          "markdownAssetPath": "assets/markdown/alpr.md"
+        },
+        {
+          "title": "Smart Glow - a smart bulb adapter",
+          "imagePath": "assets/markdown/smartglow.jpeg",
+          "markdownAssetPath": "assets/markdown/smartglow.md"
+        },
+        {
+          "title": "Greet Flood - nature-based flood management demonstration app",
+          "imagePath": "assets/markdown/wwf.png",
+          "markdownAssetPath": "assets/markdown/wwf.md"
+        },
+        {
+          "title": "NutriMithu - healthy diet potion controlling system",
+          "imagePath": "assets/markdown/nutri.png",
+          "markdownAssetPath": "assets/markdown/nutri.md"
+        },
+        {
+          "title": "GlycoiQ - glucose monitoring device IoT app",
+          "imagePath": "assets/markdown/glycoiq.png",
+          "markdownAssetPath": "assets/markdown/glycoiq.md"
+        },
+        {
+          "title": "Career fair web app for the department of ENTC",
+          "imagePath": "assets/markdown/careerf.png",
+          "markdownAssetPath": "assets/markdown/careerf.md"
+        },
+        {
+          "title": "Transmittix - custom point-to-point communication system",
+          "imagePath": "assets/markdown/transmit.jpeg",
+          "markdownAssetPath": "assets/markdown/transmit.md"
+        }
+      ]
+    },
+    {
+      "title": "Posts",
+      "items": [
+        {
+          "title": "24 Hours. No Internet. Just Pure Electronics.",
+          "imagePath": "assets/markdown/siliconedge/sp1.jpeg",
+          "markdownAssetPath": "assets/markdown/siliconedge/siliconedge.md"
+        },
+        {
+          "title": "First ever Make-a-thon",
+          "imagePath": "assets/markdown/bodacious/makeathon2.jpeg",
+          "markdownAssetPath": "assets/markdown/bodacious/bodacious.md"
+        },
+        {
+          "title": "Robotics at SLRC 2025",
+          "imagePath": "assets/markdown/slrc/slrc3.jpeg",
+          "markdownAssetPath": "assets/markdown/slrc/slrc.md"
+        }
+      ]
+    },
+    {
+      "title": "Articles",
+      "items": [
+        {
+          "title": "Single flux quantum for neural processing units (NPU)",
+          "imagePath": "assets/markdown/npu/5583.jpg",
+          "markdownAssetPath": "assets/markdown/npu/npu.md"
+        },
+        {
+          "title": "Analysing LTI: A Study on Linear Time Invarient Systems",
+          "imagePath": "assets/markdown/ctsignal/res/ft-1.png",
+          "markdownAssetPath": "assets/markdown/lti/lti.md"
+        },
+        {
+          "title": "A deep dive into Continous Time Signals",
+          "imagePath": "assets/markdown/ctsignal/res/lt-1.png",
+          "markdownAssetPath": "assets/markdown/ctsignal/ctsignals.md"
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "title": "Research Assistant - Monash University",
+      "imagePath": "assets/images/monash.jpg",
+      "description": "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab, Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at ACM CHI 2026.",
+      "reverse": false
+    },
+    {
+      "title": "Intern - SLT Mobitel",
+      "imagePath": "assets/images/sltm1.jpeg",
+      "description": "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
+      "reverse": true
+    },
+    {
+      "title": "Intern - World Wildlife Fund (WWF)",
+      "imagePath": "assets/images/wwf1.jpeg",
+      "description": "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
+      "reverse": false
+    },
+    {
+      "title": "👨‍🎓 Undergraduate",
+      "imagePath": "assets/images/uom.jpeg",
+      "description": "I'm currently an undergraduate student in Electronic and Telecommunication Engineering at the University of Moratuwa, with a strong academic record (CGPA: 3.94/4.00) and a passion for engineering research. I actively contribute to both academic and extracurricular work from hands-on electronics projects to leadership roles in clubs and societies. I serve as the head of web in Electronics Club and was the president of the Mathematics Society.",
+      "reverse": false
+    },
+    {
+      "title": "🏫 School Journey",
+      "imagePath": "assets/images/school.JPG",
+      "description": "My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and the arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the School Head Prefect and graduated with a strong academic and leadership record.",
+      "reverse": true
+    },
+    {
+      "title": "🎵 Music",
+      "imagePath": "assets/images/music4.jpeg",
+      "description": "Music has always been a big part of my life. As an instrumentalist, I've found a second voice through music. I play the clarinet in the Colombo Wind Orchestra and the Junior Symphony Orchestra, and I regularly perform for university events. My musical talents extend to the piano, drums, and violin, and I've also composed a few original pieces as I explore music. Music has been not just a passion but a way to express creativity and build community through performance.",
+      "reverse": false
+    },
+    {
+      "title": "🏑 Hockey",
+      "imagePath": "assets/images/hockey.jpeg",
+      "description": "Playing as an attacker in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games and Inter-University Games, earning University Colors in 2023, 2024, and 2025, for my performance and commitment to the sport.",
+      "reverse": true
+    }
+  ],
+  "bio": "Hello, I am Nilakna. I love electronics, physics, and simply, creating things. This is why I like doing engineering research, as it brings two of my favorite things together: electronics and creativity. I like working in collaborative research teams, and I've been fortunate to work with some amazing researchers.\n\nI also love music and sports. I play the clarinet in local orchestras and played for my university hockey team. I believe this diverse set of interests has helped me develop a unique thinking pattern. What I want to do is to be a researcher to help advance human knowledge through cutting-edge technologies.",
+  "citations": [
+    "Analog/mixed-signal circuits, IC design, optoelectronics, and quantum-sensing.",
+    "1. Quantum ELF Magnetometer for Drone Detection and Classification",
+    "2. Closed-loop Affective Modulation (Human-Computer Interaction)",
+    "1. Fang, Z., Wang, H., Warushavithana, N., Madusanka, S., Deng, J., Chen, W., Elvitigala, D., Mueller, F. 2026. [The Wizard of Taste: Demonstrating Multisensory Eating with Electrical Taste and Bone-conduction Auditory Seasoning](https://doi.org/10.1145/3772363.3799379). CHI 2026. Interactivity. ACM. [Video](https://youtu.be/S8Q2H2pGOHM).",
+    "2. Pathirana R., Balasooriya P., Warushavithana, N., Ravishan N., Sabnis N., Mueller F., and Elvitigala D. 2026. [Demonstrating VibeCoP: Guiding Balance Exercises through a Center of Pressure encoded Vibrotactile Waistband](https://doi.org/10.1145/3801727.3844936). SportsHCI Companion 2026. ACM. (Accepted)"
+  ],
+  "awards": [
+    {
+      "imagePath": "assets/images/achievements/opampwin.jpg",
+      "title": "Analog IC Design Contest",
+      "placement": "Second Place",
+      "field": "Analog IC Design",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/images/achievements/dvcon.png",
+      "title": "DVCon India Design Contest",
+      "placement": "Finalist",
+      "field": "FPGA / Digital Design",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/images/achievements/makeathon2.jpeg",
+      "title": "Inter University Make-a-thon",
+      "placement": "Winner",
+      "field": "Medical Devices / 3D Design",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/images/achievements/slrc3.jpeg",
+      "title": "Sri Lanka Robotics Challenge",
+      "placement": "Finalist",
+      "field": "Robotics",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/images/achievements/sliot1.jpeg",
+      "title": "Sri Lanka IoT Challenge (SLIoT)",
+      "placement": "Finalist",
+      "field": "IoT / Embedded Systems",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/markdown/nutri.png",
+      "title": "IEEE EMBS Brainstorm",
+      "placement": "Finalist",
+      "field": "Healthcare / Embedded Systems",
+      "year": "2025"
+    },
+    {
+      "imagePath": "assets/images/achievements/AIchallenge.jpeg",
+      "title": "IEEE Sri Lanka AI Challenge",
+      "placement": "Finalist",
+      "field": "AI / Web Development",
+      "year": "2024"
+    },
+    {
+      "imagePath": "assets/markdown/siliconedge/sp5.jpeg",
+      "title": "Silicon Pulse Design Contest",
+      "placement": "Finalist",
+      "field": "Analog Design",
+      "year": "2024"
+    }
+  ],
+  "resources": [
+    {
+      "level": "A-Level",
+      "subject": "Physics",
+      "title": "Physics Practicals",
+      "type": "Notes",
+      "link": "https://drive.google.com/file/d/1AYD-uVkJWMignc06MQgOX1hwwi8MLayf/view?usp=drive_link"
+    },
+    {
+      "level": "A-Level",
+      "subject": "Chemistry",
+      "title": "Inorganic Chemistry Summary",
+      "type": "Short Notes",
+      "link": "https://drive.google.com/file/d/14UrO5AhcgztQELq6-UTqYAONv8O7qEMJ/view?usp=drive_link"
+    },
+    {
+      "level": "A-Level",
+      "subject": "Chemistry",
+      "title": "Organic Chemistry Summary",
+      "type": "Short Notes",
+      "link": "https://drive.google.com/file/d/16YElJOZ74eci4Lpmjfxtec7yctFw_-RK/view?usp=drive_link"
+    },
+    {
+      "level": "Graded Exams",
+      "subject": "Music",
+      "title": "Music Theory Notes",
+      "type": "Short Notes",
+      "link": "https://drive.google.com/file/d/10tFd39qZcu8lqKcxD9IXlWt-8nktIK8u/view?usp=drive_link"
+    }
+  ],
+  "icons": {
+    "github": {
+      "family": "brand",
+      "code": 60994
+    },
+    "amd": {
+      "family": "brand",
+      "code": 60050
+    },
+    "intel": {
+      "family": "brand",
+      "code": 61291
+    },
+    "cplusplus": {
+      "family": "brand",
+      "code": 60356
+    },
+    "python": {
+      "family": "brand",
+      "code": 62181
+    },
+    "ltspice": {
+      "family": "brand",
+      "code": 61565
+    },
+    "altiumdesigner": {
+      "family": "brand",
+      "code": 60021
+    },
+    "dassaultsystemes": {
+      "family": "brand",
+      "code": 60613
+    },
+    "unity": {
+      "family": "brand",
+      "code": 62894
+    },
+    "ubuntu": {
+      "family": "brand",
+      "code": 62871
+    },
+    "git": {
+      "family": "brand",
+      "code": 60986
+    },
+    "flutter": {
+      "family": "brand",
+      "code": 60901
+    },
+    "android": {
+      "family": "brand",
+      "code": 60061
+    },
+    "firebase": {
+      "family": "brand",
+      "code": 60874
+    },
+    "memory": {
+      "family": "material",
+      "code": 58331
+    },
+    "code": {
+      "family": "material",
+      "code": 57718
+    },
+    "download": {
+      "family": "material",
+      "code": 57857
+    },
+    "mail": {
+      "family": "material",
+      "code": 58307
+    },
+    "send": {
+      "family": "material",
+      "code": 58737
+    },
+    "email": {
+      "family": "material",
+      "code": 57898
+    },
+    "business": {
+      "family": "material",
+      "code": 57627
+    },
+    "assignment_ind_sharp": {
+      "family": "material",
+      "code": 59300
+    },
+    "search": {
+      "family": "material",
+      "code": 58727
+    },
+    "lock_open": {
+      "family": "material",
+      "code": 58288
+    },
+    "open_in_new": {
+      "family": "material",
+      "code": 58460
+    },
+    "arrow_back": {
+      "family": "material",
+      "code": 57490
+    },
+    "favorite": {
+      "family": "material",
+      "code": 57947
+    }
+  },
+  "tools": [
+    {
+      "icon": "memory",
+      "label": "KLayout/Magic"
+    },
+    {
+      "icon": "memory",
+      "label": "SKY130 PDK"
+    },
+    {
+      "icon": "code",
+      "label": "SystemVerilog"
+    },
+    {
+      "icon": "amd",
+      "label": "Vivado"
+    },
+    {
+      "icon": "intel",
+      "label": "Quartus"
+    },
+    {
+      "icon": "cplusplus",
+      "label": "C++"
+    },
+    {
+      "icon": "python",
+      "label": "Python"
+    },
+    {
+      "icon": "ltspice",
+      "label": "LTSpice"
+    },
+    {
+      "icon": "altiumdesigner",
+      "label": "Altium"
+    },
+    {
+      "icon": "dassaultsystemes",
+      "label": "SolidWorks"
+    },
+    {
+      "icon": "unity",
+      "label": "Unity"
+    },
+    {
+      "icon": "ubuntu",
+      "label": "Ubuntu"
+    },
+    {
+      "icon": "git",
+      "label": "Git"
+    },
+    {
+      "icon": "flutter",
+      "label": "Flutter"
+    },
+    {
+      "icon": "android",
+      "label": "Android"
+    },
+    {
+      "icon": "firebase",
+      "label": "Firebase"
+    }
+  ]
+}
