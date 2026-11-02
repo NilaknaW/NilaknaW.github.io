@@ -1,0 +1,12 @@
+---
+import icons from "../data/icons.json";
+interface Props {
+  name: keyof typeof icons;
+}
+const { name } = Astro.props;
+const icon = icons[name];
+---
+
+<span class:list={["icon", icon.family]} aria-hidden="true">
+  {String.fromCodePoint(icon.code)}
+</span>

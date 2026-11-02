@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Op-amp analog IC design | Nilakna Warushavithana</title><meta name="description" content="Op-amp analog IC design: project notes and technical details by Nilakna Warushavithana."><meta name="theme-color" content="#e0f2f1"><link rel="icon" href="/assets/images/favicon.png"><link rel="canonical" href="https://nilaknaw.github.io/projects/opamp/"><meta property="og:type" content="website"><meta property="og:title" content="Op-amp analog IC design | Nilakna Warushavithana"><meta property="og:description" content="Op-amp analog IC design: project notes and technical details by Nilakna Warushavithana."><meta property="og:url" content="https://nilaknaw.github.io/projects/opamp/"><meta property="og:image" content="https://nilaknaw.github.io/assets/images/chi1.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Op-amp analog IC design | Nilakna Warushavithana"><meta name="twitter:description" content="Op-amp analog IC design: project notes and technical details by Nilakna Warushavithana."><link rel="preload" href="/assets/fonts/roboto-slab-400.woff" as="font" type="font/woff" crossorigin><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nilakna Warushavithana","url":"https://nilaknaw.github.io/","image":"https://nilaknaw.github.io/assets/images/chi1.png","sameAs":["https://github.com/NilaknaW","https://linkedin.com/in/nilakna-warushavithana","https://orcid.org/0009-0009-7133-2022"]}</script><link rel="stylesheet" href="/_astro/Layout.CAPrvNTw.css"><link rel="stylesheet" href="/_astro/_id_.BNLSuGWh.css"></head> <body data-page="Projects"> <a class="skip-link" href="#main">
+Skip to content
+</a> <header class="app-bar"> <a class="logo" href="/" aria-label="Nilakna Warushavithana — Home"> <img src="/assets/images/favicon.png" width="40" height="40" alt=""> </a> <nav aria-label="Main navigation"> <a href="/"> Home </a><a href="/projects/" aria-current="page"> Projects </a><a href="/resources/"> Resources </a> </nav> <div class="socials"> <a href="https://github.com/NilaknaW" target="_blank" rel="noopener noreferrer"> <span class="icon brand" aria-hidden="true">  </span> <span class="sr-only">GitHub</span> </a> <a href="https://linkedin.com/in/nilakna-warushavithana" target="_blank" rel="noopener noreferrer"> <img src="/assets/images/linkedin.svg" width="16" height="16" alt="LinkedIn"> </a> </div> </header> <main id="main" tabindex="-1">  <div class="reader-toolbar"> <a class="text-button all-projects" href="/projects/"> <span class="icon material" aria-hidden="true">  </span>
+All projects
+</a> <span>Op-amp analog IC design</span> </div> <div class="reader-background"> <article class="markdown" data-reader-content> <h1 id="from-curiosity-to-silicon-my-first-analog-ic-design">From Curiosity to Silicon: My First Analog IC Design</h1>
+<p>November 11, 2025</p>
+<p>Ever since I was a child, I’ve been fascinated by how computers are made, staring at motherboards and wondering how these tiny circuits could accomplish so much. Years later, that curiosity became reality. Along with my teammate Pravindu, I completed my first analog IC design, a simple amplifier, yet a major milestone in our undergraduate journey.</p>
+<p><img src="/assets/markdown/opamp/gds.png" alt="alt text" loading="lazy" width="500"></p>
+<h3 id="from-breadboards-to-silicon">From Breadboards to Silicon</h3>
+<p>After a couple of good analog projects on breadboards and PCBs, I had always wanted to try IC designing. Around this time, I was also exploring digital design through FPGA-based RTL designs and had built a few projects, including a UART, a Floating Point ALU, and a Matrix Multiplier, all available on my GitHub. However, analog design beyond LTSpice and breadboards felt out of reach, especially with paid commercial tools.</p>
+<p>This was far from the truth; while following a course on ASIC design, I learned about open-source PDK tools and how to use them. From setting up the environment to designing the simplest inverter, it was quite challenging at first. Nevertheless, the open-source toolkit, IHP Open Source IC (OSIC) tools, provided the capability for the complete design flow. I used Xschem for schematic design and simulation, and KLayout and Magic for layout design.</p>
+<h3 id="the-project-a-low-power-operational-amplifier">The project: a low-power operational amplifier</h3>
+<p>Our goal was to design a low-power single-ended operational amplifier. I focused primarily on layout design, while Pravindu led schematic design and simulations, performing comprehensive AC/DC analyses, corner analyses, and Monte Carlo simulations, each confirming the robustness of the proposed design in meeting the target specifications.</p>
+<p><img src="/assets/markdown/opamp/schematic.png" alt="alt text" loading="lazy" width="500"></p>
+<p>Starting the layout was exciting but also overwhelming. With no prior experience and almost no references, the blank canvas in KLayout offered no obvious place to begin. I then decided to take a modular approach, which in the end helped us massively with debugging. I first developed a floor plan, optimizing for matching requirements while balancing area and power constraints. Here, I focused on common centroid layouts for matching transistor pairs, dummy devices to preserve uniformity in fabrication, and careful routing to minimize mismatches and parasitic effects. One by one, I built each module, and Pravindu verified it with parasitic-aware simulations. This allowed us to debug any errors in the layout and optimize for the expected outcome immediately, without affecting other sections of the design.</p>
+<p><strong>Final Performance Summary</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Achieved</th><th>Target</th><th>Status</th></tr></thead><tbody><tr><td>DC Gain</td><td>71.373 dB</td><td>≥ 60 dB</td><td>Pass</td></tr><tr><td>GBW</td><td>10.004 MHz</td><td>≥ 1 MHz</td><td>Pass</td></tr><tr><td>Phase Margin</td><td>82.275°</td><td>> 60°</td><td>Pass</td></tr><tr><td>Quiescent Current</td><td>109 μA</td><td>&#x3C; 100 μA</td><td>Fail</td></tr><tr><td>Slew Rate</td><td>1.2 V/μs</td><td>> 1 V/μs</td><td>Pass</td></tr><tr><td>Input Offset</td><td>0.0265 mV</td><td>&#x3C; 3 mV</td><td>Pass</td></tr><tr><td>Disable Current</td><td>194.5 pA</td><td>&#x3C; 2 nA</td><td>Pass</td></tr><tr><td>Width</td><td>88.275 μm</td><td>140 μm</td><td>Pass</td></tr><tr><td>Height</td><td>75.775 μm</td><td>80 μm</td><td>Pass</td></tr><tr><td>Area</td><td>6689.038 μm²</td><td>&#x3C; 11200 μm²</td><td>Pass</td></tr></tbody></table>
+<p>Each device was designed to comply with DRC and LVS checks. Since there were thousands of design rules in the SKY130 documentation, it was impossible to learn every rule beforehand and then do the design. However, the 500+ DRC violations in the initial attempts and their fixes helped me understand new rules and avoid them later. All the intervening rules with metal layers and several vias needed such precision that even adjusting 0.01 microns in the design made the difference between pass and fail. Nevertheless, I enjoyed every part of the design, which felt like constructing a highway complex for all the electrons to move around. The best part was seeing zero violations in DRC and LVS in the end. One by one, each MOS was completed, and all devices were integrated to make a final design of the op-amp.</p>
+<p><img src="/assets/markdown/opamp/layout.png" alt="alt text" loading="lazy" width="500"></p>
+<p>After a few rounds of debugging and rechecking, we finalized our design and obtained clear DRC and LVS results. We conducted CACE corner analysis and post-layout simulations using extracted parasitics to verify the design. It achieved nearly all target specifications, performing as expected after the layout design, validating the schematic-level expectations.</p>
+<h2 id="tapeout-and-next-steps">Tapeout and Next Steps</h2>
+<p>Later, we submitted our design to the IEEE CASS–CEDA Student Analog Design Contest (Sri Lanka) and presented at the Critical Design Review (CDR), where we gained important feedback on areas to improve in our design. Our design received Second Place, along with a tapeout opportunity via TinyTapeout. I am grateful for the support and guidance from Dr Nilan and Mr Kithmin, and to SkillSurf and the IEEE CASS–CEDA Joint Chapter for their initiative and for introducing Sri Lanka’s student community to open-source silicon design.</p>
+<p><img src="/assets/images/achievements/opampwin.jpg" alt="alt text" loading="lazy" width="500"></p>
+<p>We are now looking ahead to June 2026, when we will receive the fabricated chip, the silicon result of months of design, verification, and teamwork. I’ll share updates once we test the silicon and evaluate its real-world performance.</p>
+<p>You can explore the complete project at</p>
+<p>Github repository: <a href="https://github.com/NilaknaW/sky130_op_amp" target="_blank" rel="noopener noreferrer">https://github.com/NilaknaW/sky130_op_amp</a></p>
+<p>Tapeout submission: <a href="https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps" target="_blank" rel="noopener noreferrer">https://tinytapeout.com/chips/ttsky25b/tt_um_se_opamps</a></p>
+<h2 id="for-those-interested-in-analog-ic-design">For those interested in Analog IC Design</h2>
+<p>I’ll add a few important links for anyone who would like to explore this domain of analog IC design. Open-source tools offer an accessible and cost-effective pathway into IC design and even fabrication. Tiny Tapeout is an amazing initiative where the open-source community comes together to fabricate each other’s silicon chips at a reasonable expense, which helps the academic community grow and explore this domain.</p>
+<p>IIC osic tools: <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS" target="_blank" rel="noopener noreferrer">https://github.com/iic-jku/IIC-OSIC-TOOLS</a></p>
+<p>TinyTapeout: <a href="https://tinytapeout.com/" target="_blank" rel="noopener noreferrer">https://tinytapeout.com/</a></p> </article> </div>  </main><script type="module">var e=matchMedia(`(prefers-reduced-motion: reduce)`),t=()=>document.body.classList.toggle(`scrolled`,scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),document.querySelector(`.skip-link`)?.addEventListener(`click`,t=>{t.preventDefault(),document.querySelector(`#main`).focus({preventScroll:!0}),scrollTo({top:0,behavior:e.matches?`instant`:`smooth`})});var n=0,r=0,i=0;function a(){cancelAnimationFrame(n),n=0}function o(e){let t=Math.min((e-i)/1e3,.1);i=e,r=Math.max(0,Math.min(r,document.documentElement.scrollHeight-innerHeight));let a=r-scrollY;Math.abs(a)<.2?(scrollTo({top:r,behavior:`instant`}),n=0):(scrollTo({top:scrollY+a*(1-Math.exp(-t*18)),behavior:`instant`}),n=requestAnimationFrame(o))}addEventListener(`wheel`,t=>{if(e.matches||t.ctrlKey||t.shiftKey||Math.abs(t.deltaX)>Math.abs(t.deltaY)||!t.deltaY||t.target.closest(`textarea,input,.app-bar,pre,table,.katex-display`))return;for(let e=t.target;e instanceof Element&&e!==document.body;e=e.parentElement)if(e.scrollHeight>e.clientHeight&&/(auto|scroll)/.test(getComputedStyle(e).overflowY))return;let a=t.deltaY*(t.deltaMode===1?20:t.deltaMode===2?innerHeight:1),s=document.documentElement.scrollHeight-innerHeight;s<=0||scrollY<=0&&a<0||scrollY>=s&&a>0||(t.preventDefault(),r=Math.max(0,Math.min((n&&(r-scrollY)*a>0?r:scrollY)+a,s)),n||=(i=performance.now(),requestAnimationFrame(o)))},{passive:!1});for(let e of[`pointerdown`,`touchstart`,`keydown`,`popstate`])addEventListener(e,a,{passive:!0});e.addEventListener(`change`,a);var s=[...document.querySelectorAll(`.fade-section`)],c=0;function l(){c=0;for(let t of s){if(e.matches){t.style.opacity=`1`;continue}let n=t.getBoundingClientRect(),r=innerHeight-80,i=Math.max(0,Math.min(n.bottom,innerHeight)-Math.max(n.top,80)),a=Math.min(1,i/(Math.min(n.height,r)*.72));t.style.opacity=String(a*a*(3-2*a))}}function u(){c||=requestAnimationFrame(l)}s.length&&(addEventListener(`scroll`,u,{passive:!0}),addEventListener(`resize`,u),e.addEventListener(`change`,u),document.fonts.ready.then(u),addEventListener(`load`,u),l());</script> </body> </html>

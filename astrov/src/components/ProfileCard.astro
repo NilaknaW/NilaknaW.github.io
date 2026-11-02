@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  imagePath: string;
+  description: string;
+  reverse?: boolean;
+}
+const { title, imagePath, description, reverse = false } = Astro.props;
+---
+
+<article class:list={["profile-card", { reverse }]}>
+  <img src={imagePath} alt={title} loading="lazy" />
+  <div>
+    <h3>{title}</h3>
+    <p>
+      {description.split("\n").map((line, index) => (
+        <>
+          {index > 0 && <br />}
+          {line}
+        </>
+      ))}
+    </p>
+  </div>
+</article>

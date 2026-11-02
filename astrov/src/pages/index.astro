@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import ProfileCard from "../components/ProfileCard.astro";
+import Contact from "../components/Contact.astro";
+import { Content as Research } from "../content/research.md";
+import data from "../data/site.json";
+import icons from "../data/icons.json";
+
+const groups = ["Experience", "Education & Leadership", "Beyond Research"].map(
+  (title) => ({
+    title,
+    profiles: data.profiles.filter((profile) => profile.group === title),
+  }),
+);
+---
+
+<Layout>
+  <section class="hero fade-section">
+    <div class="hero-introduction">
+      <div class="hero-copy">
+        <h1>I am Nilakna,</h1>
+        <!-- prettier-ignore -->
+        <p>an Electronic and Telecommunication Engineering undergraduate interested in <strong>analog and mixed-signal circuits, IC design, optoelectronics, sensing, and experimental instrumentation</strong>. I enjoy working at the intersection of physics and electronics.</p>
+        <div class="button-row">
+          <a
+            class="button elevated"
+            href="https://drive.google.com/drive/folders/1oGzpCXVH44Q9vQw64gb3kvY6HqsIWYXG?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="download" />
+            Resume
+          </a>
+          <a class="button elevated" href="#contact">
+            <Icon name="mail" />
+            Contact
+          </a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <img
+          class="portrait"
+          src="/assets/images/chi1.png"
+          alt="Nilakna Warushavithana"
+          width="440"
+          height="440"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <ul class="tools" aria-label="Tools and skills">
+      {data.tools.map((tool) => (
+        <li tabindex="0" aria-label={tool.label} data-tooltip={tool.label}>
+          <Icon name={tool.icon as keyof typeof icons} />
+        </li>
+      ))}
+    </ul>
+  </section>
+  <hr class="section-divider" />
+  <section class="section research fade-section">
+    <h2>Research</h2>
+    <div class="research-copy">
+      <Research />
+    </div>
+  </section>
+  <hr class="section-divider" />
+  <section class="section about fade-section">
+    <h2>About Me</h2>
+    <div class="bio">
+      {data.bio.split("\n\n").map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+    {groups.map((group) => (
+      <>
+        <h3 class="subheading">{group.title}</h3>
+        {group.profiles.map((profile) => (
+          <ProfileCard {...profile} />
+        ))}
+      </>
+    ))}
+  </section>
+  <Contact />
+</Layout>

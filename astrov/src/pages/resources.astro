@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import data from "../data/site.json";
+const groups = Map.groupBy(
+  data.resources,
+  (item) => `${item.level} / ${item.subject}`,
+);
+---
+
+<Layout
+  page="Resources"
+  title="Study Resources | Nilakna Warushavithana"
+  description="Study resources and notes in physics, chemistry and music shared by Nilakna Warushavithana."
+>
+  <section class="section resources">
+    <h1>Resources</h1>
+    <div class="resource-content">
+      <div class="resource-access">
+        <p>
+          These are my study notes from different exams. Notes are based on
+          school, tuition, books, and lots of self-learning :)
+        </p>
+        <label class="agreement">
+          <input id="resource-agreement" type="checkbox" />
+          <span>
+            I agree to use these documents only for personal study and not for
+            commercial purposes.
+          </span>
+        </label>
+        <div class="button-row">
+          <button id="show-password" class="button outlined" disabled>
+            <Icon name="lock_open" />
+            Agree and Show Password
+          </button>
+          <output id="resource-password" hidden>
+            student-resources
+          </output>
+        </div>
+        <noscript>
+          <p>
+            Enable JavaScript to reveal the study password and filter these
+            documents.
+          </p>
+        </noscript>
+      </div>
+      <div class="search-field">
+        <Icon name="search" />
+        <input
+          id="resource-search"
+          type="search"
+          aria-label="Search by subject, topic, type, or level"
+          placeholder="Search by subject, topic, type, or level"
+        />
+      </div>
+      <p id="resource-count" role="status" aria-live="polite">
+        Showing {data.resources.length} documents
+      </p>
+      <div class="resource-groups">
+        {[...groups].map(([title, items]) => (
+          <section class="resource-group">
+            <h2>{title}</h2>
+            {items.map((item) => (
+              <a
+                class="resource-row"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-search={[item.level, item.subject, item.title, item.type]
+                  .join(" ")
+                  .toLowerCase()}
+              >
+                <span>{item.title}</span>
+                <Icon name="open_in_new" />
+              </a>
+            ))}
+          </section>
+        ))}
+      </div>
+      <p id="resource-empty" hidden>
+        No resources found.
+      </p>
+    </div>
+  </section>
+</Layout>
+<script>
+  import "../scripts/resources.js";
+</script>

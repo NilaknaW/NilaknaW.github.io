@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Single Precision Floating Point Unit | Nilakna Warushavithana</title><meta name="description" content="Single Precision Floating Point Unit: project notes and technical details by Nilakna Warushavithana."><meta name="theme-color" content="#e0f2f1"><link rel="icon" href="/assets/images/favicon.png"><link rel="canonical" href="https://nilaknaw.github.io/projects/fpu/"><meta property="og:type" content="website"><meta property="og:title" content="Single Precision Floating Point Unit | Nilakna Warushavithana"><meta property="og:description" content="Single Precision Floating Point Unit: project notes and technical details by Nilakna Warushavithana."><meta property="og:url" content="https://nilaknaw.github.io/projects/fpu/"><meta property="og:image" content="https://nilaknaw.github.io/assets/images/chi1.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Single Precision Floating Point Unit | Nilakna Warushavithana"><meta name="twitter:description" content="Single Precision Floating Point Unit: project notes and technical details by Nilakna Warushavithana."><link rel="preload" href="/assets/fonts/roboto-slab-400.woff" as="font" type="font/woff" crossorigin><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nilakna Warushavithana","url":"https://nilaknaw.github.io/","image":"https://nilaknaw.github.io/assets/images/chi1.png","sameAs":["https://github.com/NilaknaW","https://linkedin.com/in/nilakna-warushavithana","https://orcid.org/0009-0009-7133-2022"]}</script><link rel="stylesheet" href="/_astro/Layout.CAPrvNTw.css"><link rel="stylesheet" href="/_astro/_id_.BNLSuGWh.css"></head> <body data-page="Projects"> <a class="skip-link" href="#main">
+Skip to content
+</a> <header class="app-bar"> <a class="logo" href="/" aria-label="Nilakna Warushavithana — Home"> <img src="/assets/images/favicon.png" width="40" height="40" alt=""> </a> <nav aria-label="Main navigation"> <a href="/"> Home </a><a href="/projects/" aria-current="page"> Projects </a><a href="/resources/"> Resources </a> </nav> <div class="socials"> <a href="https://github.com/NilaknaW" target="_blank" rel="noopener noreferrer"> <span class="icon brand" aria-hidden="true">  </span> <span class="sr-only">GitHub</span> </a> <a href="https://linkedin.com/in/nilakna-warushavithana" target="_blank" rel="noopener noreferrer"> <img src="/assets/images/linkedin.svg" width="16" height="16" alt="LinkedIn"> </a> </div> </header> <main id="main" tabindex="-1">  <div class="reader-toolbar"> <a class="text-button all-projects" href="/projects/"> <span class="icon material" aria-hidden="true">  </span>
+All projects
+</a> <span>Single Precision Floating Point Unit</span> </div> <div class="reader-background"> <article class="markdown" data-reader-content> <h1 id="ieee-single-precision-floating-point-arithmetic-unit-design">IEEE Single Precision Floating Point Arithmetic Unit Design</h1>
+<p>Floating point arithmetic is a fundamental requirement in digital signal processing, control systems, and embedded computing platforms. This project focused on the complete design, verification, and FPGA implementation of an IEEE-754 compliant 32-bit single precision Floating Point Unit (FPU).</p>
+<p>The implemented FPU supports:</p>
+<ul>
+<li>Floating point addition and subtraction</li>
+<li>Floating point multiplication and division using reciprocal LUT approximation</li>
+<li>IEEE-754 rounding modes and exception handling</li>
+</ul>
+<p>The design emphasizes modularity, correctness, and reusability</p>
+<h2 id="ieee-754-single-precision-format">IEEE-754 Single Precision Format</h2>
+<p><strong>Format Overview</strong></p>
+<p>A single precision floating point number consists of:</p>
+<ul>
+<li>1-bit sign</li>
+<li>8-bit exponent with bias 127</li>
+<li>23-bit fraction with an implicit leading one</li>
+</ul>
+<p><strong>Exception Handling</strong></p>
+<p>The following IEEE-754 exception flags are generated:</p>
+<ul>
+<li>Invalid operation</li>
+<li>Divide-by-zero</li>
+<li>Overflow</li>
+<li>Underflow</li>
+<li>Inexact</li>
+</ul>
+<h2 id="overall-architecture-and-design-flow">Overall Architecture and Design Flow</h2>
+<p>The overall design flow followed:</p>
+<ol>
+<li>IEEE-754 specification analysis</li>
+<li>Algorithm derivation and validation</li>
+<li>RTL modularization</li>
+<li>FSM-based datapath control</li>
+<li>Simulation-based verification</li>
+<li>UART-based system testing</li>
+<li>FPGA synthesis and implementation</li>
+</ol>
+<p>I first created the definition package according to IEEE format and helper packages for operations: leading zero counter, pack, unpack, reciprocal calculator, round, shift and handeling special cases. These helper modules were simulated and validated in Vivado.</p>
+<p>Then the main functional modules were designed in RTL and simulated. Addition and substraction shares the same addsub unit. Multiplication and division also share the same module where for the division, the reciprocal is taken using LUT-based method and fed to the multiplication unit. All modules were initially designed as ASMs and converted to RTL designs in Vivado. The RTLs were simulated and verified, synthesized and finally tested on FPGA hardware. A top level module was created to take input from the PC via UART, communicate with the FPU unit in the FPGA, and finally send the output back to the PC user interface.</p>
+<p>FPGA resource utilization after synthesis was 11% LUT, 3% Flip flops, 13% DSP, and 4% Input/Output. Power consumption analysis showed 103 mW total on-chip power usage.</p>
+<p>Repository link <a href="https://github.com/NilaknaW/sp-fp-arithmetic-unit" target="_blank" rel="noopener noreferrer">https://github.com/NilaknaW/sp-fp-arithmetic-unit</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Afully IEEE-754 compliant single precision floating point unit was successfully designed, verified, and implemented. The modular architecture, FSM-based control, and LUT based division enabled correctness, scalability, and efficient FPGA deployment.
+Future work includes pipelining, higher precision formats, and performance optimization.</p> </article> </div>  </main><script type="module">var e=matchMedia(`(prefers-reduced-motion: reduce)`),t=()=>document.body.classList.toggle(`scrolled`,scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),document.querySelector(`.skip-link`)?.addEventListener(`click`,t=>{t.preventDefault(),document.querySelector(`#main`).focus({preventScroll:!0}),scrollTo({top:0,behavior:e.matches?`instant`:`smooth`})});var n=0,r=0,i=0;function a(){cancelAnimationFrame(n),n=0}function o(e){let t=Math.min((e-i)/1e3,.1);i=e,r=Math.max(0,Math.min(r,document.documentElement.scrollHeight-innerHeight));let a=r-scrollY;Math.abs(a)<.2?(scrollTo({top:r,behavior:`instant`}),n=0):(scrollTo({top:scrollY+a*(1-Math.exp(-t*18)),behavior:`instant`}),n=requestAnimationFrame(o))}addEventListener(`wheel`,t=>{if(e.matches||t.ctrlKey||t.shiftKey||Math.abs(t.deltaX)>Math.abs(t.deltaY)||!t.deltaY||t.target.closest(`textarea,input,.app-bar,pre,table,.katex-display`))return;for(let e=t.target;e instanceof Element&&e!==document.body;e=e.parentElement)if(e.scrollHeight>e.clientHeight&&/(auto|scroll)/.test(getComputedStyle(e).overflowY))return;let a=t.deltaY*(t.deltaMode===1?20:t.deltaMode===2?innerHeight:1),s=document.documentElement.scrollHeight-innerHeight;s<=0||scrollY<=0&&a<0||scrollY>=s&&a>0||(t.preventDefault(),r=Math.max(0,Math.min((n&&(r-scrollY)*a>0?r:scrollY)+a,s)),n||=(i=performance.now(),requestAnimationFrame(o)))},{passive:!1});for(let e of[`pointerdown`,`touchstart`,`keydown`,`popstate`])addEventListener(e,a,{passive:!0});e.addEventListener(`change`,a);var s=[...document.querySelectorAll(`.fade-section`)],c=0;function l(){c=0;for(let t of s){if(e.matches){t.style.opacity=`1`;continue}let n=t.getBoundingClientRect(),r=innerHeight-80,i=Math.max(0,Math.min(n.bottom,innerHeight)-Math.max(n.top,80)),a=Math.min(1,i/(Math.min(n.height,r)*.72));t.style.opacity=String(a*a*(3-2*a))}}function u(){c||=requestAnimationFrame(l)}s.length&&(addEventListener(`scroll`,u,{passive:!0}),addEventListener(`resize`,u),e.addEventListener(`change`,u),document.fonts.ready.then(u),addEventListener(`load`,u),l());</script> </body> </html>

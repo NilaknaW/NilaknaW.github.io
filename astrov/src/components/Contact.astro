@@ -1,0 +1,123 @@
+---
+import Icon from "./Icon.astro";
+const contacts = [
+  {
+    icon: "email",
+    label: "Email",
+    text: "warushavithanand.22@uom.lk",
+    url: "mailto:warushavithanand.22@uom.lk",
+  },
+  {
+    icon: "code",
+    label: "GitHub",
+    text: "github.com/NilaknaW",
+    url: "https://github.com/NilaknaW",
+  },
+  {
+    icon: "business",
+    label: "LinkedIn",
+    text: "linkedin.com/in/nilakna-warushavithana",
+    url: "https://linkedin.com/in/nilakna-warushavithana",
+  },
+  {
+    icon: "assignment_ind_sharp",
+    label: "ORCID id",
+    text: "orcid.org/0009-0009-7133-2022",
+    url: "https://orcid.org/0009-0009-7133-2022",
+  },
+] as const;
+---
+
+<footer class="contact-section" id="contact">
+  <div class="contact-columns">
+    <div>
+      <h3>Reach Out</h3>
+      <div class="contact-links">
+        {contacts.map((contact) => (
+          <a
+            href={contact.url}
+            target={contact.url.startsWith("https:") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+          >
+            <Icon name={contact.icon} />
+            <span>
+              {contact.label}
+              <small>{contact.text}</small>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <form id="contact-form" novalidate>
+      <h3>Send a Message</h3>
+      <div class="form-field">
+        <label for="name">Your Name</label>
+        <input
+          id="name"
+          name="name"
+          autocomplete="name"
+          placeholder=" "
+          aria-describedby="name-error"
+          required
+        />
+        <span class="field-error" id="name-error"></span>
+      </div>
+      <div class="form-field">
+        <label for="email">Your Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder=" "
+          aria-describedby="email-error"
+          required
+        />
+        <span class="field-error" id="email-error"></span>
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          placeholder=" "
+          aria-describedby="message-error"
+          required
+        ></textarea>
+        <span class="field-error" id="message-error"></span>
+      </div>
+      <button class="button outlined" type="submit">
+        <Icon name="send" />
+        <span class="send-label">Send</span>
+      </button>
+      <p id="form-status" role="status" aria-live="polite" hidden></p>
+      <a
+        id="email-fallback"
+        class="text-button"
+        href="mailto:nilawarush@gmail.com"
+        hidden
+      >
+        Email me directly
+      </a>
+      <noscript>
+        <p>
+          Please <a href="mailto:nilawarush@gmail.com">email me directly</a> to
+          send a message.
+        </p>
+        <style>
+          #contact-form > button {
+            display: none;
+          }
+        </style>
+      </noscript>
+    </form>
+  </div>
+  <hr />
+  <p class="credit">
+    Made with <Icon name="favorite" /> by Nilakna Warushavithana. 2026.
+  </p>
+</footer>
+<script>
+  import "../scripts/contact.js";
+</script>

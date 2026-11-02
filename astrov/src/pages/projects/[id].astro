@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
+import "katex/dist/katex.min.css";
+
+export async function getStaticPaths() {
+  return (await getCollection("projects")).map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout
+  page="Projects"
+  title={`${project.data.title} | Nilakna Warushavithana`}
+  description={
+    project.data.description ||
+    `${project.data.title}: project notes and technical details by Nilakna Warushavithana.`
+  }
+>
+  <div class="reader-toolbar">
+    <a class="text-button all-projects" href="/projects/">
+      <Icon name="arrow_back" />
+      All projects
+    </a>
+    <span>{project.data.title}</span>
+  </div>
+  <div class="reader-background">
+    <article class="markdown" data-reader-content>
+      <Content />
+    </article>
+  </div>
+</Layout>

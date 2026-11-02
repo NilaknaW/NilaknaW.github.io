@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import data from "../../data/site.json";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const categories = ["Projects", "Posts", "Articles"];
+const legacyLinks = Object.fromEntries(
+  projects
+    .filter((p) => p.data.legacyPath)
+    .map((p) => [p.data.legacyPath, `/projects/${p.id}/`]),
+);
+---
+
+<Layout
+  page="Projects"
+  title="Projects | Nilakna Warushavithana"
+  description="Explore engineering projects, research articles and technical notes by Nilakna Warushavithana, from analog IC design to embedded systems and robotics."
+>
+  <div id="projects-grid">
+    {categories.map((category, index) => (
+      <section class="project-section section">
+        {index === 0 ? <h1>{category}</h1> : <h2>{category}</h2>}
+        <div class:list={["project-grid", { "compact-grid": index > 0 }]}>
+          {projects
+            .filter((p) => p.data.category === category)
+            .map((project) => (
+              <a class="project-tile" href={`/projects/${project.id}/`}>
+                <img src={project.data.image} alt="" loading="lazy" />
+                <span>{project.data.title}</span>
+              </a>
+            ))}
+        </div>
+      </section>
+    ))}
+    <section class="section awards">
+      <h2>Competition Achievements</h2>
+      <div class="award-grid">
+        {data.awards.map((award) => (
+          <article class="award-card">
+            <img src={award.imagePath} alt={award.title} loading="lazy" />
+            <div>
+              <h3>{award.title}</h3>
+              <p class="award-field">{award.field}</p>
+              <p>
+                {award.placement} • {award.year}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+  <!-- Preserve shared Flutter URLs while new links use static project pages. -->
+  <script define:vars={{ legacyLinks }}>
+    const legacyPath = new URLSearchParams(location.search).get("project");
+    if (legacyPath && Object.hasOwn(legacyLinks, legacyPath)) {
+      location.replace(legacyLinks[legacyPath]);
+    }
+  </script>
+</Layout>

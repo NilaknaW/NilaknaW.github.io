@@ -1,0 +1,110 @@
+{
+  "github": {
+    "family": "brand",
+    "code": 60994
+  },
+  "amd": {
+    "family": "brand",
+    "code": 60050
+  },
+  "intel": {
+    "family": "brand",
+    "code": 61291
+  },
+  "cplusplus": {
+    "family": "brand",
+    "code": 60356
+  },
+  "python": {
+    "family": "brand",
+    "code": 62181
+  },
+  "ltspice": {
+    "family": "brand",
+    "code": 61565
+  },
+  "altiumdesigner": {
+    "family": "brand",
+    "code": 60021
+  },
+  "dassaultsystemes": {
+    "family": "brand",
+    "code": 60613
+  },
+  "unity": {
+    "family": "brand",
+    "code": 62894
+  },
+  "ubuntu": {
+    "family": "brand",
+    "code": 62871
+  },
+  "git": {
+    "family": "brand",
+    "code": 60986
+  },
+  "flutter": {
+    "family": "brand",
+    "code": 60901
+  },
+  "android": {
+    "family": "brand",
+    "code": 60061
+  },
+  "firebase": {
+    "family": "brand",
+    "code": 60874
+  },
+  "memory": {
+    "family": "material",
+    "code": 58331
+  },
+  "code": {
+    "family": "material",
+    "code": 57718
+  },
+  "download": {
+    "family": "material",
+    "code": 57857
+  },
+  "mail": {
+    "family": "material",
+    "code": 58307
+  },
+  "send": {
+    "family": "material",
+    "code": 58737
+  },
+  "email": {
+    "family": "material",
+    "code": 57898
+  },
+  "business": {
+    "family": "material",
+    "code": 57627
+  },
+  "assignment_ind_sharp": {
+    "family": "material",
+    "code": 59300
+  },
+  "search": {
+    "family": "material",
+    "code": 58727
+  },
+  "lock_open": {
+    "family": "material",
+    "code": 58288
+  },
+  "open_in_new": {
+    "family": "material",
+    "code": 58460
+  },
+  "arrow_back": {
+    "family": "material",
+    "code": 57490
+  },
+  "favorite": {
+    "family": "material",
+    "code": 57947
+  }
+}

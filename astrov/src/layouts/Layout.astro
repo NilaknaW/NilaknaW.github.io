@@ -1,0 +1,117 @@
+---
+import Icon from "../components/Icon.astro";
+import "../styles/global.css";
+
+interface Props {
+  page?: "Home" | "Projects" | "Resources";
+  title?: string;
+  description?: string;
+}
+const {
+  page = "Home",
+  title = "Nilakna Warushavithana",
+  description = "Nilakna Warushavithana is an Electronic and Telecommunication Engineering undergraduate interested in analog and mixed-signal circuits, IC design, optoelectronics, sensing, and experimental instrumentation.",
+} = Astro.props;
+const route = Astro.url.pathname.endsWith(".html")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname.replace(/\/$/, "")}/`;
+const canonical = new URL(route, Astro.site);
+const portrait = new URL("/assets/images/chi1.png", Astro.site);
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects/" },
+  { label: "Resources", href: "/resources/" },
+];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Nilakna Warushavithana",
+  url: Astro.site?.href,
+  image: portrait.href,
+  sameAs: [
+    "https://github.com/NilaknaW",
+    "https://linkedin.com/in/nilakna-warushavithana",
+    "https://orcid.org/0009-0009-7133-2022",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#e0f2f1" />
+    <link rel="icon" href="/assets/images/favicon.png" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={portrait} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link
+      rel="preload"
+      href="/assets/fonts/roboto-slab-400.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema).replace(/</g, "\\u003c")}
+    />
+  </head>
+  <body data-page={page}>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="app-bar">
+      <a class="logo" href="/" aria-label="Nilakna Warushavithana — Home">
+        <img src="/assets/images/favicon.png" width="40" height="40" alt="" />
+      </a>
+      <nav aria-label="Main navigation">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={item.label === page ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="socials">
+        <a
+          href="https://github.com/NilaknaW"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="github" />
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a
+          href="https://linkedin.com/in/nilakna-warushavithana"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/assets/images/linkedin.svg"
+            width="16"
+            height="16"
+            alt="LinkedIn"
+          />
+        </a>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <script>
+      import "../scripts/motion.js";
+    </script>
+  </body>
+</html>
