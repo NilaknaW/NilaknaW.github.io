@@ -1,21 +1,21 @@
 {
   "profiles": [
     {
-      "title": "Research Assistant - Monash University",
+      "title": "Research Intern - Monash University",
       "group": "Experience",
       "imagePath": "/assets/images/monash.jpg",
-      "description": "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab, Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, Vibrobits, and kids bodily extensions. Coauthored paper at ACM CHI 2026.",
+      "description": "Full time. Dec 2025 - May 2026\nResearch Assistant at the Exertion Games Lab, Monash University, Australia. Contributed to multiple projects in the lab- human-food interaction, Radarfoot, and Vibrobits. Coauthored paper at ACM CHI 2026.",
       "reverse": false
     },
     {
-      "title": "Intern - SLT Mobitel",
+      "title": "Engineering Intern - SLT Mobitel",
       "group": "Experience",
       "imagePath": "/assets/images/sltm1.jpeg",
-      "description": "Full time. Oct 2023 - Jan 2024\nEngineering Intern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
+      "description": "Full time. Oct 2023 - Jan 2024\nIntern at SLT Mobitel, Network Planning and Operations Division. Worked on network optimization projects and embedded systems, including realtime license plate recognition system with computer vision.",
       "reverse": true
     },
     {
-      "title": "Intern - World Wildlife Fund (WWF)",
+      "title": "Intern - World Wildlife Fund",
       "group": "Experience",
       "imagePath": "/assets/images/wwf1.jpeg",
       "description": "Part time. Mar 2023 - Mar 2025\nIntern at WWF, Environmental and Disaster Management Division, under supervision of Dr. Missaka Hettiarachchi. Working on Augmented Reality mobile app for nature-based flood management method demonstration.",
@@ -29,10 +29,10 @@
       "reverse": false
     },
     {
-      "title": "🏫 School Journey",
+      "title": "🏫 School",
       "group": "Education & Leadership",
       "imagePath": "/assets/images/school.JPG",
-      "description": "My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and the arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the School Head Prefect and graduated with a strong academic and leadership record.",
+      "description": "My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the Head Prefect (School Captain) and graduated with a strong academic and leadership record. I was honoured with the prestigious 'Best All Rounder' award for my contributions to academics, sports, and leadership.",
       "reverse": true
     },
     {
@@ -46,7 +46,7 @@
       "title": "🏑 Hockey",
       "group": "Beyond Research",
       "imagePath": "/assets/images/hockey.jpeg",
-      "description": "Playing as an attacker in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games and Inter-University Games, earning University Colors in 2023, 2024, and 2025, for my performance and commitment to the sport.",
+      "description": "Playing as a forward in my school and university hockey teams taught me teamwork, discipline, and resilience under pressure. I'm a proud representative of the Sri Lanka Universities Hockey Team, having competed at the Junior National Hockey Championship in both 2023 and 2024. I also played for the University of Moratuwa at the Sri Lanka University Games and Inter-University Games, earning University Colors in 2023, 2024, and 2025, for my performance and commitment to the sport.",
       "reverse": true
     }
   ],
