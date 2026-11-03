@@ -151,7 +151,8 @@ strong {
 }
 /* Header and navigation. */
 .app-bar {
-  height: var(--bar-height);
+  min-height: var(--bar-height);
+  padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -163,27 +164,26 @@ strong {
 .scrolled .app-bar {
   background: #eaf6f5;
 }
-.logo {
-  width: 56px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.site-name {
+  color: var(--text);
+  text-decoration: none;
+  padding-block: 14px;
 }
-.logo img {
-  object-fit: contain;
-  width: 16px;
-  height: 16px;
+.site-icon,
+.more-icon,
+.mobile-nav-item {
+  display: none;
 }
 .app-bar nav {
   display: flex;
-  align-self: stretch;
-  justify-content: center;
+  margin-left: auto;
+  justify-content: flex-end;
   align-items: center;
-  flex: 1;
-  min-width: 0;
+  flex-shrink: 0;
 }
-.app-bar nav a {
+.app-bar nav a,
+.nav-more summary {
+  display: block;
   position: relative;
   padding: 14px 16px;
   text-decoration: none;
@@ -193,7 +193,8 @@ strong {
   white-space: nowrap;
   height: 48px;
 }
-.app-bar nav a[aria-current] {
+.app-bar nav a[aria-current],
+.nav-more summary.has-current-page {
   color: var(--teal);
 }
 .app-bar nav a[aria-current]::after {
@@ -206,31 +207,43 @@ strong {
   background: #9e9e9e;
   border-radius: 3px 3px 0 0;
 }
-.app-bar nav a:hover {
+.app-bar nav a:hover,
+.nav-more summary:hover,
+.site-name:hover {
   background: #00968808;
 }
-.socials {
-  display: flex;
-  margin-right: 16px;
-  flex-shrink: 0;
-}
-.socials a {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
+.nav-separator {
   color: #757575;
-  border-radius: 50%;
 }
-.socials a:hover {
-  background: #0000000a;
+.nav-more {
+  position: relative;
 }
-.socials .icon {
-  font-size: 16px;
+.nav-more summary {
+  cursor: pointer;
+  list-style: none;
+  touch-action: manipulation;
 }
-.socials img {
-  opacity: 0.55;
+.nav-more summary::-webkit-details-marker {
+  display: none;
+}
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+  max-width: calc(100vw - 48px);
+  padding: 8px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--teal-light);
+  border-radius: 12px;
+  box-shadow: 0 3px 5px #0003;
+}
+.app-bar .nav-dropdown a {
+  height: auto;
+  min-height: 48px;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 main:focus {
   outline: none;
@@ -473,6 +486,12 @@ main:focus {
 .contact-links .icon {
   color: #000;
 }
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
 .form-field {
   position: relative;
   margin: 0 0 1px;
@@ -599,7 +618,8 @@ main:focus {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-.project-tile {
+.project-tile,
+.award-card {
   display: grid;
   position: relative;
   aspect-ratio: 1.2;
@@ -608,7 +628,8 @@ main:focus {
   text-decoration: none;
   background: #eee;
 }
-.project-tile img {
+.project-tile img,
+.award-card > img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -633,34 +654,23 @@ main:focus {
 .project-tile:focus-visible span {
   background: #00000073;
 }
+.awards {
+  container-type: inline-size;
+}
 .awards h2 {
   font-size: 28px;
   line-height: 36px;
   margin-bottom: 30px;
 }
-.award-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-}
-.award-card {
-  width: 272px;
-  max-width: 100%;
-  margin: 4px;
-  border: 2px solid var(--teal-light);
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--surface);
-}
-.award-card > img {
-  display: block;
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
 .award-card > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: 12px;
+  background: linear-gradient(transparent, #000c);
+  color: #fff;
+  text-align: center;
 }
 .award-card h3 {
   font-size: 16px;
@@ -669,12 +679,11 @@ main:focus {
 }
 .award-card p {
   font-size: 14px;
-  color: #424242;
   margin-top: 12px;
 }
 .award-card .award-field {
   font-size: 13px;
-  color: var(--teal);
+  color: var(--teal-light);
   margin-top: 4px;
 }
 /* Project reader and rendered Markdown. */
@@ -1010,17 +1019,6 @@ main:focus {
   .tools li {
     padding: 12px;
   }
-  .app-bar nav {
-    justify-content: flex-start;
-    overflow: auto;
-    scrollbar-width: none;
-  }
-  .app-bar nav::-webkit-scrollbar {
-    display: none;
-  }
-  .app-bar nav a {
-    flex-shrink: 0;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1057,25 +1055,26 @@ main:focus {
   margin-top: 12px;
 }
 
-/* Keep all three navigation links available on small phones. */
-@media (max-width: 420px) {
-  .app-bar {
-    gap: 0;
+/* Use a single icon row and put all navigation links in More on phones. */
+@media (max-width: 599px) {
+  .site-name-text,
+  .app-bar nav > .desktop-nav-link,
+  .nav-separator,
+  .more-text {
+    display: none;
   }
-  .logo {
-    width: 36px;
+  .site-icon,
+  .more-icon,
+  .mobile-nav-item {
+    display: block;
   }
-  .app-bar nav a {
-    padding-inline: 10px;
-  }
-  .app-bar nav a[aria-current]::after {
-    left: 10px;
-    right: 10px;
-  }
-  .socials {
-    margin-right: 4px;
-  }
-  .socials a {
-    width: 28px;
+  .site-name,
+  .nav-more summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
   }
 }

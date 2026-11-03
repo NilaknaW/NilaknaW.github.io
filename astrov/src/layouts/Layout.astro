@@ -1,5 +1,4 @@
 ---
-import Icon from "../components/Icon.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -17,11 +16,8 @@ const route = Astro.url.pathname.endsWith(".html")
   : `${Astro.url.pathname.replace(/\/$/, "")}/`;
 const canonical = new URL(route, Astro.site);
 const portrait = new URL("/assets/images/chi1.png", Astro.site);
-const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects/" },
-  { label: "Resources", href: "/resources/" },
-];
+// Add future secondary pages here to include them in the More dropdown.
+const moreNavigation = [{ label: "Resources", href: "/resources/" }];
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -71,59 +67,91 @@ const schema = {
       Skip to content
     </a>
     <header class="app-bar">
-      <a class="logo" href="/" aria-label="Nilakna Warushavithana — Home">
-        <img src="/assets/images/favicon.png" width="40" height="40" alt="" />
+      <a
+        class="site-name"
+        href="/"
+        aria-label="Nilakna Warushavithana — Home"
+        aria-current={route === "/" ? "page" : undefined}
+      >
+        <img
+          class="site-icon"
+          src="/assets/images/favicon.png"
+          width="16"
+          height="16"
+          alt=""
+        />
+        <b class="site-name-text">Nilakna Warushavithana</b>
       </a>
       <nav aria-label="Main navigation">
-        {navigation.map((item) => (
-          <a
-            href={item.href}
-            aria-current={item.label === page ? "page" : undefined}
+        <a
+          class="desktop-nav-link"
+          href="/projects/"
+          aria-current={page === "Projects" ? "page" : undefined}
+        >
+          Projects
+        </a>
+        <span class="nav-separator" aria-hidden="true"></span>
+        <a
+          class="desktop-nav-link"
+          href={route === "/" ? "#contact" : "/#contact"}
+        >
+          Contact
+        </a>
+        <span class="nav-separator" aria-hidden="true"></span>
+        <details class="nav-more">
+          <summary
+            aria-label="More"
+            class:list={{
+              "has-current-page": moreNavigation.some(
+                (item) => item.label === page,
+              ),
+            }}
           >
-            {item.label}
-          </a>
-        ))}
+            <span class="more-text">More</span>
+            <svg
+              class="more-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h18v2H3z" />
+            </svg>
+          </summary>
+          <ul class="nav-dropdown">
+            <li class="mobile-nav-item">
+              <a
+                href="/projects/"
+                aria-current={page === "Projects" ? "page" : undefined}
+              >
+                Projects
+              </a>
+            </li>
+            <li class="mobile-nav-item">
+              <a href={route === "/" ? "#contact" : "/#contact"}>Contact</a>
+            </li>
+            {moreNavigation.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={item.label === page ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
       </nav>
-      <div class="socials">
-        <a
-          href="https://orcid.org/0009-0009-7133-2022"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <img
-            src="/assets/images/orcid.svg"
-            width="16"
-            height="16"
-            alt="ORCID"
-          />
-        </a>
-        <a
-          href="https://github.com/NilaknaW"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="github" />
-          <span class="sr-only">GitHub</span>
-        </a>
-        <a
-          href="https://linkedin.com/in/nilakna-warushavithana"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/images/linkedin.svg"
-            width="16"
-            height="16"
-            alt="LinkedIn"
-          />
-        </a>
-      </div>
     </header>
     <main id="main" tabindex="-1">
       <slot />
     </main>
     <script>
       import "../scripts/motion.js";
+      import "../scripts/navigation.js";
     </script>
   </body>
 </html>

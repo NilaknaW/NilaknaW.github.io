@@ -32,7 +32,7 @@
       "title": "🏫 School",
       "group": "Education & Leadership",
       "imagePath": "/assets/images/school.JPG",
-      "description": "My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the Head Prefect (School Captain) and graduated with a strong academic and leadership record. I was honoured with the prestigious 'Best All Rounder' award for my contributions to academics, sports, and leadership.",
+      "description": "My foundation was laid at Visakha Vidyalaya, where I first developed a deep interest in both science and arts. I was actively involved in prefects guilds, school band, hockey and montaineering teams, and societies. I served as the Head Prefect - School Captain - and graduated with a strong academic and leadership record. I was honoured with the prestigious 'Best All Rounder' award for my contributions to academics, sports, and leadership.",
       "reverse": true
     },
     {
@@ -199,10 +199,6 @@
     {
       "icon": "android",
       "label": "Android"
-    },
-    {
-      "icon": "firebase",
-      "label": "Firebase"
     }
   ]
 }

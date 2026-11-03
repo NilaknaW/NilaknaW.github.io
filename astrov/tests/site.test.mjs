@@ -86,14 +86,17 @@ async function open(route = "/", options = {}) {
 
 async function checkImages(page) {
   for (const image of await page.locator("img").all()) {
-    await image.scrollIntoViewIfNeeded();
+    if (await image.isVisible()) await image.scrollIntoViewIfNeeded();
     await image.evaluate((img) => img.decode());
   }
 }
 
 test("home retains original text, profiles, research, fonts and contact navigation", async () => {
   const page = await open();
-  assert.equal(await page.locator("h1").textContent(), "I am Nilakna,");
+  assert.equal(
+    await page.locator("h1").textContent(),
+    "I am Nilakna Warushavithana,",
+  );
   assert.equal(await page.locator(".tools li").count(), 16);
   assert.equal(await page.locator(".profile-card").count(), 7);
   assert.equal(await page.locator(".research-copy a").count(), 3);
@@ -106,11 +109,124 @@ test("home retains original text, profiles, research, fonts and contact navigati
     );
   }
   await checkImages(page);
-  await page.getByRole("link", { name: "Contact", exact: true }).click();
+  await page
+    .locator(".hero")
+    .getByRole("link", { name: "Contact", exact: true })
+    .click();
   assert.equal(new URL(page.url()).hash, "#contact");
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: "test-results/home-desktop.png" });
   await page.context().close();
+});
+
+test("navigation supports keyboard, touch, dismissal, and contact links across pages", async () => {
+  const page = await open();
+  const more = page.locator(".nav-more");
+  const toggle = more.locator("summary");
+  const resources = more.getByRole("link", { name: "Resources", exact: true });
+  for (const width of [320, 390, 599, 600, 768, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(origin);
+    const mobile = width < 600;
+    assert.equal(await page.locator(".site-name-text").isVisible(), !mobile);
+    assert.equal(await page.locator(".site-icon").isVisible(), mobile);
+    assert.equal(await page.locator(".more-icon").isVisible(), mobile);
+    assert.equal(
+      await page.locator(".desktop-nav-link:visible").count(),
+      mobile ? 0 : 2,
+    );
+    assert.ok(await resources.isHidden());
+    await toggle.focus();
+    await page.keyboard.press("Enter");
+    assert.ok(await resources.isVisible());
+    const labels = mobile
+      ? ["Projects", "Contact", "Resources"]
+      : ["Resources"];
+    assert.deepEqual(
+      (await more.locator("a:visible").allTextContents()).map((text) => text.trim()),
+      labels,
+    );
+    for (const label of labels) {
+      await page.keyboard.press("Tab");
+      assert.ok(
+        await more
+          .getByRole("link", { name: label, exact: true })
+          .evaluate((node) => node === document.activeElement),
+      );
+    }
+    const bounds = await resources.boundingBox();
+    assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= width);
+    await page.keyboard.press("Escape");
+    assert.ok(await resources.isHidden());
+    assert.ok(await toggle.evaluate((node) => node === document.activeElement));
+    await page.keyboard.press("Space");
+    for (let index = 0; index <= labels.length; index++) {
+      await page.keyboard.press("Tab");
+    }
+    assert.ok(await resources.isHidden());
+    await toggle.click();
+    await page.mouse.click(8, 40);
+    assert.ok(await resources.isHidden());
+  }
+  await toggle.click();
+  await resources.click();
+  await page.waitForURL(origin + "/resources/");
+  await page
+    .locator("nav")
+    .getByRole("link", { name: "Contact", exact: true })
+    .click();
+  await page.waitForURL(origin + "/#contact");
+  assert.ok(await page.locator("#contact").isVisible());
+  for (const name of ["linkedin", "orcid"]) {
+    const icon = page.locator(
+      `.contact-links img[src="/assets/images/${name}.svg"]`,
+    );
+    await icon.evaluate((img) => img.decode());
+  }
+  assert.equal(
+    await page
+      .locator(
+        '.contact-links a[href="https://github.com/NilaknaW"] .icon.brand',
+      )
+      .count(),
+    1,
+  );
+  await page.context().close();
+
+  const phone = await open("/", {
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+  });
+  await phone.locator(".nav-more summary").tap();
+  await phone.screenshot({ path: "test-results/navigation-mobile.png" });
+  await phone
+    .locator(".nav-more")
+    .getByRole("link", { name: "Projects", exact: true })
+    .tap();
+  await phone.waitForURL(origin + "/projects/");
+  await phone.locator(".nav-more summary").tap();
+  await phone
+    .locator(".nav-more")
+    .getByRole("link", { name: "Contact", exact: true })
+    .tap();
+  await phone.waitForURL(origin + "/#contact");
+  await phone.locator(".nav-more summary").tap();
+  await phone
+    .locator(".nav-more")
+    .getByRole("link", { name: "Resources", exact: true })
+    .tap();
+  await phone.waitForURL(origin + "/resources/");
+  await phone.locator(".site-name").tap();
+  await phone.waitForURL(origin + "/");
+  await phone.locator(".nav-more summary").tap();
+  await phone
+    .locator(".nav-more")
+    .getByRole("link", { name: "Contact", exact: true })
+    .tap();
+  await phone.waitForURL(origin + "/#contact");
+  assert.equal(await phone.locator(".nav-more").getAttribute("open"), null);
+  await phone.context().close();
 });
 
 test("all project cards and static readers work with local images, tables, and equations", async () => {
@@ -284,8 +400,17 @@ test("phone, tablet, desktop and reader layouts fit the screen with no script er
 });
 
 test("readers and page content are available without JavaScript", async () => {
-  const page = await open("/", { javaScriptEnabled: false });
+  const page = await open("/", {
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
   assert.equal(await page.locator(".profile-card").count(), 7);
+  await page.locator(".nav-more summary").click();
+  await page
+    .locator(".nav-more")
+    .getByRole("link", { name: "Resources" })
+    .click();
+  await page.waitForURL(origin + "/resources/");
   await page.goto(origin + "/projects/");
   await page
     .getByRole("link", { name: "Op-amp analog IC design", exact: true })

@@ -8,19 +8,19 @@ const contacts = [
     url: "mailto:warushavithanand.22@uom.lk",
   },
   {
-    icon: "code",
+    icon: "github",
     label: "GitHub",
     text: "github.com/NilaknaW",
     url: "https://github.com/NilaknaW",
   },
   {
-    icon: "business",
+    icon: "/assets/images/linkedin.svg",
     label: "LinkedIn",
     text: "linkedin.com/in/nilakna-warushavithana",
     url: "https://linkedin.com/in/nilakna-warushavithana",
   },
   {
-    icon: "assignment_ind_sharp",
+    icon: "/assets/images/orcid.svg",
     label: "ORCID id",
     text: "orcid.org/0009-0009-7133-2022",
     url: "https://orcid.org/0009-0009-7133-2022",
@@ -39,7 +39,18 @@ const contacts = [
             target={contact.url.startsWith("https:") ? "_blank" : undefined}
             rel="noopener noreferrer"
           >
-            <Icon name={contact.icon} />
+            {contact.icon === "email" || contact.icon === "github" ? (
+              <Icon name={contact.icon} />
+            ) : (
+              <img
+                class="contact-icon"
+                src={contact.icon}
+                width="24"
+                height="24"
+                alt=""
+                aria-hidden="true"
+              />
+            )}
             <span>
               {contact.label}
               <small>{contact.text}</small>
