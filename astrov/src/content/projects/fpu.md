@@ -1,7 +1,7 @@
 ---
 title: "Single Precision Floating Point Unit"
 category: "Projects"
-order: 2
+order: 9
 image: "/assets/markdown/fpu.png"
 legacyPath: "assets/markdown/fpu.md"
 ---

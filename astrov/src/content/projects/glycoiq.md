@@ -1,7 +1,7 @@
 ---
 title: "GlycoiQ - glucose monitoring device IoT app"
 category: "Projects"
-order: 8
+order: 2
 image: "/assets/markdown/glycoiq.png"
 legacyPath: "assets/markdown/glycoiq.md"
 ---

@@ -1,9 +1,9 @@
 ---
 title: "Interactive Taste HCI"
 category: "Projects"
-order: 1
+order: 10
 image: "/assets/markdown/wot/gesture.jpeg"
-description: "A short description for search engines and sharing."
+description: "Electrical taste and hand gestures for human-food interaction"
 ---
 
 # Interactive Taste - Human-Computer Interaction

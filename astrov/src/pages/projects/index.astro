@@ -26,6 +26,7 @@ const legacyLinks = Object.fromEntries(
         <div class:list={["project-grid", { "compact-grid": index > 0 }]}>
           {projects
             .filter((p) => p.data.category === category)
+            .slice().reverse()
             .map((project) => (
               <a class="project-tile" href={`/projects/${project.id}/`}>
                 <img src={project.data.image} alt="" loading="lazy" />

@@ -1,7 +1,7 @@
 ---
 title: "Transmittix - custom point-to-point communication system"
 category: "Projects"
-order: 10
+order: 5
 image: "/assets/markdown/transmit.jpeg"
 legacyPath: "assets/markdown/transmit.md"
 ---

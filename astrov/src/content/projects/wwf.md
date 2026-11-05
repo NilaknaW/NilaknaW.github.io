@@ -1,7 +1,7 @@
 ---
 title: "Greet Flood - nature-based flood management demonstration app"
 category: "Projects"
-order: 6
+order: 4
 image: "/assets/markdown/wwf.png"
 legacyPath: "assets/markdown/wwf.md"
 ---

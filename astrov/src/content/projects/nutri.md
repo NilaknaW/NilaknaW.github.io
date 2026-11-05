@@ -1,7 +1,7 @@
 ---
 title: "NutriMithu - healthy diet potion controlling system"
 category: "Projects"
-order: 7
+order: 3
 image: "/assets/markdown/nutri.png"
 legacyPath: "assets/markdown/nutri.md"
 ---

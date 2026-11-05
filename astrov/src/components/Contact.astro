@@ -88,14 +88,23 @@ const contacts = [
       </div>
       <div class="form-field">
         <label for="message">Message</label>
-        <textarea
+        <!-- <textarea
           id="message"
           name="message"
-          rows="4"
+          rows="2"
           placeholder=" "
           aria-describedby="message-error"
           required
-        ></textarea>
+        ></textarea> -->
+        <input
+          id="message"
+          name="message"
+          type="text"
+          autocomplete="off"
+          placeholder=" "
+          aria-describedby="message-error"
+          required
+        />
         <span class="field-error" id="message-error"></span>
       </div>
       <button class="button outlined" type="submit">
@@ -126,7 +135,7 @@ const contacts = [
   </div>
   <hr />
   <p class="credit">
-    Made with <Icon name="favorite" /> by Nilakna Warushavithana. 2026.
+    Made with <Icon name="favorite" /> by Nilakna Warushavithana. 2025.
   </p>
 </footer>
 <script>

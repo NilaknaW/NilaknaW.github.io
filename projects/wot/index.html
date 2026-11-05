@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Interactive Taste HCI | Nilakna Warushavithana</title><meta name="description" content="Electrical taste and hand gestures for human-food interaction"><meta name="theme-color" content="#e0f2f1"><link rel="icon" href="/assets/images/favicon.png"><link rel="canonical" href="https://nilaknaw.github.io/projects/wot/"><meta property="og:type" content="website"><meta property="og:title" content="Interactive Taste HCI | Nilakna Warushavithana"><meta property="og:description" content="Electrical taste and hand gestures for human-food interaction"><meta property="og:url" content="https://nilaknaw.github.io/projects/wot/"><meta property="og:image" content="https://nilaknaw.github.io/assets/images/chi1.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Interactive Taste HCI | Nilakna Warushavithana"><meta name="twitter:description" content="Electrical taste and hand gestures for human-food interaction"><link rel="preload" href="/assets/fonts/roboto-slab-400.woff" as="font" type="font/woff" crossorigin><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nilakna Warushavithana","url":"https://nilaknaw.github.io/","image":"https://nilaknaw.github.io/assets/images/chi1.png","sameAs":["https://github.com/NilaknaW","https://linkedin.com/in/nilakna-warushavithana","https://orcid.org/0009-0009-7133-2022"]}</script><link rel="stylesheet" href="/_astro/Layout.Bl2li7DK.css"><link rel="stylesheet" href="/_astro/_id_.BNLSuGWh.css"></head> <body data-page="Projects"> <a class="skip-link" href="#main">
+Skip to content
+</a> <header class="app-bar"> <a class="site-name" href="/" aria-label="Nilakna Warushavithana — Home"> <img class="site-icon" src="/assets/images/favicon.png" width="16" height="16" alt=""> <span class="site-name-text">Nilakna Warushavithana</span> </a> <nav aria-label="Main navigation"> <a class="desktop-nav-link" href="/projects/" aria-current="page">
+Projects
+</a> <!-- <span class="nav-separator" aria-hidden="true"></span> --> <a class="desktop-nav-link" href="/#contact">
+Contact
+</a> <!-- <span class="nav-separator" aria-hidden="true"></span> --> <details class="nav-more"> <summary aria-label="More"> <span class="more-text">More</span> <svg class="more-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"> <path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h18v2H3z"></path> </svg> </summary> <ul class="nav-dropdown"> <li class="mobile-nav-item"> <a href="/projects/" aria-current="page">
+Projects
+</a> </li> <li class="mobile-nav-item"> <a href="/#contact">Contact</a> </li> <li> <a href="/resources/"> Resources </a> </li> </ul> </details> </nav> </header> <main id="main" tabindex="-1">  <div class="reader-toolbar"> <a class="text-button all-projects" href="/projects/"> <span class="icon material" aria-hidden="true">  </span>
+All projects
+</a> <span>Interactive Taste HCI</span> </div> <div class="reader-background"> <article class="markdown" data-reader-content> <h1 id="interactive-taste---human-computer-interaction">Interactive Taste - Human-Computer Interaction</h1>
+<p>An interactive spoon for exploring electrical taste with hand gestures.</p>
+<h2 id="system-overview">System Overview</h2>
+<ul>
+<li><strong>E-Taste Stimulation</strong>: Uses electrical pulses to create taste and tactile sensations (sour, salty, smooth, sparkling)</li>
+<li><strong>Gesture Recognition</strong>: Uses IMU and FSR sensor readings to classify hand movements for taste cues.</li>
+<li><strong>Digital Control</strong>: ESP32-based firmware manages gesture recognition and current stimulation.</li>
+<li><strong>Web Interface</strong>: Python-based web application for monitoring status and data collection for developers.</li>
+</ul>
+<p align="center">
+<img src="/assets/markdown/wot/gesture-final.jpeg" width="75%">
+</p>
+<h2 id="hardware-components">Hardware Components</h2>
+<h3 id="main-controller">Main Controller</h3>
+<ul>
+<li>ESP32-S3 microcontroller with WiFi capabilities.</li>
+<li>Electrical stimulation by DAC and PWM control.</li>
+<li>IMU and FSR sensor interfacing capabilities.</li>
+<li>State machine based algorithm for gestue detection and stimulation andeling.</li>
+</ul>
+<h3 id="gesture-recognition">Gesture Recognition</h3>
+<ul>
+<li><strong>BNO-055</strong> 9-DOF IMU for hand movement gesture recognition (stir, shake, tap).</li>
+<li><strong>FSR408</strong> pressure sensor for squeeze gesture recognition.</li>
+<li>Gesture classification using statistical methods from sensor readings.</li>
+</ul>
+<h3 id="e-taste-delivery">E-Taste Delivery</h3>
+<ul>
+<li><strong>DAC63004</strong> for precise electrical current generation.</li>
+<li><strong>PCA9685</strong> for controlled PWM signal generation.</li>
+<li><strong>ADG1612</strong> for PWM switching for current control.</li>
+<li>Electrodes for taste stimulus delivery.</li>
+</ul>
+<h3 id="power-management">Power Management</h3>
+<ul>
+<li>Dedicated power supply circuit with <strong>TP4056</strong>.</li>
+<li>Charging and protection circuits with <strong>DW01A</strong> and <strong>FS8206</strong>.</li>
+</ul>
+<p align="center">
+<img src="/assets/markdown/wot/block-all.png" width="75%">
+</p>
+<h2 id="software-components">Software Components</h2>
+<p>Embedded Firmware: PlatformIO-based C++ project for ESP32.</p>
+<ul>
+<li>Sensor readings from IMU and FSR.</li>
+<li>Electrical stimulation control.</li>
+<li>Gesture detection algorithm.</li>
+<li>Network communication with web interface.</li>
+</ul>
+<h2 id="pcb-designs">PCB Designs</h2>
+<h3 id="main-pcb">Main PCB</h3>
+<ul>
+<li>Integrates gesture detection IMU-FSR and e-taste components.</li>
+<li>Two-layer design with signaling, load currents, power, and area optimization.</li>
+<li>Fabrication and assembly files for manufacturing.</li>
+</ul>
+<p align="center">
+<img src="/assets/markdown/wot/circuit-front.png" width="38%">
+<img src="/assets/markdown/wot/circuit-3d-back.png" width="36%">
+</p>
+<h3 id="electrode-fpc">Electrode FPC</h3>
+<ul>
+<li>Flexible PCB design optimized for tongue contact.</li>
+<li>Seperate design allows modular development and various designs compatible with main PCB.</li>
+<li>Individual electrode control and for various configurations.</li>
+</ul>
+<p align="center">
+<img src="/assets/markdown/wot/elec.png" width="70%">
+</p>
+<h3 id="alternative-main-pcb">Alternative Main PCB</h3>
+<ul>
+<li>Area optimized design for flexible printed circuit fabrication.</li>
+<li>Integrates IMU, FSR, and e-taste generation.</li>
+<li>Can fit within a spoon handle occupying only a 15 mm x 100 mm area.</li>
+</ul>
+<p align="center">
+<img src="/assets/markdown/wot/fpc-main.png" width="75%">
+<img src="/assets/markdown/wot/fpc-main2.png" width="75%">
+</p>
+<h2 id="publications">Publications</h2>
+<h3 id="the-wizard-of-taste-demonstrating-multisensory-eating-with-electrical-taste-and-bone-conduction-auditory-seasoning">The Wizard of Taste: Demonstrating Multisensory Eating with Electrical Taste and Bone-conduction Auditory Seasoning</h3>
+<p align="center">
+<img src="/assets/markdown/wot/demo.jpg" width="75%">
+</p>
+<p>Features multisensory eating experience, real-time taste modulation via electrodes, and auditory modulation via bone-conduction.
+The prototype demonstrates three multisensory eating scenes integrated with Spanish food: <em>happy scene</em> paired with churros, uplifting audio and mild sour electrical taste, positive sensory associations; <em>scary scene</em> paired with chocolate, unsettling audio tones and stronger salty stimulation, creates tension and intrigue; <em>calming scene</em> paired with flan, soothing audio and gentle electrical tactile stimulus, relaxing sensory experience.</p>
+<p>This was demonstrated at ACM CHI Conference on Human Factors in Computing Systems, Barcelona, Spain, April 13-17, 2026 in interactive demonstration paper track. <a href="https://dl.acm.org/doi/10.1145/3772363.3799379" target="_blank" rel="noopener noreferrer">doi</a>.</p>
+<h3 id="eatdisco-towards-understanding-the-future-of-interactive-taste">EatDisco: Towards understanding the future of Interactive Taste</h3>
+<p align="center">
+<img src="/assets/markdown/wot/eatdisco.png" width="50%">
+</p>
+Features Interactive taste interface, gesture-based taste exploration, real-time taste modulation.
+Submitted to DIS 2026 Pictorials. Not Accepted.
+<h2 id="contributors">Contributors</h2>
+<p>Codebase and instrumentation by <strong>Nilakna Warushavithana</strong> during her internship at the Exertion Games Lab of Monash University. Developed for the PhD research of <strong>Ziqi Fang</strong>.</p>
+<h2 id="acknowledgement">Acknowledgement</h2>
+<p>Exertion Games Lab, Department of Human-Centred Computing, Monash University, Australia.</p> </article> </div>  </main><script type="module">var e=matchMedia(`(prefers-reduced-motion: reduce)`),t=()=>document.body.classList.toggle(`scrolled`,scrollY>0);addEventListener(`scroll`,t,{passive:!0}),t(),document.querySelector(`.skip-link`)?.addEventListener(`click`,t=>{t.preventDefault(),document.querySelector(`#main`).focus({preventScroll:!0}),scrollTo({top:0,behavior:e.matches?`instant`:`smooth`})});var n=0,r=0,i=0;function a(){cancelAnimationFrame(n),n=0}function o(e){let t=Math.min((e-i)/1e3,.1);i=e,r=Math.max(0,Math.min(r,document.documentElement.scrollHeight-innerHeight));let a=r-scrollY;Math.abs(a)<.2?(scrollTo({top:r,behavior:`instant`}),n=0):(scrollTo({top:scrollY+a*(1-Math.exp(-t*18)),behavior:`instant`}),n=requestAnimationFrame(o))}addEventListener(`wheel`,t=>{if(e.matches||t.ctrlKey||t.shiftKey||Math.abs(t.deltaX)>Math.abs(t.deltaY)||!t.deltaY||t.target.closest(`textarea,input,.app-bar,pre,table,.katex-display`))return;for(let e=t.target;e instanceof Element&&e!==document.body;e=e.parentElement)if(e.scrollHeight>e.clientHeight&&/(auto|scroll)/.test(getComputedStyle(e).overflowY))return;let a=t.deltaY*(t.deltaMode===1?20:t.deltaMode===2?innerHeight:1),s=document.documentElement.scrollHeight-innerHeight;s<=0||scrollY<=0&&a<0||scrollY>=s&&a>0||(t.preventDefault(),r=Math.max(0,Math.min((n&&(r-scrollY)*a>0?r:scrollY)+a,s)),n||=(i=performance.now(),requestAnimationFrame(o)))},{passive:!1});for(let e of[`pointerdown`,`touchstart`,`keydown`,`popstate`])addEventListener(e,a,{passive:!0});e.addEventListener(`change`,a);var s=[...document.querySelectorAll(`.fade-section`)],c=0;function l(){c=0;for(let t of s){if(e.matches){t.style.opacity=`1`;continue}let n=t.getBoundingClientRect(),r=innerHeight-80,i=Math.max(0,Math.min(n.bottom,innerHeight)-Math.max(n.top,80)),a=Math.min(1,i/(Math.min(n.height,r)*.72));t.style.opacity=String(a*a*(3-2*a))}}function u(){c||=requestAnimationFrame(l)}s.length&&(addEventListener(`scroll`,u,{passive:!0}),addEventListener(`resize`,u),e.addEventListener(`change`,u),document.fonts.ready.then(u),addEventListener(`load`,u),l());var d=document.querySelector(`.nav-more`);if(d instanceof HTMLDetailsElement){let e=d.querySelector(`summary`);d.addEventListener(`keydown`,t=>{t.key===`Escape`&&d.open&&(t.preventDefault(),d.open=!1,e.focus())}),document.addEventListener(`click`,e=>{d.contains(e.target)||(d.open=!1)}),d.addEventListener(`focusout`,e=>{d.contains(e.relatedTarget)||(d.open=!1)}),d.querySelectorAll(`a`).forEach(t=>{t.addEventListener(`click`,()=>{e.focus({preventScroll:!0}),d.open=!1})})}</script> </body> </html>

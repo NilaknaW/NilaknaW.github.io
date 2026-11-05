@@ -1,7 +1,7 @@
 ---
 title: "Realtime license plate recognition system"
 category: "Projects"
-order: 4
+order: 7
 image: "/assets/markdown/alpr.jpeg"
 legacyPath: "assets/markdown/alpr.md"
 ---

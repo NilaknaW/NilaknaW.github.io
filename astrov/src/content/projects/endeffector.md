@@ -1,7 +1,7 @@
 ---
 title: "Robotic End-Effector"
 category: "Projects"
-order: 3
+order: 8
 image: "/assets/markdown/endeff2.jpeg"
 legacyPath: "assets/markdown/endeffector.md"
 ---

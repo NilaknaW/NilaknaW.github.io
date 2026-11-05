@@ -1,7 +1,7 @@
 ---
 title: "Career fair web app for the department of ENTC"
 category: "Projects"
-order: 9
+order: 1
 image: "/assets/markdown/careerf.png"
 legacyPath: "assets/markdown/careerf.md"
 ---

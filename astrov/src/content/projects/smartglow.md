@@ -1,7 +1,7 @@
 ---
 title: "Smart Glow - a smart bulb adapter"
 category: "Projects"
-order: 5
+order: 6
 image: "/assets/markdown/smartglow.jpeg"
 legacyPath: "assets/markdown/smartglow.md"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Op-amp analog IC design"
 category: "Projects"
-order: 1
+order: 11
 image: "/assets/markdown/opamp.png"
 legacyPath: "assets/markdown/opamp.md"
 ---
