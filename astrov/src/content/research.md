@@ -19,3 +19,5 @@ Analog/mixed-signal circuits, IC design, optoelectronics, and quantum-sensing.
 2. Fang, Z., Ranasinghe, N., <b>Warushavithana, N.</b>, Wang, H., Deng, J., Chen, W., Han, T., Elvitigala, D., Mueller, F. E-Foodie: Towards Understanding the Design of Interactive Electrical Taste for Experiential Eating. ACM CHI 2027. <i>Under review</i>.
 
 3. <b>Warushavithana, N.</b>, Goonetilleke, P., Pahasara, P., Attanayake, A., Rathnayaka, S., Hapuarachchi, H., Mandal, S., Krasnok, A., Edussooriya, C., Madanayake, A. Passive UAS Detection Using Nitrogen-Vacancy Diamond Magnetometers and Deep Learning. ISCAS 2027. <i>Under review</i>.
+
+###
